@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau scénario{% endblock %}
+{# {% block stylesheets %}{{ asset(css/creation.min.css) }}{% endblock %} #}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/creation.min.css') }}">{% endblock %}
+
+{% block body %}
+
+<form method="POST" enctype="multipart/form-data" class="container mt-5">
+    <h1 class="my-3">Création d'un nouveau scénario</h1>
+
+    <div class="form-group">
+        <label for="title">Titre du scénario<span class="requierd">*</span></label>
+        <input type="text" name="title" class="form-control" placeholder="Ma nouvelle aventure...">
+    </div>
+
+    <div class="form-group">
+        <label for="image">Illustration du scénario</label>
+        <input type="file" name="image" class="form-control" accept="image/*">
+        <label for="image_alt"></label>
+        <input type="text" name="image_alt" class="form-control" placeholder="">
+    </div>
+
+    <div class="form-group">
+        <label for="resume">Résumé du scénario</label>
+        <input type="text" name="resume" class="form-control" placeholder="">
+    </div>
+
+    <small class="requierd">*Champ obligatoire</small>
+</form>
+
+{% endblock %}

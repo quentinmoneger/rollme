@@ -3,10 +3,18 @@ home_index:
   path: /
   controller: App\Controller\HomeController::index
 
-scenario_index:
-  path: /scenario
-  controller: App\Controller\HomeController::index
-
 play_index:
   path: /jouer
-  controller: App\Controller\HomeController::index
+  controller: App\Controller\PlayController::index
+
+play_play:
+  path: /jouer/scenario={id}
+  controller: App\Controller\PlayController::play
+  
+scenario_index:
+  path: /scenario
+  controller: App\Controller\ScenarioController::index
+
+scenario_create:
+  path: /scenario/creation
+  controller: App\Controller\ScenarioController::create

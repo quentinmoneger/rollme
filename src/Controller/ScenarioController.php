@@ -11,8 +11,13 @@ class ScenarioController extends AbstractController
 
     public function index(): Response
     {
-        return $this->render('scenario/index.html.twig', [
-            'controller_name' => 'ScenarioController',
-        ]);
+
+        return $this->render('scenario/scenario.html.twig');
+    }
+
+    public function create(): Response
+    {
+
+        return $this->render('scenario/create.html.twig');
     }
 }

@@ -3,5 +3,19 @@
 {% block title %}Scénario{% endblock %}
 
 {% block body %}
+    <a href="{{ path('scenario_create') }}">Création de scénario</a>
+    <h2>Choix de scénario</h2>
+    {% for scenario in scenarios  %}
+        <div class="col-4">
+            <div class="card">
+                <img src="{{ asset(scenario.getImage()) }}" alt="{{ asset(scenario.getImageAlt()) }}" class="card-img-top img-fluid">
+                <div class="card-body">
+                    <h6 class="card-title">{{ scenario.getTitle() }}</h6>
+                    <p class="card-text">{{ scenario.getResume() }}</p>
+                    <a href="{{ path('play_index', {id: scenario.getId()}) }}">Jouer ce scénario</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 
 {% endblock %}

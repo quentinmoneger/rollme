@@ -1,3 +1,12 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+
+home_index:
+  path: /
+  controller: App\Controller\HomeController::index
+
+scenario_index:
+  path: /scenario
+  controller: App\Controller\HomeController::index
+
+play_index:
+  path: /jouer
+  controller: App\Controller\HomeController::index

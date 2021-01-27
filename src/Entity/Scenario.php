@@ -33,12 +33,7 @@ class Scenario
     private $image;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     */
-    private $image_alt;
-
-    /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="json", nullable=true)
      */
     private $frame = [];
 
@@ -79,18 +74,6 @@ class Scenario
     public function setImage(?string $image): self
     {
         $this->image = $image;
-
-        return $this;
-    }
-
-    public function getImageAlt(): ?string
-    {
-        return $this->image_alt;
-    }
-
-    public function setImageAlt(?string $image_alt): self
-    {
-        $this->image_alt = $image_alt;
 
         return $this;
     }

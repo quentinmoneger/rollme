@@ -18,3 +18,11 @@ scenario_index:
 scenario_create:
   path: /scenario/creation
   controller: App\Controller\ScenarioController::create
+
+scenario_update:
+  path: /scenario/update{id}
+  controller: App\Controller\ScenarioController::update
+
+scenario_delete:
+  path: /scenario/delete{id}
+  controller: App\Controller\ScenarioController::delete

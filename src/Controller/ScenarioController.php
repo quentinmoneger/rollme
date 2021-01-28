@@ -24,6 +24,8 @@ class ScenarioController extends AbstractController
     public function create(): Response
     {
 
+        $em = $this->getDoctrine()->getManager();
+
         $errors = [];
 
         if (!empty($_POST)) {
@@ -33,6 +35,11 @@ class ScenarioController extends AbstractController
             // Validations
             if (!v::length(5, 100)->validate($safe['title'])) {
                 $errors[] = 'Le titre doit comporter entre 5 et 100 caractères maximum.';
+            }
+
+            $scenario = $em->getRepository(Scenario::class)->findOneBy(['title' => $safe['title']]);
+            if ($scenario !== null) {
+                $errors[] = 'Ce nom est déjà utilisé.';
             }
 
             if (!v::length(30, 1000)->validate($safe['resume'])) {
@@ -67,9 +74,9 @@ class ScenarioController extends AbstractController
                 $rootPublic = $_SERVER['DOCUMENT_ROOT'];
                 $publicOutput = 'assets/scenario/' . $safe['title'] . '/';
                 $dirOutput = $rootPublic . $publicOutput;
-                
+
                 // Creat the folder
-                if(!is_dir($dirOutput)){
+                if (!is_dir($dirOutput)) {
                     mkdir($dirOutput, 0777);
                 }
 
@@ -93,22 +100,18 @@ class ScenarioController extends AbstractController
                             break;
                     }
 
-                    $filename = 'illusration.'.$extension;
+                    $filename = 'illusration.' . $extension;
 
-                    if (!move_uploaded_file($_FILES['image']['tmp_name'], $dirOutput.$filename)) {
+                    if (!move_uploaded_file($_FILES['image']['tmp_name'], $dirOutput . $filename)) {
                         die('Erreur d\'upload fichier images');
                     }
 
-                    $linkImage = $dirOutput.$filename;
-
+                    $linkImage = $dirOutput . $filename;
                 } else {
                     $linkImage = '/assets/default/illustration.jpg';
                 }
-                
 
-                $em = $this->getDoctrine()->getManager();
-                
-                $scenario = new Scenario();              
+                $scenario = new Scenario();
                 $scenario->setTitle($safe['title']);
                 $scenario->setResume($safe['resume']);
                 $scenario->setImage($linkImage);
@@ -117,7 +120,6 @@ class ScenarioController extends AbstractController
                 $em->flush();
 
                 $this->addFlash('success', 'Votre scénario a été créé avec succès');
-
             } else {
 
                 $this->addFlash('danger', implode('<br>', $errors));
@@ -138,9 +140,9 @@ class ScenarioController extends AbstractController
             return $this->redirectToRoute('scenario_index');
         }
 
-        
+
         if (!empty($_POST)) {
-            
+
             $errors = [];
 
             $safe = array_map('trim', array_map('strip_tags', $_POST));
@@ -178,18 +180,25 @@ class ScenarioController extends AbstractController
             // Upload on server
             if (count($errors) === 0) {
 
-                // Building the image dir
-                $rootPublic = $_SERVER['DOCUMENT_ROOT'];
-                $publicOutput = 'assets/scenario/' . $safe['title'] . '/';
-                $dirOutput = $rootPublic . $publicOutput;
-                
-                // Creat the folder it doesn't exist
-                if(!is_dir($dirOutput)){
-                    mkdir($dirOutput, 0777);
-                }
+                $em = $this->getDoctrine()->getManager();
 
-                // If there is an image
+                $scenario = $em->getRepository(Scenario::class)->find($id);
+                $scenario->setTitle($safe['title']);
+                $scenario->setResume($safe['resume']);
+
+
+                // If there is an image upload and there is no image already (shouldn't)
                 if (!empty($_FILES['image']['tmp_name'])) {
+
+                    // Building the image dir
+                    $rootPublic = $_SERVER['DOCUMENT_ROOT'];
+                    $publicOutput = 'assets/scenario/' . $safe['title'] . '/';
+                    $dirOutput = $rootPublic . $publicOutput;
+
+                    // Creat the folder if doesn't exist (shouldn't)
+                    if (!is_dir($dirOutput)) {
+                        mkdir($dirOutput, 0777);
+                    }
 
                     // Standardisation of the extension
                     switch ($_FILES['image']['type']) {
@@ -208,32 +217,22 @@ class ScenarioController extends AbstractController
                             break;
                     }
 
-                    $filename = 'illusration.'.$extension;
+                    $filename = 'illusration.' . $extension;
 
-                    if (!move_uploaded_file($_FILES['image']['tmp_name'], $dirOutput.$filename)) {
+                    if (!move_uploaded_file($_FILES['image']['tmp_name'], $dirOutput . $filename)) {
                         die('Erreur d\'upload fichier images');
                     }
+                    $linkImage = $dirOutput . $filename;
 
-                    $linkImage = $dirOutput.$filename;
-
-                } else {
-                    $linkImage = '/assets/default/illustration.jpg';
+                    $scenario->setImage($linkImage);
                 }
                 
-
-                $em = $this->getDoctrine()->getManager();
-                
-                $scenario = $em->getRepository(Scenario::class)->find($id);              
-                $scenario->setTitle($safe['title']);
-                $scenario->setResume($safe['resume']);
-                $scenario->setImage($linkImage);
-
+                // Execute
                 $em->flush();
 
                 // $this->addFlash('success', 'Votre scénario a été modifié avec succès');
-                
-                return $this->redirectToRoute('scenario_index');
 
+                return $this->redirectToRoute('scenario_index');
             } else {
 
                 $this->addFlash('danger', implode('<br>', $errors));
@@ -249,25 +248,26 @@ class ScenarioController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $scenario = $entityManager->getRepository(Scenario::class)->find($id);
-        
-        function rrmdir($dir) { 
-            if (is_dir($dir)) { 
-                $files = scandir($dir); 
-                foreach ($files as $file) { 
-                    if ($file != "." && $file != "..") { 
-                        if (filetype($dir."/".$file) == "dir") {
-                            rrmdir($dir."/".$file); 
+
+        function rrmdir($dir)
+        {
+            if (is_dir($dir)) {
+                $files = scandir($dir);
+                foreach ($files as $file) {
+                    if ($file != "." && $file != "..") {
+                        if (filetype($dir . "/" . $file) == "dir") {
+                            rrmdir($dir . "/" . $file);
                         } else {
-                            unlink($dir."/".$file); 
-                        }    
-                    } 
-                } 
-                rmdir($dir); 
-            } 
+                            unlink($dir . "/" . $file);
+                        }
+                    }
+                }
+                rmdir($dir);
+            }
         }
-        $dir = 'assets/scenario/'. $scenario->getTitle();
+        $dir = 'assets/scenario/' . $scenario->getTitle();
         rrmdir($dir);
-        
+
         // Delete the scenario's folder
 
         // Delete the scenario

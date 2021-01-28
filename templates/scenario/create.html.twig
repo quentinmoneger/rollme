@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouveau scénario{% endblock %}
+{% block title %}Nouveau scénario
+{% endblock %}
 
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/creation.min.css') }}">{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/creation.min.css') }}">
+{% endblock %}
 
 {% block body %}
 	{% for level, messages in app.flashes %}
@@ -25,7 +27,7 @@
 
 		<div class="form-group">
 			<div class="form-row">
-				<div class="col-4">
+				<div class="col-6">
 					<label for="image">Illustration du scénario</label>
 					<input type="file" name="image" class="form-control" accept="image/*">
 				</div>

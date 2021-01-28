@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ScenarioRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,9 +35,14 @@ class Scenario
     private $image;
 
     /**
-     * @ORM\Column(type="json", nullable=true)
+     * @ORM\OneToMany(targetEntity=Frame::class, mappedBy="scenario")
      */
-    private $frame = [];
+    private $frames;
+
+    public function __construct()
+    {
+        $this->frames = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -78,15 +85,34 @@ class Scenario
         return $this;
     }
 
-    public function getFrame(): ?array
+    /**
+     * @return Collection|Frame[]
+     */
+    public function getFrames(): Collection
     {
-        return $this->frame;
+        return $this->frames;
     }
 
-    public function setFrame(array $frame): self
+    public function addFrame(Frame $frame): self
     {
-        $this->frame = $frame;
+        if (!$this->frames->contains($frame)) {
+            $this->frames[] = $frame;
+            $frame->setScenario($this);
+        }
 
         return $this;
     }
+
+    public function removeFrame(Frame $frame): self
+    {
+        if ($this->frames->removeElement($frame)) {
+            // set the owning side to null (unless already changed)
+            if ($frame->getScenario() === $this) {
+                $frame->setScenario(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

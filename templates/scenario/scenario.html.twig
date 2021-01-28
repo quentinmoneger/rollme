@@ -3,10 +3,19 @@
 {% block title %}Scénario{% endblock %}
 
 {% block body %}
+	{% for level, messages in app.flashes %}
+		{% for message in messages %}
+			<div class="alert alert-{{ level }}">
+				{{ message|raw }}
+			</div>
+		{% endfor %}
+	{% endfor %}
 
 	<div class="container">
-	<h2><a href="{{ path('scenario_create') }}">Création de scénario</a></h2>
-	<h2 class="text-center">Choix de scénario</h2>
+		<h2>
+			<a href="{{ path('scenario_create') }}">Création de scénario</a>
+		</h2>
+		<h2 class="text-center">Choix de scénario</h2>
 		<div class="row">
 			{% for scenario in scenarios  %}
 				<div class="col-3">

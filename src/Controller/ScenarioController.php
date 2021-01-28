@@ -32,6 +32,8 @@ class ScenarioController extends AbstractController
         if (!empty($_POST)) {
 
             $safe = array_map('trim', array_map('strip_tags', $_POST));
+            
+            $safe['title'] = str_replace(' ','_', $safe['title']);
 
             // Validations
             if (!v::length(5, 100)->validate($safe['title'])) {
@@ -229,7 +231,7 @@ class ScenarioController extends AbstractController
 
                     $scenario->setImage($linkImage);
                 }
-                
+
                 // Execute
                 $em->flush();
 
@@ -252,9 +254,126 @@ class ScenarioController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $scenario = $em->getRepository(Scenario::class)->find($id);
-        
+
         // Get all frames from the scenario
         $frames = $scenario->getFrames();
+
+        $errors = [];
+
+        if (!empty($_POST)) {
+
+            $safe = array_map('trim', array_map('strip_tags', $_POST));
+
+            dump($_POST);
+            dump($_FILES);
+            die;
+
+            // Check if there is already almost one frame
+            $isFrame = [];
+            foreach ($frames as $frame) {
+                $isFrame[] = $frame;
+            }
+
+            // if (!empty($isFrame) {
+                
+            // } else {
+
+            // }
+
+            // Validations
+
+            $frame = $em->getRepository(Frame::class)->findOneBy(['number' => $safe['number']]);
+            if ($frame !== null) {
+                $errors[] = 'Ce numéro de scène est déjà utilisé.';
+            }
+
+            if (!v::length(20, 500)->validate($safe['text'])) {
+                $errors[] = 'La narrration doit comporter entre 20 et 500 caractères maximum.';
+            }
+
+            if (isset($_FILES['image']) && $_FILES['image']['error'] != UPLOAD_ERR_NO_FILE) {
+
+                // Server issue
+                if ($_FILES['image']['error'] != UPLOAD_ERR_OK) {
+                    $errors[] = 'Une erreur est survenue lors du transfert de l\'image';
+                } else {
+
+                    // Size-Type issue
+                    $maxSize = 6 * 1000 * 1000;
+                    if ($_FILES['image']['size'] > $maxSize) {
+                        $errors[] = 'L\'image est trop volumineuse...';
+                    } else {
+                        $allowMimesTypes = ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/webp'];
+                        if (!in_array($_FILES['image']['type'], $allowMimesTypes)) {
+                            $errors[] = 'Le type de fichier est invalide';
+                        }
+                    }
+                }
+            }
+
+
+            // Upload on server
+            if (count($errors) === 0) {
+
+                // Building the image dir
+                $rootPublic = $_SERVER['DOCUMENT_ROOT'];
+                $dirTarget = 'assets/scenario/' . $scenario->getTitle() . '/';
+                $dirOutput = $rootPublic . $dirTarget;
+
+                // Creat the folder
+                if (!is_dir($dirOutput)) {
+                    mkdir($dirOutput, 0777);
+                }
+
+                // If there is an image
+                if (!empty($_FILES['image']['tmp_name'])) {
+
+                    // Standardisation of the extension
+                    switch ($_FILES['image']['type']) {
+                        case 'image/jpg':
+                        case 'image/jpeg':
+                        case 'image/pjpeg':
+                            $extension = 'jpg';
+                            break;
+
+                        case 'image/png':
+                            $extension = 'png';
+                            break;
+
+                        case 'image/webp':
+                            $extension = 'webp';
+                            break;
+                    }
+
+                    $filename =  uniqid() . '.' . $extension;
+
+                    $linkImage = $dirTarget . $filename;
+                    
+                    if (!move_uploaded_file($_FILES['image']['tmp_name'], $linkImage)) {
+                        die('Erreur d\'upload fichier images');
+                    }
+                    
+                } else {
+                    $linkImage = '/assets/default/illustration.jpg';
+                }
+
+                $frame = new Frame();
+                $frame->setNumber($safe['number']);
+                $frame->setText($safe['text']);
+                $frame->setImage($linkImage);
+
+                $em->persist($frame);
+                $em->flush();
+
+                $this->addFlash('success', 'Votre scène a été créé avec succès');
+
+                return $this->redirectToRoute('scenario_index');
+            } else {
+
+                $this->addFlash('danger', implode('<br>', $errors));
+            }
+        } // endif !empty($_POST
+
 
         return $this->render('scenario/frame.html.twig', [
             'scenario' => $scenario,
@@ -262,11 +381,23 @@ class ScenarioController extends AbstractController
         ]);
     }
 
+    public function deleteFrame(int $id): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $frame = $em->getRepository(Frame::class)->find($id);
+        $scenarioId = $frame->getScenario();
+
+        // Delete the frame
+        $em->remove($frame);
+        $em->flush();
+
+        return $this->render('scenario/scenario.html.twig');
+    }
 
     public function delete(int $id): Response
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $scenario = $entityManager->getRepository(Scenario::class)->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $scenario = $em->getRepository(Scenario::class)->find($id);
 
         function rrmdir($dir)
         {
@@ -290,8 +421,8 @@ class ScenarioController extends AbstractController
         // Delete the scenario's folder
 
         // Delete the scenario
-        $entityManager->remove($scenario);
-        $entityManager->flush();
+        $em->remove($scenario);
+        $em->flush();
 
 
         return $this->redirectToRoute('scenario_index');

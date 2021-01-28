@@ -21,7 +21,7 @@
 			<div class="form-row">
 				<div class="col-4">
 					<label for="image">Illustration du scénario</label>
-					<img src="{{ asset(scenario.getImage()) }}">
+					<img class="card-img-top" src="{{ asset(scenario.getImage()) }}">
 					<input type="file" name="image" class="form-control" accept="image/*">
 				</div>
 			</div>
@@ -44,7 +44,7 @@
 		<div class="card col-3">
 			<h6 class="card-title">Scène
 				{{ frame.getNumber() }}</h6>
-			<img src="{{ asset(frame.getImage()) }}" alt="" class="card-img-top img-fluid">
+			<img src="{{ asset(frame.getImage()) }}" alt="" class="card-img-top">
 			<div class="card-body">
 				<p>{{ frame.getText() }}</p>
 			</div>

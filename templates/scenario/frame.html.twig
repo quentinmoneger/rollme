@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ scenario.getTitle() }}
+{% endblock %}
+
+{% block body %}
+	<h6 class="card-title"></h6>
+	<p class="card-text"></p>
+	<div class="container">
+		<h1 class="my-3">Modification des scènes de "{{ scenario.getTitle() }}"</h1>
+		<form method="POST" enctype="multipart/form-data" class="mt-5">
+			<div class="card-group">
+				{% for frame in frames %}
+					<div class="card" style="width: 15rem;">
+						<h4 class="text-center">Scène {{ frame.getNumber() }}</h4>
+						<div class="form-group">
+							<label for="number">Numéro de scène</label>
+							<input type="number" name="number" class="form-control" value="{{ frame.getNumber() }}" requierd>
+						</div>
+
+						<div class="form-row">
+							<div class="col-4">
+								<label for="image">Illustration de la scène</label>
+								<img src="{{ asset(frame.getImage()) }}">
+								<input type="file" name="image" class="form-control" accept="image/*">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="text">Narration</label>
+							<textarea type="text" name="text" class="form-control" rows="8" requierd>{{ frame.getText() }}</textarea>
+						</div>
+
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary">Modifier</button>
+							<a href="{{ path('scenario_index') }}" class="btn btn-secondary">Annuler</a>
+						</div>
+					</div>
+				{% endfor %}
+				<h6>Ajouter une scène</h6>
+				<div class="card">
+					<div class="form-group">
+						<label for="number">Numéro de scène</label>
+						<input type="number" name="number" class="form-control" requierd>
+					</div>
+
+					<div class="form-row">
+						<div class="col-4">
+							<label for="image">Illustration de la scène</label>
+							<input type="file" name="image" class="form-control" accept="image/*">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="text">Narration</label>
+						<textarea type="text" name="text" class="form-control" rows="8" requierd></textarea>
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">Modifier</button>
+						<a href="{{ path('scenario_index') }}" class="btn btn-secondary">Annuler</a>
+					</div>
+				</div>
+			</div>
+
+
+		</form>
+
+		<div class="form-group">
+			<a href="{{ path('scenario_delete', {id: scenario.getId()}) }}" class="btn btn-danger mt-3">Supprimer le scénario</a>
+		</div>
+	</div>
+
+
+{% endblock %}

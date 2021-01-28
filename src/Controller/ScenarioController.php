@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Respect\Validation\Validator as v;
 use App\Entity\Scenario;
+use App\Entity\Frame;
 
 class ScenarioController extends AbstractController
 {
@@ -72,8 +73,8 @@ class ScenarioController extends AbstractController
 
                 // Building the image dir
                 $rootPublic = $_SERVER['DOCUMENT_ROOT'];
-                $publicOutput = 'assets/scenario/' . $safe['title'] . '/';
-                $dirOutput = $rootPublic . $publicOutput;
+                $dirTarget = 'assets/scenario/' . $safe['title'] . '/';
+                $dirOutput = $rootPublic . $dirTarget;
 
                 // Creat the folder
                 if (!is_dir($dirOutput)) {
@@ -102,11 +103,11 @@ class ScenarioController extends AbstractController
 
                     $filename = 'illusration.' . $extension;
 
-                    if (!move_uploaded_file($_FILES['image']['tmp_name'], $dirOutput . $filename)) {
+                    if (!move_uploaded_file($_FILES['image']['tmp_name'], $dirTarget . $filename)) {
                         die('Erreur d\'upload fichier images');
                     }
 
-                    $linkImage = $dirOutput . $filename;
+                    $linkImage = $dirTarget . $filename;
                 } else {
                     $linkImage = '/assets/default/illustration.jpg';
                 }
@@ -120,6 +121,8 @@ class ScenarioController extends AbstractController
                 $em->flush();
 
                 $this->addFlash('success', 'Votre scénario a été créé avec succès');
+
+                return $this->redirectToRoute('scenario_index');
             } else {
 
                 $this->addFlash('danger', implode('<br>', $errors));
@@ -134,6 +137,9 @@ class ScenarioController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $scenario = $em->getRepository(Scenario::class)->find($id);
+
+        // Get all frames from this scenario
+        $frames = $scenario->getFrames();
 
         // If id doesn't exist, retrun scenarios page
         if (!$scenario) {
@@ -180,9 +186,6 @@ class ScenarioController extends AbstractController
             // Upload on server
             if (count($errors) === 0) {
 
-                $em = $this->getDoctrine()->getManager();
-
-                $scenario = $em->getRepository(Scenario::class)->find($id);
                 $scenario->setTitle($safe['title']);
                 $scenario->setResume($safe['resume']);
 
@@ -241,8 +244,24 @@ class ScenarioController extends AbstractController
 
         return $this->render('scenario/update.html.twig', [
             'scenario' => $scenario,
+            'frames'   => $frames
         ]);
     }
+
+    public function frame(int $id): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $scenario = $em->getRepository(Scenario::class)->find($id);
+        
+        // Get all frames from the scenario
+        $frames = $scenario->getFrames();
+
+        return $this->render('scenario/frame.html.twig', [
+            'scenario' => $scenario,
+            'frames'   => $frames
+        ]);
+    }
+
 
     public function delete(int $id): Response
     {

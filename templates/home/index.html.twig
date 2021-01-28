@@ -1,68 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/home.min.css') }}">{% endblock %}
+{% block title %}Home
+{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/home.min.css') }}">
+{% endblock %}
 {% block body %}
-<section>
-        <h1>Bienvenue à toutes et à tous dans le monde du jeu de rôle !</h1>
-        <div class="intro">
-            <span>Débutants, intermédiaires et confirmés trouverons ici de nombreux scénarios jouablent entres amis.</span><br>
-            <span><strong>Vous n'avez jamais joué ?</strong> Prenons le temps de poser quelques bases, afin de mener à bien vôtre partie et vous offir la meilleur expérience possible.</span>
-        </div>
+	<section>
+		<h1>Bienvenue à toutes et à tous dans le monde du jeu de rôle !</h1>
+		<div class="intro">
+			<span>Débutants, intermédiaires et confirmés trouverons ici de nombreux scénarios jouablent entres amis.</span><br>
+			<span>
+				<strong>Vous n'avez jamais joué ?</strong>
+				Prenons le temps de poser quelques bases, afin de mener à bien vôtre partie et vous offir la meilleur expérience possible.</span>
+		</div>
 
-        <div class="rules"><h2>Principe du jeu de rôle</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facilis deleniti, laudantium rem accusamus a quae,
-                            doloremque sunt dolore accusantium, eaque non. Illo, harum officiis, ullam officia magnam voluptates vel tenetur
-                            consectetur sequi accusamus consequuntur libero sint odit. Praesentium excepturi expedita explicabo?
-                            A dignissimos sequi praesentium dolor at itaque est quaerat dicta sunt delectus in aperiam quis distinctio 
-                            nisi fugiat quae recusandae quam, tenetur laboriosam illum. Autem, quidem odit expedita officiis aut eius.
-                            Quis dolorem perferendis doloremque voluptates, voluptatum nostrum? Expedita enim dolorum veritatis.
-                            Minima quam odio est, ea illum consectetur tempore error possimus esse modi enim ipsa praesentium temporibus.
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facilis deleniti, laudantium rem accusamus a quae,
-                            doloremque sunt dolore accusantium, eaque non. Illo, harum officiis, ullam officia magnam voluptates vel tenetur
-                            consectetur sequi accusamus consequuntur libero sint odit. Praesentium excepturi expedita explicabo?
-                            consectetur sequi accusamus consequuntur libero sint odit. Praesentium excepturi expedita explicabo?
-                            A dignissimos sequi praesentium dolor at itaque est quaerat dicta sunt delectus in aperiam quis distinctio 
-                            nisi fugiat quae recusandae quam, tenetur laboriosam illum. Autem, quidem odit expedita officiis aut eius.
-                            Quis dolorem perferendis doloremque voluptates, voluptatum nostrum? Expedita enim dolorum veritatis.
-                            Minima quam odio est, ea illum consectetur tempore error possimus esse modi enim ipsa praesentium temporibus.</p></div>
-    </section>
+		<div class="rules">
+			<h2>Principe du jeu de rôle</h2>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facilis deleniti, laudantium rem accusamus a quae,
+				                            doloremque sunt dolore accusantium, eaque non. Illo, harum officiis, ullam officia magnam voluptates vel tenetur
+				                            consectetur sequi accusamus consequuntur libero sint odit. Praesentium excepturi expedita explicabo?
+				                            A dignissimos sequi praesentium dolor at itaque est quaerat dicta sunt delectus in aperiam quis distinctio 
+				                            nisi fugiat quae recusandae quam, tenetur laboriosam illum. Autem, quidem odit expedita officiis aut eius.
+				                            Quis dolorem perferendis doloremque voluptates, voluptatum nostrum? Expedita enim dolorum veritatis.
+				                            Minima quam odio est, ea illum consectetur tempore error possimus esse modi enim ipsa praesentium temporibus.
+				                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facilis deleniti, laudantium rem accusamus a quae,
+				                            doloremque sunt dolore accusantium, eaque non. Illo, harum officiis, ullam officia magnam voluptates vel tenetur
+				                            consectetur sequi accusamus consequuntur libero sint odit. Praesentium excepturi expedita explicabo?
+				                            consectetur sequi accusamus consequuntur libero sint odit. Praesentium excepturi expedita explicabo?
+				                            A dignissimos sequi praesentium dolor at itaque est quaerat dicta sunt delectus in aperiam quis distinctio 
+				                            nisi fugiat quae recusandae quam, tenetur laboriosam illum. Autem, quidem odit expedita officiis aut eius.
+				                            Quis dolorem perferendis doloremque voluptates, voluptatum nostrum? Expedita enim dolorum veritatis.
+				                            Minima quam odio est, ea illum consectetur tempore error possimus esse modi enim ipsa praesentium temporibus.</p>
+		</div>
+	</section>
 
-    <section class="games-container">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <figure class="custom-fig">
-                        <img src="https://picsum.photos/id/1/200/300" alt="">
-                        <figcaption>Nom du jeu</figcaption>
-                    </figure>
-                    <a class="btn btn-success text-white" href="#" role="button">Jouer</a>
-                </div>
-                <div class="col">
-                    <figure class="custom-fig">
-                        <img src="https://picsum.photos/id/1/200/300" alt="">
-                        <figcaption>Nom du jeu</figcaption>
-                    </figure>
-                    <a class="btn btn-success text-white" href="#" role="button">Jouer</a>
-                </div>
-                <div class="col">
-                    <figure class="custom-fig">
-                        <img src="https://picsum.photos/id/1/200/300" alt="">
-                        <figcaption>Nom du jeu</figcaption>
-                    </figure>
-                    <a class="btn btn-success text-white" href="#" role="button">Jouer</a>
-                </div>
-                <div class="col">
-                    <figure class="custom-fig">
-                        <img src="https://picsum.photos/id/1/200/300" alt="">
-                        <figcaption>Nom du jeu</figcaption>
-                    </figure>   
-                    <a class="btn btn-success text-white" href="#" role="button">Jouer</a>
-                </div>
-            </div>
-        </div>
-    </section>
+	<section class="games-container">
+		<div class="container">
+			<div class="row">
+				{% for scenario in scenarios %}
+					<div class="col">
+						<figure class="custom-fig">
+							<img src="{{ asset(scenario.getImage()) }}" alt="" class="card-img-top">
+							<figcaption>{{ scenario.getTitle() }}</figcaption>
+						</figure>
+						<a class="btn btn-success text-white" href="#" role="button">Jouer</a>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
 
 {% endblock %}
-
-

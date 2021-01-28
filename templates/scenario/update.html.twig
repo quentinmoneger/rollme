@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ scenario.getTitle() }}{% endblock %}
+{% block title %}
+	{{ scenario.getTitle() }}
+{% endblock %}
 
 {% block body %}
-	    <h6 class="card-title"></h6>
-	    <p class="card-text"></p>
-    
-    <form method="POST" enctype="multipart/form-data" class="container mt-5">
+	<h6 class="card-title"></h6>
+	<p class="card-text"></p>
+
+	<form method="POST" enctype="multipart/form-data" class="container mt-5">
 		<h1 class="my-3">Modification de "{{ scenario.getTitle() }}"</h1>
 
 		<div class="form-group">
@@ -18,8 +20,8 @@
 		<div class="form-group">
 			<div class="form-row">
 				<div class="col-4">
-			        <label for="image">Illustration du scénario</label>
-                    <img src="{{ asset(scenario.getImage()) }}">                    
+					<label for="image">Illustration du scénario</label>
+					<img src="{{ asset(scenario.getImage()) }}">
 					<input type="file" name="image" class="form-control" accept="image/*">
 				</div>
 			</div>
@@ -36,10 +38,23 @@
 			<a href="{{ path('scenario_index') }}" class="btn btn-secondary">Annuler</a>
 		</div>
 
-		<div class="form-group">
-			<a href="{{ path('scenario_delete', {id: scenario.getId()}) }}" class="btn btn-danger mt-3">Supprimer le scénario</a>
-		</div>
-
 	</form>
 	
+	{% for frame in frames %}
+		<div class="card col-3">
+			<h6 class="card-title">Scène
+				{{ frame.getNumber() }}</h6>
+			<img src="{{ asset(frame.getImage()) }}" alt="" class="card-img-top img-fluid">
+			<div class="card-body">
+				<p>{{ frame.getText() }}</p>
+			</div>
+		</div>
+	{% endfor %}
+	<a class="btn btn-primary" href="{{ path('scenario_frame', {id: scenario.getId()}) }}">Modifier les scènes</a>
+
+	<div class="form-group">
+		<a href="{{ path('scenario_delete', {id: scenario.getId()}) }}" class="btn btn-danger mt-3">Supprimer le scénario</a>
+	</div>
+
+
 {% endblock %}

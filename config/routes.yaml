@@ -23,9 +23,13 @@ scenario_update:
   path: /scenario/update{id}
   controller: App\Controller\ScenarioController::update
 
-scenario_frame:
-  path: /scenario/update/frame{id}
-  controller: App\Controller\ScenarioController::frame
+scenario_frameCreate:
+  path: /scenario/update/frameCreate
+  controller: App\Controller\ScenarioController::frameCreate
+
+scenario_frameUpdate:
+  path: /scenario/update/frameUpdate{id}
+  controller: App\Controller\ScenarioController::frameUpdate
 
 scenario_deleteFrame:
   path: /scenario/update/deleteFrame{id}

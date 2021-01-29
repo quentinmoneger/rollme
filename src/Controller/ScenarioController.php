@@ -250,13 +250,11 @@ class ScenarioController extends AbstractController
         ]);
     }
 
-    public function frame(int $id): Response
+    public function frameUpdate(int $id): Response
     {
         $em = $this->getDoctrine()->getManager();
-        $scenario = $em->getRepository(Scenario::class)->find($id);
-
-        // Get all frames from the scenario
-        $frames = $scenario->getFrames();
+        $frame = $em->getRepository(Frame::class)->find($id);
+        $scenario = $frame->getScenario();
 
         $errors = [];
 
@@ -264,29 +262,12 @@ class ScenarioController extends AbstractController
 
             $safe = array_map('trim', array_map('strip_tags', $_POST));
 
-            dump($_POST);
-            dump($_FILES);
-            die;
-
-            // Check if there is already almost one frame
-            $isFrame = [];
-            foreach ($frames as $frame) {
-                $isFrame[] = $frame;
-            }
-
-            // if (!empty($isFrame) {
-                
-            // } else {
-
-            // }
-
             // Validations
-
-            $frame = $em->getRepository(Frame::class)->findOneBy(['number' => $safe['number']]);
-            if ($frame !== null) {
+            $number = $em->getRepository(Frame::class)->findOneBy(['number' => $safe['number']])->getNumber();
+            $frameNumber = $frame->getNumber();
+            if ($number !== null && $number != $frameNumber) {
                 $errors[] = 'Ce numéro de scène est déjà utilisé.';
             }
-
             if (!v::length(20, 500)->validate($safe['text'])) {
                 $errors[] = 'La narrration doit comporter entre 20 et 500 caractères maximum.';
             }
@@ -317,13 +298,17 @@ class ScenarioController extends AbstractController
 
                 // Building the image dir
                 $rootPublic = $_SERVER['DOCUMENT_ROOT'];
-                $dirTarget = 'assets/scenario/' . $scenario->getTitle() . '/';
+                $dirTarget = 'assets/scenario/' . $frame->getScenario()->getTitle() . '/';
                 $dirOutput = $rootPublic . $dirTarget;
 
-                // Creat the folder
+                // Creat the folder (should exist)
                 if (!is_dir($dirOutput)) {
                     mkdir($dirOutput, 0777);
                 }
+   
+                $frame->setNumber($safe['number']);
+                $frame->setText($safe['text']);
+
 
                 // If there is an image
                 if (!empty($_FILES['image']['tmp_name'])) {
@@ -353,21 +338,15 @@ class ScenarioController extends AbstractController
                         die('Erreur d\'upload fichier images');
                     }
                     
-                } else {
-                    $linkImage = '/assets/default/illustration.jpg';
+                    $frame->setImage($linkImage);
                 }
 
-                $frame = new Frame();
-                $frame->setNumber($safe['number']);
-                $frame->setText($safe['text']);
-                $frame->setImage($linkImage);
-
-                $em->persist($frame);
                 $em->flush();
 
                 $this->addFlash('success', 'Votre scène a été créé avec succès');
 
-                return $this->redirectToRoute('scenario_index');
+                return $this->redirectToRoute('scenario_update', ['id' =>$scenario->getId()]);
+
             } else {
 
                 $this->addFlash('danger', implode('<br>', $errors));
@@ -375,9 +354,9 @@ class ScenarioController extends AbstractController
         } // endif !empty($_POST
 
 
-        return $this->render('scenario/frame.html.twig', [
+        return $this->render('scenario/frameUpdate.html.twig', [
             'scenario' => $scenario,
-            'frames'   => $frames
+            'frame'   => $frame
         ]);
     }
 

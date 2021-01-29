@@ -39,19 +39,20 @@
 		</div>
 
 	</form>
-	
-	{% for frame in frames %}
-		<div class="card col-3">
-			<h6 class="card-title">Scène
-				{{ frame.getNumber() }}</h6>
-			<img src="{{ asset(frame.getImage()) }}" alt="" class="card-img-top">
-			<div class="card-body">
-				<p>{{ frame.getText() }}</p>
+	<div class="card-group">
+		{% for frame in frames %}
+			<div class="card col-3">
+				<h6 class="card-title">Scène
+					{{ frame.getNumber() }}</h6>
+				<img src="{{ asset(frame.getImage()) }}" alt="" class="card-img-top">
+				<div class="card-body">
+					<p>{{ frame.getText() }}</p>
+					<a class="btn btn-primary" href="{{ path('scenario_frameUpdate', {id: frame.getId()}) }}">Modifier la scène</a>
+					<a href="{{ path('scenario_deleteFrame', {id: frame.getId()}) }}" class="btn btn-danger mt-3">Supprimer cette scène</a>
+				</div>
 			</div>
-		</div>
-	{% endfor %}
-	<a class="btn btn-primary" href="{{ path('scenario_frame', {id: scenario.getId()}) }}">Modifier les scènes</a>
-
+		{% endfor %}
+	</div>
 	<div class="form-group">
 		<a href="{{ path('scenario_delete', {id: scenario.getId()}) }}" class="btn btn-danger mt-3">Supprimer le scénario</a>
 	</div>

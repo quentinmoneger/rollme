@@ -36,14 +36,14 @@
 
 	<section class="games-container">
 		<div class="container">
-			<div class="row">
+			<div class="d-flex justify-content-center flex-wrap">
 				{% for scenario in scenarios %}
-					<div class="col">
+					<div class="m-3">
 						<figure class="custom-fig">
 							<img src="{{ asset(scenario.getImage()) }}" alt="" class="card-img-top">
 							<figcaption>{{ scenario.getTitle() }}</figcaption>
-						</figure>
 						<a class="btn btn-success text-white" href="#" role="button">Jouer</a>
+						</figure>
 					</div>
 				{% endfor %}
 			</div>

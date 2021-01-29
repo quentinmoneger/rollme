@@ -46,3 +46,4 @@ app_verify_email:
 app_forgot_password_request:
   path: /reset-password
   controller: App\Controller\ResetPasswordController::request
+

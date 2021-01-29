@@ -51,3 +51,6 @@ app_forgot_password_request:
   path: /reset-password
   controller: App\Controller\ResetPasswordController::request
 
+contact:
+  path: /contact
+  controller: App\Controller\ContactController::index

@@ -5,9 +5,16 @@
 {% endblock %}
 
 {% block body %}
-	<h6 class="card-title"></h6>
-	<p class="card-text"></p>
+	{% for level, messages in app.flashes %}
+		{% for message in messages %}
+			<div class="alert alert-{{ level }}">
+				{{ message|raw }}
+			</div>
+		{% endfor %}
+	{% endfor %}
 
+	<a href="{{ path('scenario_index') }}" class="btn btn-secondary m-3">Retour</a>
+	
 	<form method="POST" enctype="multipart/form-data" class="container mt-5">
 		<h1 class="my-3">Modification de "{{ scenario.getTitle() }}"</h1>
 
@@ -35,7 +42,6 @@
 
 		<div class="form-group">
 			<button type="submit" class="btn btn-primary">Modifier</button>
-			<a href="{{ path('scenario_index') }}" class="btn btn-secondary">Annuler</a>
 		</div>
 
 	</form>

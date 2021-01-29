@@ -1,6 +1,6 @@
 body::before {
   content: "";
-  background-image: url("img/MRlogo.svg");
+  background-image: url("public/assests/images/MRlogo.svg");
   background-repeat: no-repeat;
   background-position: center center;
   position: absolute;
@@ -24,7 +24,6 @@ section h1 {
 }
 
 .rules {
-  height: 50vh;
   margin-top: 100px;
   margin-left: 30vh;
   margin-right: 30vh;

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,SAAS,AAAA,CACL,KAAK,CAAE,GAAG,CACV,UAAU,CAAE,MAAM,CACrB",
+    "sources": [
+        "../scss/creation.scss"
+    ],
+    "names": [],
+    "file": "creation.min.css"
+}

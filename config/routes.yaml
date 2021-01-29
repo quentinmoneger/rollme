@@ -15,6 +15,10 @@ scenario_index:
   path: /scenario
   controller: App\Controller\ScenarioController::index
 
+scenario_view:
+  path: /scenario/view{id}
+  controller: App\Controller\ScenarioController::view
+
 scenario_create:
   path: /scenario/creation
   controller: App\Controller\ScenarioController::create

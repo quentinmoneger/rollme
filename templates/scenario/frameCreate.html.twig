@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block body %}
-	<h6 class="card-title"></h6>
-	<p class="card-text"></p>
+	<a href="{{ path('scenario_update', {id: scenario.getId()}) }}" class="btn btn-secondary m-1">Retour</a>
+
 	<div class="container">
-		<h1 class="my-3">Modification des scènes de "{{ scenario.getTitle() }}"</h1>
+		<h1 class="my-3">Nouvelle scène de "{{ scenario.getTitle() }}"</h1>
 		<form method="POST" enctype="multipart/form-data" class="mt-5">
 			<div class="card">
 
@@ -30,18 +30,11 @@
 				</div>
 
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary">Ajouter une nouvelle scène</button>
+					<button type="submit" class="btn btn-primary">Ajouter</button>
 				</div>
 
 			</div>
-
-			<div class="form-group text-center mt-3">
-				<button type="submit" class="btn btn-primary">Modifier</button>
-				<a href="{{ path('scenario_index') }}" class="btn btn-secondary">Annuler</a>
-			</div>
-
 		</form>
-		
 	</div>
 
 

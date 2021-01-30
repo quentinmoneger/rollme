@@ -24,13 +24,13 @@ class FrameRepository extends ServiceEntityRepository
     //  * @return Frame[] Returns an array of Frame objects
     //  */
     
-    public function findByNumberAndScenarioId($number, $scenarioId)
+    public function findByNumberAndScenarioId($number, $scenario)
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.number = :number')
-            ->andWhere('f.scenario_id = :scenario_id')
+            ->andWhere('f.scenario = :scenario')
             ->setParameter('number', $number)
-            ->setParameter('scenario_id', $scenarioId)
+            ->setParameter('scenario', $scenario)
             ->orderBy('f.number', 'DESC')
             ->setMaxResults(10)
             ->getQuery()
@@ -38,11 +38,11 @@ class FrameRepository extends ServiceEntityRepository
         ;
     }
     
-    public function findByScenarioId($scenarioId)
+    public function findByScenarioId($scenario)
     {
         return $this->createQueryBuilder('f')
-            ->andWhere('f.scenario_id = :scenario_id')
-            ->setParameter('scenario_id', $scenarioId)
+            ->andWhere('f.scenario = :scenario')
+            ->setParameter('scenario', $scenario)
             ->orderBy('f.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()

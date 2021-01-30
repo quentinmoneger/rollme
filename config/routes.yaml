@@ -1,3 +1,18 @@
+app_forgot_password_request:
+  path: /reset-password
+  controller: App\Controller\ResetPasswordController::request
+
+app_register:
+  path: /register
+  controller: App\Controller\RegistrationController::register
+
+app_verify_email:
+  path: /verify/email
+  controller: App\Controller\RegistrationController::verifyUserEmail
+
+contact:
+  path: /contact
+  controller: App\Controller\ContactController::index
 
 home_index:
   path: /
@@ -10,51 +25,35 @@ play_index:
 play_play:
   path: /jouer/scenario={id}
   controller: App\Controller\PlayController::play
-  
-scenario_index:
-  path: /scenario
-  controller: App\Controller\ScenarioController::index
-
-scenario_view:
-  path: /scenario/view{id}
-  controller: App\Controller\ScenarioController::view
 
 scenario_create:
   path: /scenario/creation
   controller: App\Controller\ScenarioController::create
 
-scenario_update:
-  path: /scenario/update{id}
-  controller: App\Controller\ScenarioController::update
+scenario_delete:
+  path: /scenario/delete{id}
+  controller: App\Controller\ScenarioController::delete
+
+scenario_deleteFrame:
+  path: /scenario/update/deleteFrame{id}
+  controller: App\Controller\ScenarioController::deleteFrame
 
 scenario_frameCreate:
-  path: /scenario/update/frameCreate
+  path: /scenario/update/frameCreate{id}
   controller: App\Controller\ScenarioController::frameCreate
 
 scenario_frameUpdate:
   path: /scenario/update/frameUpdate{id}
   controller: App\Controller\ScenarioController::frameUpdate
 
-scenario_deleteFrame:
-  path: /scenario/update/deleteFrame{id}
-  controller: App\Controller\ScenarioController::deleteFrame
+scenario_index:
+  path: /scenario
+  controller: App\Controller\ScenarioController::index
 
-scenario_delete:
-  path: /scenario/delete{id}
-  controller: App\Controller\ScenarioController::delete
+scenario_update:
+  path: /scenario/update{id}
+  controller: App\Controller\ScenarioController::update
 
-app_register:
-  path: /register
-  controller: App\Controller\RegistrationController::register
-
-app_verify_email:
-  path: /verify/email
-  controller: App\Controller\RegistrationController::verifyUserEmail
-
-app_forgot_password_request:
-  path: /reset-password
-  controller: App\Controller\ResetPasswordController::request
-
-contact:
-  path: /contact
-  controller: App\Controller\ContactController::index
+scenario_view:
+  path: /scenario/view{id}
+  controller: App\Controller\ScenarioController::view

@@ -13,7 +13,7 @@
 		{% endfor %}
 	{% endfor %}
 
-	<a href="{{ path('scenario_index') }}" class="btn btn-secondary m-3">Retour</a>
+	<a href="{{ path('scenario_view', {id: scenario.getId()}) }}" class="btn btn-secondary m-3">Retour</a>
 	<div  class="container mt-5">
 	<form method="POST" enctype="multipart/form-data">
 		<h1 class="my-3">Modification de "{{ scenario.getTitle() }}"</h1>

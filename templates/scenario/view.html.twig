@@ -17,12 +17,12 @@
 		<h1 class="my-3">{{ scenario.getTitle() }}</h1>
         <h5><a href="{{ path('scenario_update', {id: scenario.getId()}) }}"><span class="badge badge-secondary">Modifier ce scénario</span></a></h5>
 
-		<img class="" src="{{ asset(scenario.getImage()) }}">
+		<img class="card-img-top" src="{{ asset(scenario.getImage()) }}">
 
 		<h3>Résumé:</h3>
 		<p>{{ scenario.getResume() }}</p>
 	</div>
-    
+    {# {% if scenario.getFrames() is not empty %} #}
     <h3 class="text-center">Listes des scènes</h3>
 	<div class="card-group">
 		{% for frame in frames %}
@@ -36,4 +36,5 @@
 			</div>
 		{% endfor %}
 	</div>
+	{# {% endif %} #}
 {% endblock %}

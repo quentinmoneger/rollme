@@ -201,7 +201,7 @@ class ScenarioController extends AbstractController
 
             // Upload on server
             if (count($errors) === 0) {
-                
+
                 // Convert spcae to underscore for the dir name
                 $title = str_replace(' ', '_', $safe['title']);
 
@@ -279,17 +279,18 @@ class ScenarioController extends AbstractController
 
         if (!empty($_POST)) {
 
+            $errors = [];
+
             $safe = array_map('trim', array_map('strip_tags', $_POST));
 
             // Validations
-            
+
             // Check if the $_POST['number'] already exist
-            $number = $em->getRepository(Frame::class)->findByNumberAndScenarioId($safe['number'], $scenario));
-            dd($number);
-            if ($number !== null) {
+            $number = $em->getRepository(Frame::class)->findByNumberAndScenarioId($safe['number'], $scenario);
+            if (!empty($number)) {
                 $errors[] = 'Ce numéro de scène est déjà utilisé.';
             }
-            
+
             if (!v::length(20, 500)->validate($safe['text'])) {
                 $errors[] = 'La narrration doit comporter entre 20 et 500 caractères maximum.';
             }
@@ -312,62 +313,63 @@ class ScenarioController extends AbstractController
                         }
                     }
                 }
+            } elseif (!isset($_FILES['image'])) {
+                $errors[] = 'Vous devez ajouter une image à la scène.';
             }
-
 
             // Upload on server
             if (count($errors) === 0) {
 
                 // Building the image dir
                 $rootPublic = $_SERVER['DOCUMENT_ROOT'];
-                $dirTarget = 'assets/scenario/' . $frame->getScenario()->getTitle() . '/';
+                $dirTarget = 'assets/scenario/' . str_replace(' ', '_', $scenario->getTitle()) . '/';
                 $dirOutput = $rootPublic . $dirTarget;
-
+                
                 // Creat the folder (should exist)
                 if (!is_dir($dirOutput)) {
                     mkdir($dirOutput, 0777);
                 }
 
+                $frame = new Frame();
                 $frame->setNumber($safe['number']);
                 $frame->setText($safe['text']);
 
 
-                // If there is an image
-                if (!empty($_FILES['image']['tmp_name'])) {
+                // Standardisation of the extension
+                switch ($_FILES['image']['type']) {
+                    case 'image/jpg':
+                    case 'image/jpeg':
+                    case 'image/pjpeg':
+                        $extension = 'jpg';
+                        break;
 
-                    // Standardisation of the extension
-                    switch ($_FILES['image']['type']) {
-                        case 'image/jpg':
-                        case 'image/jpeg':
-                        case 'image/pjpeg':
-                            $extension = 'jpg';
-                            break;
+                    case 'image/png':
+                        $extension = 'png';
+                        break;
 
-                        case 'image/png':
-                            $extension = 'png';
-                            break;
-
-                        case 'image/webp':
-                            $extension = 'webp';
-                            break;
-                    }
-
-                    $filename =  uniqid() . '.' . $extension;
-
-                    $linkImage = $dirTarget . $filename;
-
-                    if (!move_uploaded_file($_FILES['image']['tmp_name'], $linkImage)) {
-                        die('Erreur d\'upload fichier images');
-                    }
-
-                    $frame->setImage($linkImage);
+                    case 'image/webp':
+                        $extension = 'webp';
+                        break;
                 }
 
+                $filename =  uniqid() . '.' . $extension;
+
+                $linkImage = $dirTarget . $filename;
+
+                if (!move_uploaded_file($_FILES['image']['tmp_name'], $linkImage)) {
+                    die('Erreur d\'upload fichier images');
+                }
+
+                $frame->setImage($linkImage);
+                $frame->setScenario($scenario);
+
+                $em->persist($frame);
                 $em->flush();
 
                 $this->addFlash('success', 'Votre scène a été créé avec succès');
 
                 return $this->redirectToRoute('scenario_update', ['id' => $scenario->getId()]);
+
             } else {
 
                 $this->addFlash('danger', implode('<br>', $errors));
@@ -375,7 +377,7 @@ class ScenarioController extends AbstractController
         } // endif !empty($_POST
 
 
-        
+
         return $this->render('scenario/frameCreate.html.twig', [
             'scenario' => $scenario
         ]);
@@ -494,12 +496,17 @@ class ScenarioController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $frame = $em->getRepository(Frame::class)->find($id);
+        $scenario = $frame->getScenario();
+
+        unlink($frame->getImage());
 
         // Delete the frame
         $em->remove($frame);
         $em->flush();
 
-        return $this->render('scenario/scenario.html.twig');
+        return $this->redirectToRoute('scenario_update', [
+            'id' => $scenario->getId()
+        ]);
     }
 
     public function delete(int $id): Response
@@ -509,7 +516,8 @@ class ScenarioController extends AbstractController
         $frames =  $em->getRepository(Frame::class)->findByScenarioId($id);
 
         // Delete the scenario's folder
-        function rrmdir($dir) {
+        function rrmdir($dir)
+        {
             if (is_dir($dir)) {
                 $files = scandir($dir);
                 foreach ($files as $file) {
@@ -524,8 +532,6 @@ class ScenarioController extends AbstractController
         }
         $dir = 'assets/scenario/' . $scenario->getTitle();
         rrmdir($dir);
-
-        
 
         // Delete the scenario & frames
         foreach ($frames as $frame) {

@@ -42,6 +42,36 @@ class User implements UserInterface
      */
     private $isVerified = false;
 
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $username;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $avatar;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $intelligency;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $power;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $social;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $history;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -128,6 +158,73 @@ class User implements UserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getIntelligency(): ?int
+    {
+        return $this->intelligency;
+    }
+
+    public function setIntelligency(int $intelligency): self
+    {
+        $this->intelligency = $intelligency;
+
+        return $this;
+    }
+
+    public function getPower(): ?int
+    {
+        return $this->power;
+    }
+
+    public function setPower(int $power): self
+    {
+        $this->power = $power;
+
+        return $this;
+    }
+
+    public function getSocial(): ?int
+    {
+        return $this->social;
+    }
+
+    public function setSocial(int $social): self
+    {
+        $this->social = $social;
+
+        return $this;
+    }
+
+    public function getHistory(): ?string
+    {
+        return $this->history;
+    }
+
+    public function setHistory(?string $history): self
+    {
+        $this->history = $history;
 
         return $this;
     }

@@ -51,6 +51,12 @@ class RegistrationFormType extends AbstractType
                 // this is read and encoded in the controller
                 'mapped' => false,
             ])
+            ->add('username')
+            ->add('avatar')
+            ->add('history')
+            ->add('intelligency')
+            ->add('power')
+            ->add('social')
         ;
     }
 
@@ -60,4 +66,4 @@ class RegistrationFormType extends AbstractType
             'data_class' => User::class,
         ]);
     }
-}
+} 

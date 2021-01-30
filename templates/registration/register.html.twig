@@ -14,8 +14,14 @@
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
+        {{ form_row(registrationForm.username) }}
+        {{ form_row(registrationForm.avatar) }}
+        {{ form_row(registrationForm.history) }}
+        {{ form_row(registrationForm.intelligency) }}
+        {{ form_row(registrationForm.power) }}
+        {{ form_row(registrationForm.social) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
-{% endblock %} 
+{% endblock %}   

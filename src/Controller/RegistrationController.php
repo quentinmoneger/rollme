@@ -26,6 +26,9 @@ class RegistrationController extends AbstractController
 
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
+
+        //$safe = array_map('trim', array_map('strip_tags', $_POST));
+
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -41,6 +44,12 @@ class RegistrationController extends AbstractController
                 )
             );
             $user->setRoles($json);
+            $user->setUsername($_POST['username']);
+            $user->setHistory($_POST['history']);
+            $user->setAvatar($_POST['avatar']);
+            $user->setIntelligency($_POST['intelligency']);
+            $user->setPower($_POST['power']);
+            $user->setSocial($_POST['social']);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);

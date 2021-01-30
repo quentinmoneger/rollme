@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ scenario.getTitle() }}
+{% endblock %}
+
+{% block body %}
+	{% for level, messages in app.flashes %}
+		{% for message in messages %}
+			<div class="alert alert-{{ level }}">
+				{{ message|raw }}
+			</div>
+		{% endfor %}
+	{% endfor %}
+
+	<div class="container mt-5">
+		<h1 class="my-3">{{ scenario.getTitle() }}</h1>
+        <h5><a href="{{ path('scenario_update', {id: scenario.getId()}) }}"><span class="badge badge-secondary">Modifier ce scénario</span></a></h5>
+
+		<img class="" src="{{ asset(scenario.getImage()) }}">
+
+		<h3>Résumé:</h3>
+		<p>{{ scenario.getResume() }}</p>
+	</div>
+    
+    <h3 class="text-center">Listes des scènes</h3>
+	<div class="card-group">
+		{% for frame in frames %}
+			<div class="card col-3">
+				<h6 class="card-title">Scène
+					{{ frame.getNumber() }}</h6>
+				<img src="{{ asset(frame.getImage()) }}" alt="" class="card-img-top">
+				<div class="card-body">
+					<p>{{ frame.getText() }}</p>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

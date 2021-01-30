@@ -1,11 +1,11 @@
 body::before {    
     content: "";
-    background-image: url("public/assests/images/MRlogo.svg");
+    background-image: url("../Logo/MRlogo.svg");
     background-repeat: no-repeat;
     background-position: center center;
     position: absolute;
     position: absolute;
-    top: 56px;
+    top: 100px;
     right: 150px;
     bottom: 0px;
     left: 0px;
@@ -14,13 +14,15 @@ body::before {
 
 section h1 {
     text-align: center;
-    margin-top: 15vh;       
+    margin-top: 15vh;    
+    padding: 0 14vw;   
 }
 
 .intro {
     text-align: center;
     font-size: 1.1rem;
     margin-top: 10vh;
+    padding: 0 14vw;
 }
 
 .rules {
@@ -28,47 +30,47 @@ section h1 {
     margin-left: 30vh;
     margin-right: 30vh;
     text-align: center;
-    border: 1px solid black;
-    border-radius: 10%;
-    box-shadow: 10px 5px 5px grey;
+    border: 1px dotted black;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px grey;
     padding: 20px;
     
     h2 {
         padding-bottom: 5vh;
-        text-decoration: underline;
     }   
 }
 
 .games-container {
     margin-top: 10vh;
 
-    a {
-        text-decoration: none;
-        color: green;
-        margin-left: 110px;
-    }
-}
-
-.custom-fig {
-    position: relative;
-    width: 300px;
-    height: 300px;
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    figcaption {
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.8);
-        bottom: 0;
-        left: 0;
-        right: 0;
-        color: white;
-        text-align: center;
-        padding: 8px;
+    .custom-fig {
+        position: relative;
+        width: 300px;
+        height: 300px;
+    
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    
+        figcaption {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            bottom: 0;
+            left: 0;
+            right: 0;
+            color: white;
+            text-align: center;
+            padding: 8px;
+        }
+    
+        a {
+            margin: 0;
+            display: block;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
     }
 }
 

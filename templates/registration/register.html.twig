@@ -1,8 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Register{% endblock %}
-
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/register.min.css') }}">
+{% endblock %}
 {% block body %}
+<div class="svg"></div>
+<main>
+    <section class="container presentation">
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
@@ -24,4 +28,6 @@
 
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
+    </section>
+</main>
 {% endblock %}   

@@ -40,7 +40,7 @@ body .svg {
   margin-top: 100px;
   background-color: #151515de;
   border: 1px solid #151515de;
-  border-radius: 4px;
+  border-radius: 6px;
   -webkit-box-shadow: 1px 1px 5px #151515;
           box-shadow: 1px 1px 5px #151515;
   padding: 20px;
@@ -127,4 +127,12 @@ body .svg {
   display: block;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
+  background-color: #ff5100;
+  border: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.games-container .custom-fig a:hover {
+  background-color: #ffa77e !important;
 }

@@ -8,9 +8,9 @@ use Symfony\Component\HttpFoundation\Response;
 class PlayController extends AbstractController
 {
     // Home page to select the scenario and parameters
-    public function index(): Response
+    public function lobby(): Response
     {
-        return $this->render('play/index.html.twig');
+        return $this->render('play/lobby.html.twig');
     }
 
 

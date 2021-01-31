@@ -2,52 +2,74 @@
 
 {% block title %}Home
 {% endblock %}
+
 {% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/home.min.css') }}">
 {% endblock %}
+
 {% block body %}
-	<section>
-		<h1>Bienvenue à toutes et à tous dans le monde du jeu de rôle !</h1>
-		<div class="intro">
-			<span>Débutants, intermédiaires et confirmés trouverons ici de nombreux scénarios jouablent entres amis.</span><br>
-			<span>
-				<strong>Vous n'avez jamais joué ?</strong>
-				Prenons le temps de poser quelques bases, afin de mener à bien vôtre partie et vous offir la meilleur expérience possible.</span>
-		</div>
-
-		<div class="rules">
-			<h2>Principe du jeu de rôle</h2>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facilis deleniti, laudantium rem accusamus a quae,
-				                            doloremque sunt dolore accusantium, eaque non. Illo, harum officiis, ullam officia magnam voluptates vel tenetur
-				                            consectetur sequi accusamus consequuntur libero sint odit. Praesentium excepturi expedita explicabo?
-				                            A dignissimos sequi praesentium dolor at itaque est quaerat dicta sunt delectus in aperiam quis distinctio 
-				                            nisi fugiat quae recusandae quam, tenetur laboriosam illum. Autem, quidem odit expedita officiis aut eius.
-				                            Quis dolorem perferendis doloremque voluptates, voluptatum nostrum? Expedita enim dolorum veritatis.
-				                            Minima quam odio est, ea illum consectetur tempore error possimus esse modi enim ipsa praesentium temporibus.
-				                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facilis deleniti, laudantium rem accusamus a quae,
-				                            doloremque sunt dolore accusantium, eaque non. Illo, harum officiis, ullam officia magnam voluptates vel tenetur
-				                            consectetur sequi accusamus consequuntur libero sint odit. Praesentium excepturi expedita explicabo?
-				                            consectetur sequi accusamus consequuntur libero sint odit. Praesentium excepturi expedita explicabo?
-				                            A dignissimos sequi praesentium dolor at itaque est quaerat dicta sunt delectus in aperiam quis distinctio 
-				                            nisi fugiat quae recusandae quam, tenetur laboriosam illum. Autem, quidem odit expedita officiis aut eius.
-				                            Quis dolorem perferendis doloremque voluptates, voluptatum nostrum? Expedita enim dolorum veritatis.
-				                            Minima quam odio est, ea illum consectetur tempore error possimus esse modi enim ipsa praesentium temporibus.</p>
-		</div>
-	</section>
-
-	<section class="games-container">
-		<div class="container">
-			<div class="d-flex justify-content-center flex-wrap">
-				{% for scenario in scenarios %}
-					<div class="m-3">
-						<figure class="custom-fig">
-							<img src="{{ asset(scenario.getImage()) }}" alt="" class="card-img-top">
-							<figcaption>{{ scenario.getTitle() }}</figcaption>
-						<a class="btn btn-success text-white" href="#" role="button">Jouer</a>
-						</figure>
-					</div>
-				{% endfor %}
+	<div class="svg"></div>
+	<main>
+		<section class="container presentation">
+			<div class="title">
+				<h1>Bienvenue sur RollMe.</h1>
+				<p>Moins de blabla, plus d'aventure!</p>
 			</div>
-		</div>
-	</section>
+			<div class="intro text-right">
+				<h2 class="mb-4">Qu'est-ce que c'est RollMe?</h2>
+				<p>RollMe a pour but de rendre le jeu de rôle plus accessible en proposant des scénarios jouables à plusieurs, sans s'encombrer de livrets de règles de 200 pages ou des heures de préparations...
+				Nous nous basons sur un principe simple: le plus important, c'est l'expérience du joueur. Nous n'avons pas pour but de proposer des fonctionnalités plus riches ou nombreuses que d'autres sites 
+				de jeux de rôle (qui le font déjà très bien!). Nous avons pour but de promouvoir le jeu de rôle auprès des joueurs moins expérimentés qui pourraient avoir peur de se lancer dans une campagne 
+				de Donjons et Dragons qui va durée 5 ans... Pour découvrir pas à pas les fonctionnalités du site, <a href="#">clique ici.</a>
+				</p>
+			</div>
+		</section>
+
+		<section class="container news">
+			<h2 class="text-center">Actualités</h2>
+			<div class="d-flex justify-content-center flex-wrap">
+				<div class="m-3">
+					<figure class="custom-fig">
+						<img class="card-img-top" src="{{ asset('assets/images/maison.jpg') }}" alt="Croquis de maison">
+						<a href="#">
+							<figcaption>Les coulisses de la création du site</figcaption>
+						</a>
+					</figure>
+				</div>
+				<div class="m-3">
+					<figure class="custom-fig">
+						<img class="card-img-top" src="{{ asset('assets/images/nain.jpg') }}" alt="Croquis de maison">
+						<a href="#">
+							<figcaption>Le Nain : venez découvrire la nouvelle classe disponible</figcaption>
+						</a>
+					</figure>
+				</div>
+				<div class="m-3">
+					<figure class="custom-fig">
+						<img class="card-img-top" src="{{ asset('assets/images/commu.jpg') }}" alt="Croquis de maison">
+						<a href="#">
+							<figcaption>La fonctionnalité communauté est bientôt disponible!!!</figcaption>
+						</a>
+					</figure>
+				</div>
+			</div>
+		</section>
+
+		<section class="games-container">
+			<div class="container">
+				<h2 class="text-center mb-4">Scénario à la une</h2>
+				<div class="d-flex justify-content-center flex-wrap">
+					{% for scenario in scenarios %}
+						<div class="m-3">
+							<figure class="custom-fig">
+								<img src="{{ asset(scenario.getImage()) }}" alt="" class="card-img-top">
+								<figcaption>{{ scenario.getTitle() }}</figcaption>
+								<a class="btn btn-success text-white" href="#" role="button">Jouer</a>
+							</figure>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+	</main>
 
 {% endblock %}

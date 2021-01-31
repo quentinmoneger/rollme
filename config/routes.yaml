@@ -18,12 +18,12 @@ home_index:
   path: /
   controller: App\Controller\HomeController::index
 
-play_index:
+play_lobby:
   path: /jouer
-  controller: App\Controller\PlayController::index
+  controller: App\Controller\PlayController::lobby
 
 play_play:
-  path: /jouer/scenario={id}
+  path: /jouer/partie{id}
   controller: App\Controller\PlayController::play
 
 scenario_create:

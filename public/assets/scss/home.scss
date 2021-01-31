@@ -1,62 +1,102 @@
-body::before {    
-    content: "";
-    background-image: url("../Logo/MRlogo.svg");
-    background-repeat: no-repeat;
-    background-position: center center;
-    position: absolute;
-    position: absolute;
-    top: 100px;
-    right: 150px;
-    bottom: 0px;
-    left: 0px;
-    opacity: 0.1;
+body {
+    background-color: #1e1e1e;
+    color: #ffffff;
+
+    .svg {
+        width: 800px;
+        height: 800px;
+        -webkit-mask: url("../Logo/MRlogo.svg") no-repeat 50% 50%;
+        mask: url("../Logo/MRlogo.svg") no-repeat 50% 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-60%, -45%);
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        background-color: #1515158f;
+        z-index: -100;
+    }
 }
 
-section h1 {
-    text-align: center;
-    margin-top: 15vh;    
-    padding: 0 14vw;   
+.presentation {
+    padding-top: 100px;
+    height: 900px;
+    .title {
+        font-size: 1.1rem;
+        p {
+            width: max-content;
+            padding: 5px 8px;
+            background-color: #151515de;
+        }
+    }
+    .intro {
+        margin-top: 100px;
+        background-color: #151515de;
+        border: 1px solid #151515de;
+        border-radius: 4px;
+        box-shadow: 1px 1px 5px #151515;
+        padding: 20px;
+        p {
+            font-size: 1.2rem;
+            a {
+                text-decoration: none;
+                color: #ff5100;
+                transition: 0.5s;
+                &:hover {
+                    color: #ffa77e;
+                }
+            }
+        }
+    }
 }
 
-.intro {
-    text-align: center;
-    font-size: 1.1rem;
-    margin-top: 10vh;
-    padding: 0 14vw;
-}
-
-.rules {
-    margin-top: 100px;
-    margin-left: 30vh;
-    margin-right: 30vh;
-    text-align: center;
-    border: 1px dotted black;
-    border-radius: 4px;
-    box-shadow: 2px 2px 2px grey;
-    padding: 20px;
-    
-    h2 {
-        padding-bottom: 5vh;
-    }   
-}
-
-.games-container {
-    margin-top: 10vh;
-
+.news {
+    height: 500px;
     .custom-fig {
         position: relative;
         width: 300px;
         height: 300px;
-    
+
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-    
+
         figcaption {
             position: absolute;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: #000000d8;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            color: white;
+            text-align: center;
+            height: 30%;
+            padding-block: 25px;
+        }
+
+        a {
+            margin: 0;
+            display: block;
+        }
+    }
+}
+
+.games-container {
+    height: 600px;
+    .custom-fig {
+        position: relative;
+        width: 300px;
+        height: 300px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        figcaption {
+            background-color: #000000d8;
             bottom: 0;
             left: 0;
             right: 0;
@@ -64,16 +104,12 @@ section h1 {
             text-align: center;
             padding: 8px;
         }
-    
+
         a {
             margin: 0;
             display: block;
-            border-top-left-radius: 0;
             border-top-right-radius: 0;
+            border-top-left-radius: 0;
         }
     }
-}
-
-footer {
-    height: 10vh;
 }

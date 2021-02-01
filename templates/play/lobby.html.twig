@@ -8,21 +8,23 @@
 
 {% block body %}
 	<main>
+		<div class="svg"></div>
 		<form method="POST" class="container">
-			<div class="svg"></div>
 			<div class="row justify-content-around">
 				<section class="scenario col-5">
 					<label for="scenario" class="h5">Sélection du scénario</label>
 					<select type="text" name="scenario" class="form-control" id="scenario">
 						{% for scenario in scenarios %}
-						<option value="{{ scenario.getTitle() }}" data-img_src="({{ asset(scenario.getImage()) }});">{{ scenario.getTitle() }}</option>
+							<option value="{{ scenario.getTitle() }}">{{ scenario.getTitle() }}</option>
 						{% endfor %}
 					</select>
 				</section>
 				<section class="param col-5">
 					<label for="user" class="h5">Inviter d'autres utilisateurs</label>
 					<select type="text" name="user" class="form-control" id="user">
-						<option>
+						{% for user in users %}
+							<option value="{{ user.getUsername() }}">{{ user.getUsername() }}</option>
+						{% endfor %}
 					</select>
 				</section>
 			</div>

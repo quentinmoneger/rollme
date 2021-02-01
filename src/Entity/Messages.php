@@ -33,6 +33,11 @@ class Messages
      */
     private $user_id;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Game::class, inversedBy="messages")
+     */
+    private $game;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -70,6 +75,18 @@ class Messages
     public function setUserId(?User $user_id): self
     {
         $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function getGame(): ?Game
+    {
+        return $this->game;
+    }
+
+    public function setGame(?Game $game): self
+    {
+        $this->game = $game;
 
         return $this;
     }

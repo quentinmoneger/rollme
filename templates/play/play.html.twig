@@ -1,7 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ scenario.getTitle() }}{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/play.min.css') }}">{% endblock %}
 
 {% block body %}
-
+    <main>
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-8">
+                    <section class="dashboard">
+                        <img src="">
+                    </section>
+                    <section class="info">
+                    </section>
+                </div>
+                <div class="col-4">
+                    <section class="chat">
+                        <input type="text" name="message">
+                    </section>
+                    <section class="roll">
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}
+
+{% block footer %}{% endblock %}

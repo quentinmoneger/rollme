@@ -39,7 +39,7 @@ body {
             }
         }
     }
-    input{
+    select{
         color: $white !important;
         background-color: $input !important;
         border: none !important;
@@ -52,4 +52,5 @@ body {
         background-color: #ff5100 !important;
         border: none !important;
     }
+
 }

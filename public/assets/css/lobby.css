@@ -48,13 +48,13 @@ body section p a:hover {
   color: #ffa77e;
 }
 
-body input {
+body select {
   color: #FFFFFF !important;
   background-color: #0f0f0fe8 !important;
   border: none !important;
 }
 
-body input:focus {
+body select:focus {
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
 }

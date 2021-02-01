@@ -1,0 +1,59 @@
+body {
+  background-color: #1e1e1e;
+  color: #FFFFFF;
+}
+
+body main {
+  height: calc(100vh - 66px - 100px);
+}
+
+body .container {
+  margin-top: 80px;
+}
+
+body section {
+  background-color: #151515de;
+  -webkit-box-shadow: 1px 1px 5px #151515;
+          box-shadow: 1px 1px 5px #151515;
+  border-radius: 6px;
+  padding: 20px;
+}
+
+body .dashboard {
+  height: 450px;
+}
+
+body .info {
+  margin-top: 30px;
+  height: 200px;
+}
+
+body .chat {
+  height: 500px;
+  position: relative;
+}
+
+body .chat input {
+  position: absolute;
+  height: 40px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 8px;
+  background-color: #0f0f0fe8;
+  color: #FFFFFF;
+  border-radius: 6px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border: none;
+}
+
+body .chat input:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+body .roll {
+  margin-top: 30px;
+  height: 150px;
+}

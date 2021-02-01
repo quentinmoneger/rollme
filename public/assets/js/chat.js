@@ -42,7 +42,7 @@ function chargeMessages(){
                 for(let message of messages){
 
                     // On ajoute le contenu avant le contenu actuel de discussion
-                    discussion.innerHTML += `<p>${message.userId.username} a écrit: ${message.message}</p>` 
+                    discussion.innerHTML += `<p>${message.userId.username} : ${message.message}</p>` 
 
                     //On affiche le dernier Id
                     console.log(message.id)

@@ -12,12 +12,18 @@
 			<div class="svg"></div>
 			<div class="row justify-content-around">
 				<section class="scenario col-5">
-					<label for="scenarioSearch" class="h5">Sélection du scénario</label>
-					<input type="text" name="scenarioSearch" class="form-control" id="scenario-search">
+					<label for="scenario" class="h5">Sélection du scénario</label>
+					<select type="text" name="scenario" class="form-control" id="scenario">
+						{% for scenario in scenarios %}
+						<option value="{{ scenario.getTitle() }}" data-img_src="({{ asset(scenario.getImage()) }});">{{ scenario.getTitle() }}</option>
+						{% endfor %}
+					</select>
 				</section>
 				<section class="param col-5">
-					<label for="userSearch" class="h5">Inviter d'autres utilisateurs</label>
-					<input type="text" name="userSearch" class="form-control" id="user-search">
+					<label for="user" class="h5">Inviter d'autres utilisateurs</label>
+					<select type="text" name="user" class="form-control" id="user">
+						<option>
+					</select>
 				</section>
 			</div>
 			<div class=" text-center">

@@ -39,9 +39,15 @@ class Scenario
      */
     private $frames;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="scenario")
+     */
+    private $games;
+    
     public function __construct()
     {
         $this->frames = new ArrayCollection();
+        $this->games = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -115,4 +121,33 @@ class Scenario
         return $this;
     }
 
+    /**
+     * @return Collection|Game[]
+     */
+    public function getGames(): Collection
+    {
+        return $this->games;
+    }
+
+    public function addGame(Game $game): self
+    {
+        if (!$this->games->contains($game)) {
+            $this->games[] = $game;
+            $game->setScenario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGame(Game $game): self
+    {
+        if ($this->games->removeElement($game)) {
+            // set the owning side to null (unless already changed)
+            if ($game->getScenario() === $this) {
+                $game->setScenario(null);
+            }
+        }
+
+        return $this;
+    }
 }

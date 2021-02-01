@@ -13,6 +13,11 @@ class PlayController extends AbstractController
         return $this->render('play/lobby.html.twig');
     }
 
+    public function join(): Response
+    {
+        return $this->render('play/join.html.twig');
+    }
+
 
     // In game
     public function play(int $id): Response

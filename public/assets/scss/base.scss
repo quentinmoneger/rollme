@@ -1,15 +1,41 @@
-body{
-    font-family: 'OrkneyRegular' !important;
+@import "_variables";
+
+body {
+    font-family: "OrkneyRegular" !important;
 }
 
-header{
-    height: 76px;
+header {
+    height: 66px;
     .navbar {
         background-color: #151515de !important;
+        .dropdown-menu {
+            top: 53px;
+            background-color: $lightgrey;
+            border: none;
+            padding: 0;
+            margin: 0;
+            border-radius: 6px;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+            .dropdown-item {
+                padding-inline: 8px;
+                padding-block: 10px;
+            }
+            a {
+                color: $white !important;
+                &:hover {
+                    background-color: #222222;
+                }
+            }
+        }
+        svg{
+            stroke: $white;
+            stroke-width: 5px;
+        }
     }
 }
 
-footer{
+footer {
     height: 100px;
     background-color: #0f0f0f;
 }

@@ -1,11 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Jouer{% endblock %}
+{% block title %}Jouer
+{% endblock %}
 
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/lobby.min.css') }}">{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/lobby.min.css') }}">
+{% endblock %}
 
 {% block body %}
-
-<p>test</p>
-
+	<main>
+		<form method="POST" class="container">
+			<div class="svg"></div>
+			<div class="row justify-content-around">
+				<section class="scenario col-5">
+					<label for="scenarioSearch" class="h5">Sélection du scénario</label>
+					<input type="text" name="scenarioSearch" class="form-control" id="scenario-search">
+				</section>
+				<section class="param col-5">
+					<label for="userSearch" class="h5">Inviter d'autres utilisateurs</label>
+					<input type="text" name="userSearch" class="form-control" id="user-search">
+				</section>
+			</div>
+			<div class=" text-center">
+				<button type="submit" class="btn btn-primary">Lancer la parite</button>
+			</div>
+		</form>
+	</main>
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('assets/js/lobby.js') }}"></script>
 {% endblock %}

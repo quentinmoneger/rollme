@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jouer
+{% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/join.min.css') }}">
+{% endblock %}
+
+{% block body %}
+	<main>
+		<form method="POST" class="container">
+			<div class="svg"></div>
+			<div class="row justify-content-around">
+				<section class="scenario col">
+					<label for="joinLink" class="h5">Entrer le lien d'une partie</label>
+					<input type="text" name="joinLink" class="form-control" id="joinlink">
+				</section>
+			</div>
+			<div class=" text-center">
+				<button type="submit" class="btn btn-primary">Rejoindre</button>
+			</div>
+		</form>
+	</main>
+{% endblock %}

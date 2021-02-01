@@ -22,6 +22,10 @@ play_lobby:
   path: /jouer
   controller: App\Controller\PlayController::lobby
 
+play_join:
+  path: /jouer/rejoindre
+  controller: App\Controller\PlayController::join
+
 play_play:
   path: /jouer/partie{id}
   controller: App\Controller\PlayController::play

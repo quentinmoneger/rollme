@@ -22,15 +22,7 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
+            ->add('email', null ,['label'=> false])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => [
@@ -45,17 +37,17 @@ class RegistrationFormType extends AbstractType
                             'max' => 4096,
                         ]),
                     ],
-                    'label' => 'Password',
+                    'label' => false,
                 ],
                 'second_options' => [
-                    'label' => 'Repeat Password',
+                    'label' => false,
                 ],
                 'invalid_message' => 'The password fields must match.',
                 // Instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
             ])
-            ->add('username', TextType::class,  [
+            ->add('username', TextType::class, ['label'=> false], [
                 'constraints' => [
                     new Length([
                         'min' => 2,
@@ -68,8 +60,8 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('avatar')
-            ->add('history', TextType::class,  [
+            ->add('avatar', null,['label'=> false])
+            ->add('history', TextType::class, ['label'=> false], [
                 'constraints' => [
                     new Length([
                         'min' => 50,
@@ -80,7 +72,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('intelligency', IntegerType::class,  [
+            ->add('intelligency', IntegerType::class,['label'=> false],  [
                 'constraints' => [
                     new Range([
                         'min' => 10,
@@ -96,7 +88,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('power', IntegerType::class,  [
+            ->add('power', IntegerType::class, ['label'=> false], [
                 'constraints' => [
                     new Range([
                         'min' => 10,
@@ -112,7 +104,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('social', IntegerType::class,  [
+            ->add('social', IntegerType::class, ['label'=> false], [
                 'constraints' => [
                     new Range([
                         'min' => 10,

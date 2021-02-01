@@ -1,6 +1,11 @@
+@import "variables";
 body {
     background-color: #1e1e1e;
-    color: #ffffff;
+    color: $white; 
+
+    main{
+        height: calc(100vh - 100px - 76px);
+    }
 
     .svg {
         width: 800px;
@@ -13,16 +18,33 @@ body {
         transform: translate(-60%, -45%);
         -webkit-mask-size: contain;
         mask-size: contain;
-        background-color: #1515158f;
+        background-color: #151515;
         z-index: -100;
     }
     input{
         background-color: #151515de !important;
         border: none !important;
+        caret-color: none !important;
+
     }
     button{
         background-color: #ff5100 !important;
         border: none !important;
     }
-}
+    form{
+        padding-top: 100px !important;
+    }
+    a{
+        color:  #FFFFFF;
+        text-decoration: underline;
+    }
+    .form-control[type='email'] {
+        color: red !important;
 
+      }
+    .form-control{
+        &:focus{
+            box-shadow: none;
+        }
+    }
+}

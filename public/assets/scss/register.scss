@@ -1,6 +1,10 @@
 body {
     background-color: #1e1e1e;
-    color: #ffffff;
+    color: #FFFFFF; 
+    
+    main{
+        height: calc(100vh - 100px - 76px);
+    }
 
     .svg {
         width: 800px;
@@ -13,7 +17,13 @@ body {
         transform: translate(-60%, -45%);
         -webkit-mask-size: contain;
         mask-size: contain;
-        background-color: #1515158f;
+        background-color: #151515;
         z-index: -100;
+    }
+
+    button{
+        background-color: #ff5100 !important;
+        border: none !important;
+        color:#FFFFFF !important;
     }
 }

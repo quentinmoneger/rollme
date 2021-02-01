@@ -2,8 +2,12 @@ app_forgot_password_request:
   path: /reset-password
   controller: App\Controller\ResetPasswordController::request
 
+app_login:
+  path: /connexion
+  controller: App\Controller\SecurityController::login
+  
 app_register:
-  path: /register
+  path: /inscription
   controller: App\Controller\RegistrationController::register
 
 app_verify_email:

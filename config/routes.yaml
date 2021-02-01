@@ -22,6 +22,18 @@ home_index:
   path: /
   controller: App\Controller\HomeController::index
 
+message:
+  path: /chat
+  controller: App\Controller\MessagesController::index
+
+message_recover:
+  path: /chat/recover{lastid}
+  controller: App\Controller\MessagesController::recover
+
+message_add:
+  path: /chat/add
+  controller: App\Controller\MessagesController::add
+
 play_lobby:
   path: /jouer
   controller: App\Controller\PlayController::lobby

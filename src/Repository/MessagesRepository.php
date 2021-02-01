@@ -22,29 +22,18 @@ class MessagesRepository extends ServiceEntityRepository
     // /**
     //  * @return Messages[] Returns an array of Messages objects
     //  */
-    /*
-    public function findByExampleField($value)
+  
+    // On prepare une requete pour récuperer tous les anciens messages supérieur au dernier Id affiché
+    public function findByIdSup($lastid)
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('m.id > :id')
+            ->setParameter('id' , $lastid)
             ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Messages
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+   
+        
 }

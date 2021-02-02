@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,IAAI,CAAC;EACD,gBAAgB,ECCF,OAAO;CDAxB",
+    "sources": [
+        "../scss/create.scss",
+        "../scss/_variables.scss"
+    ],
+    "names": [],
+    "file": "create.css"
+}

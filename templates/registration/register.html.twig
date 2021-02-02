@@ -19,43 +19,51 @@
             <label class="col-6 text-center">Email</label>
             <label class="col-6 text-center">Pseudo</label>
         </div>
-        <div class="row justify-content-around">
-                {{ form_row(registrationForm.email, {'attr': {'class': 'col-6'}})  }}
-                {{ form_row(registrationForm.username, {'attr': {'class': 'col-6'}}) }}
+        <div class="row justify-content-around mb-3">
+            <div class="col-6 text-center">
+                {{ form_row(registrationForm.email, {'attr': {'class': 'form-control'}} )  }}
+            </div>
+            <div class="col-6 text-center">
+                {{ form_row(registrationForm.username, {'attr': {'class': 'form-control'}} ) }}
+            </div>        
         </div>
         <div class="row">
-            <label>Mot de passe</label>
-            <label>Répéter mot de passe</label>
+            <label class="col-6 text-center">Mot de passe</label>
+            <label class="col-6 text-center">Répéter mot de passe</label>
+        </div>
+        <div class="row justify-content-around mb-3">
+            <div class="col-6 text-center ">
+                {{ form_row(registrationForm.plainPassword.first, {'attr': {'class': 'form-control'}} ) }}
+            </div>
+            <div class="col-6 text-center">
+                {{ form_row(registrationForm.plainPassword.second, {'attr': {'class': 'form-control'}} ) }}
+            </div>
         </div>
         <div class="row">
-            {{ form_row(registrationForm.plainPassword.first) }}
-            <div></div>
-            {{ form_row(registrationForm.plainPassword.second) }}
+            <label class="col-6 text-center">Personnage</label>
+            <label class="col-6 text-center">Histoire du Personnage</label>
+        </div>
+        <div class="row mb-3" row="100">
+            <div class="col-6 text-center">
+                {{ form_row(registrationForm.avatar, {'attr': {'class': 'form-control'} }) }}
+            </div>
+            <div class="col-6 text-center">
+                {{ form_row(registrationForm.history, {'attr': {'class': 'form-control'}} ) }}
+            </div>
         </div>
         <div class="row">
-            <label>Personnage</label>
-            <label>Histoire du Personnage</label>
+            <label class="col-4 text-center">Intelligence</label>
+            <label class="col-4 text-center">Puissance</label>
+            <label class="col-4 text-center">Charisme</label>
         </div>
-        <div class="row">
-            <div></div>
-            {{ form_row(registrationForm.avatar) }}
-            <div></div>
-            {{ form_row(registrationForm.history) }}
+        <div class="row mb-3">
+            <div class="col-4 text-center">{{ form_row(registrationForm.intelligency, {'attr': {'class': 'form-control'}} ) }}</div>
+            <div class="col-4 text-center">{{ form_row(registrationForm.power, {'attr': {'class': 'form-control'}} ) }}</div>
+            <div class="col-4 text-center">{{ form_row(registrationForm.social, {'attr': {'class': 'form-control'}} ) }}</div>
         </div>
-        <div class="row">
-            <label>Intelligence</label>
-            <label>Puissance</label>
-            <label>Charisme</label>
+        <div class="row justify-content-center">
+            <button type="submit" class="btn ">Inscription</button>
         </div>
-        <div class="row">
-            <div></div>
-            {{ form_row(registrationForm.intelligency) }}
-            <div></div>
-            {{ form_row(registrationForm.power) }}
-            <div></div>
-            {{ form_row(registrationForm.social) }}
-        </div>
-        <button type="submit" class="btn mt-2">Inscription</button>
     </div>
     {{ form_end(registrationForm) }}
     </section>

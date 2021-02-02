@@ -1,9 +1,10 @@
+@import "_variables";
 body {
-    background-color: #1e1e1e;
-    color: #FFFFFF; 
+    background-color: $backgroundColor;
+    color: $white; 
     
     main{
-        height: calc(100vh - 100px - 76px);
+        height: calc(100vh - #{$footerHeight} - #{$navbarHeight});
     }
 
     .svg {
@@ -17,13 +18,22 @@ body {
         transform: translate(-60%, -45%);
         -webkit-mask-size: contain;
         mask-size: contain;
-        background-color: #151515;
+        background-color: #1515158f;
         z-index: -100;
     }
 
     button{
-        background-color: #ff5100 !important;
+        background-color: $orange !important;
         border: none !important;
-        color:#FFFFFF !important;
+        color: $white !important;
+    }
+
+    input,textarea{
+        background-color: #151515de !important;
+        border: none !important;      
+    }
+
+    .form-control[type=email],[type=password],[type=text],[type=integer] {
+        color: $white !important;
     }
 }

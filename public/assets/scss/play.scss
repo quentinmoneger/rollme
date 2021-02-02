@@ -6,45 +6,70 @@ body {
     }
     background-color: $backgroundColor;
     color: $white;
-    .container {
-        margin-top: 80px;
-    }
     section{
         background-color: #151515de;
         box-shadow: 1px 1px 5px #151515;
         border-radius: 6px;
-        padding: 20px;
+        padding: none;
+        margin: none;
     }
-    .dashboard {
-        height: 450px;
-    }
-    .info {
-        margin-top: 30px;
-        height: 200px;
-    }
-    .chat {
-        height: 500px;
-        position: relative;
-        input{
-            position: absolute;
-            height: 40px;
-            width: 100%;
-            bottom: 0;
-            left: 0;
-            padding: 8px;
-            background-color: $input;
-            color: $white;
-            border-radius: 6px;
-            border-top-right-radius: 0;
-            border-top-left-radius: 0;
-            border: none;
-            &:focus{
-                box-shadow: none !important;
-            }
+    input,button{
+        height: 50px;
+        width: 100%;
+        padding: 8px;
+        background-color: $input;
+        color: $white;
+        border: none;
+        &:focus{
+            box-shadow: none !important;
         }
     }
-    .roll {
-        margin-top: 30px;
-        height: 150px;
+
+    .dashboard{
+        height: 450px;
+        
+        
+    }
+    .info{
+        height: 250px;
+               
+    }
+    .discussion{
+        height: 550px;
+        overflow-y: scroll;
+    }
+    .input{
+        margin: 0px !important;
+        input{
+            border-bottom-left-radius: 6px;
+        }
+        button{
+            border-bottom-right-radius: 6px;
+            background-color: #151515de;
+        }
+    }
+    .roll{
+        height: 100px;
+        padding: 0px!important;
+
+        #roll1{
+            margin: 0px !important;
+        }
+        #roll2{
+            margin: 0px !important;
+        }
+        #input1{
+            border-top-left-radius: 6px;
+        }
+        #input2{
+            border-top-right-radius: 6px;
+        }
+        button{
+            border-bottom-left-radius:  6px;
+            border-bottom-right-radius:  6px;
+            background-color: #151515de;
+        }
+        
+        
     }
 }

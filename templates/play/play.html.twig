@@ -5,22 +5,39 @@
 
 {% block body %}
     <main>
-        <div class="container">
-            <div class="row justify-content-around">
-                <div class="col-8">
-                    <section class="dashboard">
+        <div class="container mt-4 ">
+            <div class="row justify-content-around ">
+
+                <div class="col-8 ">
+                    <section class="dashboard mt-4">
                         <img src="">
                     </section>
-                    <section class="info">
+                    <section class="info mt-4">
                     </section>
                 </div>
-                <div class="col-4">
-                    <section class="chat">
-                        <input type="text" name="message">
+
+
+
+                <div class="col-4 container">
+                    <section class="chat mt-4" >
+                        <div class="discussion " id="discussion">
+                        </div>
+                        <div class="input row">
+                            <input class="col-10"type="text" name="message">
+                            <button class="col-2" id="valid"></button>
+                        </div>
                     </section>
-                    <section class="roll">
-                    </section>
+                <section  class="roll mt-4">
+                    <div id="roll1" class="row">
+                        <input id="input1"class="col-6"type="text" name="message">
+                        <input id="input2"class="col-6"type="text" name="message">
+                    </div>
+                    <div id="roll2" class="row">
+                        <button class="col-12" id="valid"></button>
+                    </div>
+                </section>
                 </div>
+
             </div>
         </div>
     </main>

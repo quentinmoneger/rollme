@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouveau scénario
-{% endblock %}
+{% block title %}Nouveau scénario{% endblock %}
 
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/creation.min.css') }}">
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/creation.min.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -19,33 +19,33 @@
 		<h1 class="py-3">Création d'un nouveau scénario</h1>
 
 		<div class="form-group">
-			<label for="title">Titre du scénario<span class="requierd">*</span>
+			<label for="title" class="text-white">Titre du scénario<span class="requierd text-danger">*</span>
 			</label>
 			<input type="text" name="title" class="form-control" placeholder="Ma nouvelle aventure..." requierd>
-			<small class="font-italic">(Maximum 100 caractères)</small>
+			<small class="font-italic text-white">(Maximum 100 caractères)</small>
 		</div>
 
 		<div class="form-group">
 			<div class="form-row">
 				<div class="col-6">
-					<label for="image">Illustration du scénario</label>
+					<label for="image" class="text-white">Illustration du scénario</label>
 					<input type="file" name="image" class="form-control" accept="image/*">
 				</div>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label for="resume">Résumé du scénario<span class="requierd">*</span>
+			<label for="resume" class="text-white">Résumé du scénario<span class="requierd">*</span>
 			</label>
-			<small class="font-italic">(Maximum 1000 caractères)</small>
+			<small class="font-italic text-white">(Maximum 1000 caractères)</small>
 			<textarea type="text" name="resume" class="form-control" rows="8" requierd></textarea>
 		</div>
 
-		<div class="form-group">
+		<div>
 			<button type="submit" class="btn btn-primary">Enregistrer</button>
 		</div>
 
-		<small class="requierd">*Champ obligatoire</small>
+		<small class="requierd">* Champ obligatoire</small>
 	</form>
 
 {% endblock %}

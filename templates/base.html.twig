@@ -5,12 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" media="screen" href="http://fontlibrary.org/face/orkney" type="text/css"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ asset('assets/css/base.min.css') }}">
   <title>{% block title %}Welcome!{% endblock %}</title>
   {% block stylesheets %}{% endblock %}
-
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 
 <body>
@@ -86,7 +85,42 @@
 
   {% block footer %}
   <footer>
-  
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-9">
+          <h6>A propos</h6>
+          <p class="pr-lg-5 text-muted">Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée. Généralement, on utilise un texte en faux latin, le Lorem ipsum ou Lipsum.</p>
+        </div>
+        <div class="col-12 col-lg-3">
+          <h6>Liens utiles</h6>
+          <ul class="p-0 text-muted">
+            <li>Mentions légales</li>
+            <li>Conditions d'utilisation</li>
+            <li>Nous rejoindre</li>
+            <li>FAQ</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row socials">
+        <div class="col-12 col-md-6 pl-0 text-muted">
+          CopyrightⒸ 2021 - Tous droits réservés.
+        </div>
+        <div class="col-12 col-md-6 text-right pr-0">
+          <a href="https://www.facebook.com/" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com/?hl=fr" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="http://twitter.com/" target="_blank">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://www.pinterest.fr/" target="_blank">
+            <i class="fab fa-pinterest-p"></i>
+          </a>
+        </div>
+      </div>
+    </div>
   </footer>
   {% endblock %}
 

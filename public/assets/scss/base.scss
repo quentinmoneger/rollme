@@ -5,7 +5,7 @@ body {
 }
 
 header {
-    height: 66px;
+    height: $navbarHeight;
     .navbar {
         background-color: #151515de !important;
         .dropdown-menu {
@@ -36,6 +36,6 @@ header {
 }
 
 footer {
-    height: 100px;
+    height: $footerHeight;
     background-color: #0f0f0f;
 }

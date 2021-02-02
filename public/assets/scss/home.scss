@@ -1,7 +1,8 @@
+@import "_variables";
 body {
-    background-color: #1e1e1e;
-    color: #ffffff;
-
+    background-color: $backgroundColor;
+    color: $white;
+    
     .svg {
         width: 800px;
         height: 800px;
@@ -34,13 +35,13 @@ body {
         background-color: #151515de;
         border: 1px solid #151515de;
         border-radius: 6px;
-        box-shadow: 1px 1px 5px #151515;
+        box-shadow: 1px 1px 5px $lightgrey;
         padding: 20px;
         p {
             font-size: 1.2rem;
             a {
                 text-decoration: none;
-                color: #ff5100;
+                color: $orange;
                 transition: 0.5s;
                 &:hover {
                     color: #ffa77e;
@@ -69,7 +70,7 @@ body {
             bottom: 0;
             left: 0;
             right: 0;
-            color: white;
+            color: $white;
             text-align: center;
             height: 30%;
             padding-block: 25px;
@@ -100,7 +101,7 @@ body {
             bottom: 0;
             left: 0;
             right: 0;
-            color: white;
+            color: $white;
             text-align: center;
             padding: 8px;
         }
@@ -110,7 +111,7 @@ body {
             display: block;
             border-top-right-radius: 0;
             border-top-left-radius: 0;
-            background-color: #ff5100;
+            background-color: $orange;
             border: none;
             transition: 0.5s;
             &:hover{

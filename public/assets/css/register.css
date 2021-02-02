@@ -4,7 +4,7 @@ body {
 }
 
 body main {
-  height: calc(100vh - 100px - 76px);
+  height: calc(100vh - 100px - 66px);
 }
 
 body .svg {
@@ -19,12 +19,21 @@ body .svg {
           transform: translate(-60%, -45%);
   -webkit-mask-size: contain;
   mask-size: contain;
-  background-color: #151515;
+  background-color: #1515158f;
   z-index: -100;
 }
 
 body button {
   background-color: #ff5100 !important;
   border: none !important;
+  color: #FFFFFF !important;
+}
+
+body input, body textarea {
+  background-color: #151515de !important;
+  border: none !important;
+}
+
+body .form-control[type=email], body [type=password], body [type=text], body [type=integer] {
   color: #FFFFFF !important;
 }

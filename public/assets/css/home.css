@@ -1,6 +1,6 @@
 body {
   background-color: #1e1e1e;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 body .svg {
@@ -84,7 +84,7 @@ body .svg {
   bottom: 0;
   left: 0;
   right: 0;
-  color: white;
+  color: #FFFFFF;
   text-align: center;
   height: 30%;
   padding-block: 25px;
@@ -117,7 +117,7 @@ body .svg {
   bottom: 0;
   left: 0;
   right: 0;
-  color: white;
+  color: #FFFFFF;
   text-align: center;
   padding: 8px;
 }

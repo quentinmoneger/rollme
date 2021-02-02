@@ -2,6 +2,10 @@
 
 {% block title %}Scénario{% endblock %}
 
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/scenario.min.css') }}">
+{% endblock %}
+
 {% block body %}
 	{% for level, messages in app.flashes %}
 		{% for message in messages %}
@@ -12,16 +16,21 @@
 	{% endfor %}
 
 	<div class="container">
-		<h1 class="text-center">Choix de scénario</h1>
+		<h1 class="mt-5 pb-4 text-center">Choix de scénario</h1>
 		<div class="row">
 			{% for scenario in scenarios  %}
-				<div class="col-3">
-					<img src="{{ asset(scenario.getImage()) }}" alt="" class="card-img-top img-fluid">
-					<div class="card-body">
-						<h6 class="card-title">{{ scenario.getTitle() }}</h6>
-						<p class="card-text">{{ scenario.getResume() }}</p>
-						<a href="{{ path('play_lobby', {id: scenario.getId()}) }}" class="btn btn-success mb-1">Jouer</a>
-						<a href="{{ path('scenario_view', {id: scenario.getId()}) }}" class="btn btn-secondary mb-1">Détail du scénario</a>
+				<div class="col-12 col-md-6 col-lg-4 mb-3">
+					<div class="card custom-card">
+						<div class="position-relative">
+							<img src="{{ asset(scenario.getImage()) }}" alt="" class="card-img-top img-fluid border border-dark">
+							<h5 class="card-title font-weight-bold text-white">{{ scenario.getTitle() }}</h5>
+						</div>
+						<div class="card-body">
+							<p class="card-text text-white mb-0">{{ scenario.getResume() }}</p>
+							<div class="text-white mb-3">...</div>
+							<a href="{{ path('play_lobby', {id: scenario.getId()}) }}" class="btn btn-success">Jouer</a>
+							<a href="{{ path('scenario_view', {id: scenario.getId()}) }}" class="btn btn-secondary">Détail du scénario</a>
+						</div>
 					</div>
 				</div>
 			{% endfor %}

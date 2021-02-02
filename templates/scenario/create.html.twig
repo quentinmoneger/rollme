@@ -3,7 +3,7 @@
 {% block title %}Nouveau scénario{% endblock %}
 
 {% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('assets/css/creation.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/create.min.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -15,15 +15,19 @@
 		{% endfor %}
 	{% endfor %}
 
+	
 	<form method="POST" enctype="multipart/form-data" class="container pt-5">
-		<h1 class="py-3">Création d'un nouveau scénario</h1>
+	<div class="contain">	
+		<h1 class="py-3 mt-3 text-center">Création d'un nouveau scénario</h1>
 
+		<div class="container">
 		<div class="form-group">
 			<label for="title" class="text-white">Titre du scénario<span class="requierd text-danger">*</span>
 			</label>
-			<input type="text" name="title" class="form-control" placeholder="Ma nouvelle aventure..." requierd>
+			<input type="text" name="title" class="form-control text-white" placeholder="Ma nouvelle aventure..." requierd>
 			<small class="font-italic text-white">(Maximum 100 caractères)</small>
 		</div>
+		
 
 		<div class="form-group">
 			<div class="form-row">
@@ -33,19 +37,25 @@
 				</div>
 			</div>
 		</div>
+		
 
+		<div class="pt-5">
 		<div class="form-group">
 			<label for="resume" class="text-white">Résumé du scénario<span class="requierd">*</span>
 			</label>
 			<small class="font-italic text-white">(Maximum 1000 caractères)</small>
-			<textarea type="text" name="resume" class="form-control" rows="8" requierd></textarea>
+			<textarea type="text" name="resume" class="form-control text-white" rows="8" requierd></textarea>
 		</div>
 
-		<div>
+		<div class="text-center">
 			<button type="submit" class="btn btn-primary">Enregistrer</button>
 		</div>
 
-		<small class="requierd">* Champ obligatoire</small>
+		<small class="requierd text-right text-white"><span class="text-danger text-right">*</span> Champ obligatoire</small>
+		</div>
+		</div>
+	</div>
 	</form>
+
 
 {% endblock %}

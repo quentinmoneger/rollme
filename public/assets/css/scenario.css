@@ -1,0 +1,34 @@
+body {
+  background-color: #1e1e1e;
+}
+
+body .container h1 {
+  color: #ff5100;
+}
+
+body .container .custom-card {
+  background-color: #0f0f0fe8 !important;
+  border-radius: 5px;
+}
+
+body .container .custom-card img {
+  height: 180px;
+  object-fit: cover;
+}
+
+body .container .custom-card h5 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  background-color: #000000d8;
+  margin: 0;
+  padding: 8px;
+}
+
+body .container .custom-card p {
+  height: 100px;
+  overflow: hidden;
+}
+/*# sourceMappingURL=scenario.css.map */

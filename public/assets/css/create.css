@@ -1,34 +1,4 @@
 body {
   background-color: #1e1e1e;
 }
-
-body form {
-  height: calc(100vh - 100px - 76px);
-}
-
-body form .contain {
-  background: #0f0f0fe8;
-  border-radius: 12px;
-}
-
-body form .contain h1 {
-  color: #ff5100;
-  opacity: 0.7;
-}
-
-body form .contain input, body form .contain textarea {
-  background-color: #151515 !important;
-  border: none;
-}
-
-body form .contain button {
-  background-color: #ff5100 !important;
-  border: none;
-  justify-content: center;
-}
-
-.requierd {
-  color: red;
-  font-style: italic;
-}
 /*# sourceMappingURL=create.css.map */

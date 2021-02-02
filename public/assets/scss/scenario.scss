@@ -7,32 +7,6 @@ body {
 
         h1 {
             color: $orange;
-        }
-        
-        .custom-card {
-            background-color: $input !important;
-            border-radius: 5px;
-
-            img {
-                height: 180px;
-                object-fit: cover;
-            }
-
-            h5 {
-                position: absolute;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                text-align: center;
-                background-color: #000000d8;
-                margin: 0;
-                padding: 8px;
-            }
-
-            p {
-                height: 100px;
-                overflow: hidden;
-            }
-        } 
+        }  
     }
 }

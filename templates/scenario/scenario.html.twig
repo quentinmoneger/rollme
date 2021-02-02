@@ -16,24 +16,26 @@
 	{% endfor %}
 
 	<div class="container">
-		<h1 class="mt-5 pb-4 text-center">Choix de scénario</h1>
-		<div class="row">
-			{% for scenario in scenarios  %}
-				<div class="col-12 col-md-6 col-lg-4 mb-3">
-					<div class="card custom-card">
-						<div class="position-relative">
-							<img src="{{ asset(scenario.getImage()) }}" alt="" class="card-img-top img-fluid border border-dark">
-							<h5 class="card-title font-weight-bold text-white">{{ scenario.getTitle() }}</h5>
-						</div>
-						<div class="card-body">
-							<p class="card-text text-white mb-0">{{ scenario.getResume() }}</p>
-							<div class="text-white mb-3">...</div>
-							<a href="{{ path('play_lobby', {id: scenario.getId()}) }}" class="btn btn-success">Jouer</a>
-							<a href="{{ path('scenario_view', {id: scenario.getId()}) }}" class="btn btn-secondary">Détail du scénario</a>
+		<div class="custom-container">
+			<h1>Choix de scénario</h1>
+			<div class="row">
+				{% for scenario in scenarios  %}
+					<div class="col-12 col-md-6 col-lg-4 mb-3">
+						<div class="card custom-card">
+							<div class="position-relative">
+								<img src="{{ asset(scenario.getImage()) }}" alt="" class="card-img-top img-fluid border border-dark">
+								<h5 class="card-title font-weight-bold text-white">{{ scenario.getTitle() }}</h5>
+							</div>
+							<div class="card-body">
+								<p class="card-text text-white mb-0 truncate-text">{{ scenario.getResume() }}</p>
+								<div class="text-white mb-3">...</div>
+								<a href="{{ path('play_lobby', {id: scenario.getId()}) }}" class="btn btn-success">Jouer</a>
+								<a href="{{ path('scenario_view', {id: scenario.getId()}) }}" class="btn btn-secondary">Détail du scénario</a>
+							</div>
 						</div>
 					</div>
-				</div>
-			{% endfor %}
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 

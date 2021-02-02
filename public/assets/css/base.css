@@ -1,5 +1,8 @@
 body {
   font-family: "OrkneyRegular" !important;
+  position: relative;
+  padding-bottom: 240px;
+  min-height: 100vh;
 }
 
 header {
@@ -37,6 +40,60 @@ header .navbar .dropdown-menu a:hover {
 header .navbar svg {
   stroke: #FFFFFF;
   stroke-width: 5px;
+}
+
+.custom-container {
+  background: #0f0f0fe8;
+  border-radius: 12px;
+  padding: 0 16px;
+  margin: 4rem 0;
+}
+
+.custom-container h1, .custom-container h2, .custom-container h3 {
+  color: #ff5100;
+  opacity: 0.7;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.custom-container input, .custom-container textarea {
+  background-color: #151515 !important;
+  border: none;
+}
+
+.custom-container button {
+  background-color: #ff5100 !important;
+  border: none;
+  justify-content: center;
+}
+
+.custom-card {
+  background-color: #0f0f0fe8 !important;
+  border-radius: 5px;
+  max-width: 300px;
+  margin: auto;
+  box-shadow: 0 1px 4px black;
+}
+
+.custom-card img {
+  height: 180px;
+  object-fit: cover;
+}
+
+.custom-card h5 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  background-color: #000000d8;
+  margin: 0;
+  padding: 8px;
+}
+
+.custom-card .truncate-text {
+  height: 100px;
+  overflow: hidden;
 }
 
 footer {

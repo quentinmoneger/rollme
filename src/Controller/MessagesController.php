@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Messages;
+use App\Entity\Game;
+use App\Entity\Scenario;
 
 
 class MessagesController extends AbstractController
@@ -40,7 +42,7 @@ class MessagesController extends AbstractController
                     $message->setMessage($donnees->message);
                     $message->setCreatedAt(new \DateTime('now'));
                     $message->setUserId($this->getUser());
-                    
+
                     // On le stocke
                     $em->persist($message);
 
@@ -68,11 +70,87 @@ class MessagesController extends AbstractController
             echo json_encode(['message' => 'Mauvaise méthode']);
         }
 
-        return $this->render('messages/index.html.twig', [
+        return $this->render('play/play.html.twig', [
             'controller_name' => 'MessagesController',
         ]);
     }
+    public function rolz(): Response
+    {
+        // On vérifie la méthode
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // On vérifie si l'utilisateur est connecté  
+            if ($this->getUser()) {
+                // L'utilisateur est connecté
+                // On récupère le message
+                $donneesJson = file_get_contents('php://input');
 
+                $donnees = json_decode($donneesJson);
+
+            
+                $id = $donnees->message;
+                
+                $ch = curl_init();
+
+                curl_setopt($ch,CURLOPT_URL,'https://rolz.org/api/?'.$id.'.json');
+                curl_setopt($ch,CURLOPT_RETURNTRANSFER, true );  
+                curl_setopt($ch,CURLOPT_FOLLOWLOCATION, true ); 
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+           
+                $response = curl_exec($ch);
+                curl_close($ch);
+                
+                $rolz = json_decode($response);
+
+
+                $input = $rolz->input;
+                $result = $rolz->result;
+
+                $message = "le resultat est ".$result." pour ".$input.".";                
+
+                // On vérifie si on a un message
+                if (isset($message) && !empty($message)) {
+                    // On a un message
+
+                    // On se connecte
+                    $em = $this->getDoctrine()->getManager();
+                    
+                    //On effectue la requete
+                    $request = new Messages();
+                    $request->setMessage($message);
+                    $request->setCreatedAt(new \DateTime('now'));
+                    $request->setUserId($this->getUser());
+                    
+                    // On le stocke
+                    $em->persist($request);
+
+                    // On exécute en vérifiant si ça fonctionne
+                    if ($em->flush()) {
+                        http_response_code(200);
+                        echo json_encode(['message' => 'Enregistrement effectué']);    
+                    } else {
+                        http_response_code(400);
+                        echo json_encode(['message' => 'Une erreur est survenue']);
+                    }
+                } else {
+                    // Pas de message
+                    http_response_code(400);
+                    echo json_encode(['message' => 'Le message est vide']);
+                }
+            } else {
+                // Non connecté
+                http_response_code(400);
+                echo json_encode(['message' => 'Vous devez vous connecter']);
+            }
+        } else {
+            // Mauvaise méthode
+            http_response_code(405);
+            echo json_encode(['message' => 'Mauvaise méthode']);
+        }
+
+        return $this->render('play/play.html.twig', [
+            'controller_name' => 'MessagesController',
+        ]);
+    }
     public function recover(int $lastid): Response
     {
         // On vérifie la méthode utilisée
@@ -117,7 +195,7 @@ class MessagesController extends AbstractController
     public function index(): Response
     {
 
-        return $this->render('messages/index.html.twig', [
+        return $this->render('play/play.html.twig', [
             'controller_name' => 'MessagesController',
         ]);
     }

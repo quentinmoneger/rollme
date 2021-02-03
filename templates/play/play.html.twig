@@ -17,9 +17,9 @@
                             <button class="row" id="button-left-up">↑</button>
                             <button class="row" id="button-left-down">↓</button>
                         </div>
-                        <div class="col-3 container p-0">
+                        <div class="col-3 container p-0" id="card">
                         </div>
-                        <div class="col-7 container p-0">
+                        <div class="col-7 container p-0" id="frame">    
                         </div>
                         <div class="col-1 container p-0">
                             <button class="row" id="button-right-up">↑</button>
@@ -56,4 +56,7 @@
 {% endblock %}
 
 {% block footer %}{% endblock %}
-{% block javascripts %}<script type="text/javascript" src="/assets/js/chat.js"></script>{% endblock %}
+{% block javascripts %}
+<script type="text/javascript" src="/assets/js/chat.js"></script>
+<script type="text/javascript" src="/assets/js/game.js"></script>
+{% endblock %}

@@ -18,6 +18,10 @@ contact:
   path: /contact
   controller: App\Controller\ContactController::index
 
+email:
+  path: /email
+  controller: App\Controller\HomeController::email
+
 home_index:
   path: /
   controller: App\Controller\HomeController::index
@@ -33,6 +37,10 @@ message_recover:
 message_add:
   path: /chat/add
   controller: App\Controller\MessagesController::add
+
+message_rolz:
+  path: /chat/rolz
+  controller: App\Controller\MessagesController::rolz
 
 play_lobby:
   path: /jouer

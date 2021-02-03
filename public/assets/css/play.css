@@ -35,12 +35,48 @@ body .dashboard {
 }
 
 body .info {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
   height: 250px;
+}
+
+body .info #button-left-up {
+  height: 125px;
+  border-top-left-radius: 6px;
+  margin: 0px !important;
+  padding-left: 22px !important;
+  padding-top: 50px !important;
+}
+
+body .info #button-left-down {
+  height: 125px;
+  border-bottom-right-radius: 6px;
+  margin: 0px !important;
+  padding-left: 22px !important;
+  padding-top: 50px !important;
+}
+
+body .info #button-right-up {
+  height: 125px;
+  border-top-right-radius: 6px;
+  margin: 0px !important;
+  padding-left: 22px !important;
+  padding-top: 50px !important;
+}
+
+body .info #button-right-down {
+  height: 125px;
+  border-bottom-left-radius: 6px;
+  margin: 0px !important;
+  padding-left: 22px !important;
+  padding-top: 50px !important;
 }
 
 body .discussion {
   height: 550px;
   overflow-y: scroll;
+  padding-top: 15px;
+  padding-left: 15px;
 }
 
 body .input {

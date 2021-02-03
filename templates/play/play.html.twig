@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ scenario.getTitle() }}{% endblock %}
+{# {% block title %}{{ scenario.getTitle() }}{% endblock %} #}
 {% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/play.min.css') }}">{% endblock %}
 
 {% block body %}
@@ -12,7 +12,19 @@
                     <section class="dashboard mt-4">
                         <img src="">
                     </section>
-                    <section class="info mt-4">
+                    <section class="info mt-4 row">
+                        <div class="col-1 container p-0 ">
+                            <button class="row" id="button-left-up">↑</button>
+                            <button class="row" id="button-left-down">↓</button>
+                        </div>
+                        <div class="col-3 container p-0">
+                        </div>
+                        <div class="col-7 container p-0">
+                        </div>
+                        <div class="col-1 container p-0">
+                            <button class="row" id="button-right-up">↑</button>
+                            <button class="row" id="button-right-down">↓</button>
+                        </div>
                     </section>
                 </div>
 
@@ -23,17 +35,17 @@
                         <div class="discussion " id="discussion">
                         </div>
                         <div class="input row">
-                            <input class="col-10"type="text" name="message">
-                            <button class="col-2" id="valid"></button>
+                            <input id="text"class="col-10"type="text" name="message">
+                            <button class="col-2" id="valid">↑</button>
                         </div>
                     </section>
                 <section  class="roll mt-4">
                     <div id="roll1" class="row">
-                        <input id="input1"class="col-6"type="text" name="message">
-                        <input id="input2"class="col-6"type="text" name="message">
+                        <input id="input1"class="col-6" type="text" name="message" placeholder="Nombre de dés">
+                        <input id="input2"class="col-6" type="text" name="message" placeholder="Choix du type ">
                     </div>
                     <div id="roll2" class="row">
-                        <button class="col-12" id="valid"></button>
+                        <button class="col-12" id="valid-rolz">Lancer de dés</button>
                     </div>
                 </section>
                 </div>
@@ -44,3 +56,4 @@
 {% endblock %}
 
 {% block footer %}{% endblock %}
+{% block javascripts %}<script type="text/javascript" src="/assets/js/chat.js"></script>{% endblock %}

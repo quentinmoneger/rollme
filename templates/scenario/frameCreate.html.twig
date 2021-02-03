@@ -5,6 +5,13 @@
 {% endblock %}
 
 {% block body %}
+	{% for level, messages in app.flashes %}
+		{% for message in messages %}
+			<div class="alert alert-{{ level }}">
+				{{ message|raw }}
+			</div>
+		{% endfor %}
+	{% endfor %}
 	<a href="{{ path('scenario_update', {id: scenario.getId()}) }}" class="btn btn-secondary m-1">Retour</a>
 
 	<div class="container">

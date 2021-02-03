@@ -28,14 +28,21 @@ body {
   padding: 8px 24px;
   background: rgba(0, 0, 0, 0.5);
   margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .view-header .shape h1 a {
   font-weight: inherit;
   font-size: 1.2rem;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
 }
-/*# sourceMappingURL=view.css.map */

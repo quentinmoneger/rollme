@@ -27,8 +27,7 @@ class PlayController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
         $scenarios = $em->getRepository(Scenario::class)->findAll();
-        $users = $em->getRepository(User::class)->findAll();
-
+        $users = $em->getRepository(User::class)->findAllExceptGM($gameMaster->getId());
         
         if(!empty($_POST)) {
 

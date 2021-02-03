@@ -154,8 +154,8 @@ class ScenarioController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $scenario = $em->getRepository(Scenario::class)->find($id);
 
-        // Get all frames from this scenario
-        $frames = $scenario->getFrames();
+        // Get all frames from this scenario (in order by number)
+        $frames = $em->getRepository(Frame::class)->findByScenarioId($scenario->getId());
 
         // If id doesn't exist, retrun scenarios page
         if (!$scenario) {
@@ -292,8 +292,8 @@ class ScenarioController extends AbstractController
                 $errors[] = 'Ce numéro de scène est déjà utilisé.';
             }
 
-            if (!v::length(20, 500)->validate($safe['text'])) {
-                $errors[] = 'La narrration doit comporter entre 20 et 500 caractères maximum.';
+            if (!v::length(20, 1000)->validate($safe['text'])) {
+                $errors[] = 'La narrration doit comporter entre 20 et 1000 caractères maximum.';
             }
 
             if (isset($_FILES['image']) && $_FILES['image']['error'] != UPLOAD_ERR_NO_FILE) {
@@ -314,7 +314,7 @@ class ScenarioController extends AbstractController
                         }
                     }
                 }
-            } elseif (!isset($_FILES['image'])) {
+            } else {
                 $errors[] = 'Vous devez ajouter une image à la scène.';
             }
 
@@ -401,8 +401,8 @@ class ScenarioController extends AbstractController
             if ($number !== null && $number != $frameNumber) {
                 $errors[] = 'Ce numéro de scène est déjà utilisé.';
             }
-            if (!v::length(20, 500)->validate($safe['text'])) {
-                $errors[] = 'La narrration doit comporter entre 20 et 500 caractères maximum.';
+            if (!v::length(20, 1000)->validate($safe['text'])) {
+                $errors[] = 'La narrration doit comporter entre 20 et 1000 caractères maximum.';
             }
 
             if (isset($_FILES['image']) && $_FILES['image']['error'] != UPLOAD_ERR_NO_FILE) {

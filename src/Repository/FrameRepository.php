@@ -43,7 +43,7 @@ class FrameRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('f')
             ->andWhere('f.scenario = :scenario')
             ->setParameter('scenario', $scenario)
-            ->orderBy('f.id', 'ASC')
+            ->orderBy('f.number', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()

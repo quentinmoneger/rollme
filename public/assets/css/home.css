@@ -6,11 +6,14 @@ body {
 body .svg {
   width: 800px;
   height: 800px;
+  -webkit-mask: url("../Logo/MRlogo.svg") no-repeat 50% 50%;
   mask: url("../Logo/MRlogo.svg") no-repeat 50% 50%;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-60%, -45%);
+  -webkit-transform: translate(-60%, -45%);
+          transform: translate(-60%, -45%);
+  -webkit-mask-size: contain;
   mask-size: contain;
   background-color: #1515158f;
   z-index: -100;
@@ -26,6 +29,8 @@ body .svg {
 }
 
 .presentation .title p {
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   padding: 5px 8px;
   background-color: #151515de;
@@ -36,7 +41,8 @@ body .svg {
   background-color: #151515de;
   border: 1px solid #151515de;
   border-radius: 6px;
-  box-shadow: 1px 1px 5px #151515;
+  -webkit-box-shadow: 1px 1px 5px #151515;
+          box-shadow: 1px 1px 5px #151515;
   padding: 20px;
 }
 
@@ -47,6 +53,7 @@ body .svg {
 .presentation .intro p a {
   text-decoration: none;
   color: #ff5100;
+  -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
@@ -67,7 +74,8 @@ body .svg {
 .news .custom-fig img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .news .custom-fig figcaption {
@@ -100,7 +108,8 @@ body .svg {
 .games-container .custom-fig img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .games-container .custom-fig figcaption {
@@ -120,10 +129,10 @@ body .svg {
   border-top-left-radius: 0;
   background-color: #ff5100;
   border: none;
+  -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
 .games-container .custom-fig a:hover {
   background-color: #ffa77e !important;
 }
-/*# sourceMappingURL=home.css.map */

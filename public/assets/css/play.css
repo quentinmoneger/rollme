@@ -9,7 +9,8 @@ body main {
 
 body section {
   background-color: #151515de;
-  box-shadow: 1px 1px 5px #151515;
+  -webkit-box-shadow: 1px 1px 5px #151515;
+          box-shadow: 1px 1px 5px #151515;
   border-radius: 6px;
   padding: none;
   margin: none;
@@ -25,7 +26,8 @@ body input, body button {
 }
 
 body input:focus, body button:focus {
-  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 
 body .dashboard {
@@ -120,4 +122,3 @@ body .roll button {
   border-bottom-right-radius: 6px;
   background-color: #151515de;
 }
-/*# sourceMappingURL=play.css.map */

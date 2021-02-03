@@ -2,9 +2,6 @@
 
 body {
     font-family: "OrkneyRegular" !important;
-    position: relative;
-    padding-bottom: 240px;
-    min-height: 100vh;
 }
 
 header {
@@ -38,100 +35,7 @@ header {
     }
 }
 
-.custom-container {
-    background: $input;
-    border-radius: 12px;
-    padding: 0 16px;
-    margin: 4rem 0;
-
-    h1, h2, h3 {
-        color: $orange;
-        opacity: 0.7;
-        text-align: center;
-        padding: 2rem 0;
-    }
-
-    input, textarea {
-        background-color: $lightgrey !important;
-        border: none;
-    }
-
-    button {
-        background-color: $orange !important;
-        border: none;
-        justify-content: center;
-    }
-}
-
-.custom-card {
-    background-color: $input !important;
-    border-radius: 5px;
-    max-width: 300px;
-    margin: auto;
-    box-shadow: 0 1px 4px rgb(0,0,0);
-
-    img {
-        height: 180px;
-        object-fit: cover;
-    }
-
-    h5 {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        text-align: center;
-        background-color: #000000d8;
-        margin: 0;
-        padding: 8px;
-    }
-
-    .truncate-text {
-        height: 100px;
-        overflow: hidden;
-    }
-}
-
 footer {
+    height: $footerHeight;
     background-color: #0f0f0f;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 20px 0;
-
-    h6 {
-        color: #ffffff;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        font-weight: 600;
-    }
-
-    .socials {
-        border-top: 1px solid gray;
-        padding-top: 1rem;
-
-        a {
-            color: inherit;
-            
-            i {
-                font-size: 1.4rem;
-                font-size: 1.4rem;
-                margin: 0 5px;
-                background: black;
-                border-radius: 50%;
-                width: 34px;
-                display: inline-flex;
-                justify-content: center;
-                height: 34px;
-                align-items: center;
-            }
-
-            &:hover {
-                cursor: pointer;
-                text-decoration: none;
-                color: inherit;
-            }
-        }
-    }
 }

@@ -78,7 +78,12 @@ body .btn {
   border: none !important;
 }
 
-.select2-results__option--selectable {
+.select2-results__option--selectable, .select2-results__message {
   background-color: #0f0f0fe8 !important;
   border-top: 1px solid #46464625;
+}
+
+.select2-search__field {
+  font-family: "OrkneyRegular" !important;
+  color: #FFFFFF;
 }

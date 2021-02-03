@@ -64,7 +64,11 @@ body {
 .select2-dropdown--below {
     border: none !important;
 }
-.select2-results__option--selectable {
+.select2-results__option--selectable, .select2-results__message {
     background-color: $input !important;
     border-top: 1px solid #46464625;
+}
+.select2-search__field {
+    font-family: "OrkneyRegular" !important;
+    color: $white;
 }

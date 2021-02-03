@@ -1,0 +1,50 @@
+@import 'variables';
+
+body {
+    background-color: $backgroundColor;
+}
+
+.img-render {
+    background: $input;
+    
+    img {
+        margin: auto;
+        display: block;
+        object-fit: contain;
+        height: 250px;
+    }
+}
+
+.add-card {
+    transition: box-shadow .5s ease-in-out;
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: .5;
+            transition: opacity .5s ease-in-out;
+        }
+        
+        p {
+            opacity: .5;
+            margin: 0;
+            transition: opacity .5s ease-in-out;
+        }
+    }
+
+    &:hover {
+        box-shadow: 0 1px 4px rgb(255,255,255);
+
+        .card-body {
+            i, p {
+                opacity: 1;
+            }
+        }
+    }
+}

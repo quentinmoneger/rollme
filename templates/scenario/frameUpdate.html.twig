@@ -16,35 +16,32 @@
 			</div>
 		{% endfor %}
 	{% endfor %}
-	<h6 class="card-title"></h6>
-	<p class="card-text"></p>
-	<div class="custom-container">
-		<h1 class="my-3">Modification des scènes de "{{ scenario.getTitle() }}"</h1>
-		<form method="POST" enctype="multipart/form-data" class="mt-5">
-			<div class="card mx-3">
-				<h4 class="text-center">Scène{{ frame.getNumber() }}</h4>
+	<div class="container mt-5" style="margin-bottom: 10rem;">
+		<div class="custom-container">
+			<h6 class="card-title"></h6>
+				<p class="card-text"></p>
+					<h1>Modification des scènes de "{{ scenario.getTitle() }}"</h1>
+					<form method="POST" enctype="multipart/form-data" class="mt-5">
+						
+							<h3 class="text-center">Scène{{ frame.getNumber() }}</h3>
 
-				<label for="number">Numéro de scène</label>
-				<input type="number" name="number" class="form-control" value="{{ frame.getNumber() }}" requierd>
+							<label for="number"class="text-white">Numéro de scène</label>
+							<input type="number" name="number" class="form-control" value="{{ frame.getNumber() }}" requierd>
 
-				<label for="image">Illustration de la scène</label>
-				<img class="card-img-top" src="{{ asset(frame.getImage()) }}">
-				<input type="file" name="image" class="form-control" accept="image/*">
+							<label for="image" class="text-white pt-5">Illustration de la scène</label>
+							<img class="card-img-top" src="{{ asset(frame.getImage()) }}">
+							<input type="file" name="image" class="form-control" accept="image/*">
 
-				<label for="text">Narration</label>
-				<textarea type="text" name="text" class="form-control" rows="8" requierd>{{ frame.getText() }}</textarea>
+							<label for="text" class="text-white pt-5">Narration</label>
+							<textarea type="text" name="text" class="form-control text-white" rows="8" requierd>{{ frame.getText() }}</textarea>
 
-				<div class="form-group text-center">
-					<button type="submit" class="btn btn-primary">Modifier</button>
-					<a href="{{ path('scenario_index') }}" class="btn btn-secondary">Annuler</a>
-					<a href="{{ path('scenario_deleteFrame', {id: frame.getId()}) }}" class="btn btn-danger">Supprimer cette scène</a>
-				</div>
-			</div>
-
-			<div class="form-group text-center mt-3"></div>
-
-		</form>
+							<div class="form-group text-center">
+								<button type="submit" class="btn btn-primary">Modifier</button>
+								<a href="{{ path('scenario_index') }}" class="btn btn-secondary">Annuler</a>
+								<a href="{{ path('scenario_deleteFrame', {id: frame.getId()}) }}" class="btn btn-danger">Supprimer cette scène</a>
+							</div>
+						<div class="form-group text-center mt-3"></div>
+					</form>	
+		</div>
 	</div>
-
-
 {% endblock %}

@@ -1,0 +1,47 @@
+body {
+  background-color: #1e1e1e;
+}
+
+.img-render {
+  background: #0f0f0fe8;
+}
+
+.img-render img {
+  margin: auto;
+  display: block;
+  object-fit: contain;
+  height: 250px;
+}
+
+.add-card {
+  transition: box-shadow .5s ease-in-out;
+}
+
+.add-card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-card .card-body i {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  opacity: .5;
+  transition: opacity .5s ease-in-out;
+}
+
+.add-card .card-body p {
+  opacity: .5;
+  margin: 0;
+  transition: opacity .5s ease-in-out;
+}
+
+.add-card:hover {
+  box-shadow: 0 1px 4px white;
+}
+
+.add-card:hover .card-body i, .add-card:hover .card-body p {
+  opacity: 1;
+}
+/*# sourceMappingURL=update.css.map */

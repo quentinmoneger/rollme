@@ -9,13 +9,11 @@
 <main >
     <section class="container">
         <form method="post" >
-
             {% if app.user %}
             <div class="mb-3">
                 Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
             </div>
             {% endif %}
-
             <h1 class="h3 mb-3 font-weight-normal ">Veuillez vous connecter</h1>
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -30,7 +28,7 @@
 
             <div class="checkbox mb-3">
                 <label>
-                    <input type="checkbox" name="_remember_me"> Souviens-toi de moi
+                    <input type="checkbox" name="_remember_me"> Se souvenir de moi
                 </label>
             </div>
             <div class="mb-3">

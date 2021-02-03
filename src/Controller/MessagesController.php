@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Messages;
 use App\Entity\Game;
-use App\Entity\Scenario;
+
 
 
 class MessagesController extends AbstractController
@@ -42,6 +42,9 @@ class MessagesController extends AbstractController
                     $message->setMessage($donnees->message);
                     $message->setCreatedAt(new \DateTime('now'));
                     $message->setUserId($this->getUser());
+                    $message->getGame();
+
+                    dd($message);
 
                     // On le stocke
                     $em->persist($message);

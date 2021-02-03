@@ -1,25 +1,60 @@
-// Variables globales
-let lastid = 0 // id du dernier message affiché
+//On récupère les id
+let idgame = document.querySelector("#id.game").value
+let idframe = document.querySelector("#id.frame").value
+
+console.log(idgame)
+console.log(idframe)
 
 // On attend le chargement du document
 window.onload = () => {
-    // On va chercher la zone texte
-    let texte = document.querySelector("#texte")
-    texte.addEventListener("keyup", verifEntree)
 
-    // On va chercher le bouton valid
-    let valid = document.querySelector("#valid")
-    valid.addEventListener("click", ajoutMessage)
+    // On va chercher le bouton Sup pour passer a la scene suivante
+    let buttonRightUp = document.querySelector("#button-right-up")
+    buttonRightUp.addEventListener("click", sceneSup)
+    
+    // On va chercher le bouton Inf pour passer a la scene precedente
+    let buttonRightDown = document.querySelector("#button-right-down")
+    buttonRightDown.addEventListener("click", sceneInf)
 
     // On charge les nouveaux messages
-    setTimeout(setInterval(chargeMessages, 2000), 5000)
+    setTimeout(setInterval(chargeScene, 2000), 5000)
     
 }
 
-/**
- * Charge les derniers messages en Ajax et les insère dans la discussion
- */
-function chargeMessages(){
+function sceneInf(){
+
+        // On instancie XMLHttpRequest
+        let xmlhttp = new XMLHttpRequest()
+
+    
+        // On gère la réponse
+        xmlhttp.onreadystatechange = function(){
+            if (this.readyState == 4){
+                if(this.status == 200){
+                    
+                    // On a une réponse
+                    // On convertit la réponse en objet JS
+                    let message = JSON.parse(this.response)
+                
+                    $id =  ( message.id-1 )             
+                    
+                }else{
+                    // On gère les erreurs
+                    let erreur = JSON.parse(this.response)
+                    alert(erreur.message)
+                }
+            }
+        }
+    
+        // On ouvre la requête avec le lastid en GET
+        xmlhttp.open("GET","/jouer/partie"+id);
+    
+        // On envoie
+        xmlhttp.send()
+    
+}
+
+function sceneSup(){
 
     // On instancie XMLHttpRequest
     let xmlhttp = new XMLHttpRequest()
@@ -32,25 +67,13 @@ function chargeMessages(){
                 
                 // On a une réponse
                 // On convertit la réponse en objet JS
-                let messages = JSON.parse(this.response)
+                let message = JSON.parse(this.response)
+            
+                $idGame =  ( message.idGame + 1 )  
 
+                $idFrame = ( message.idFrame + 1)
 
-                // On récupère la div #discussion
-                let discussion = document.querySelector("#discussion")
-
-                // On boucle sur l'objet Js
-                for(let message of messages){
-
-                    // On ajoute le contenu avant le contenu actuel de discussion
-                    discussion.innerHTML += `<p>${message.userId.username} : ${message.message}</p>` 
-
-                    //On affiche le dernier Id
-                    console.log(message.id)
-
-                    // On met à jour le lastId
-                    lastid = message.id
                 
-                }
             }else{
                 // On gère les erreurs
                 let erreur = JSON.parse(this.response)
@@ -60,68 +83,47 @@ function chargeMessages(){
     }
 
     // On ouvre la requête avec le lastid en GET
-    xmlhttp.open("GET","/chat/recover"+lastid);
+    xmlhttp.open("GET","/jouer/partie"+$idGame+"/"+idFrame);
 
     // On envoie
     xmlhttp.send()
 }
 
+function chargeScene(){
 
-/**
- * Cette fonction vérifie si on a appuyé sur la touche entrée
- */
-function verifEntree(e){
-    if(e.key == "Enter"){
-        ajoutMessage();
-    }
-}
+    // On instancie XMLHttpRequest
+    let xmlhttp = new XMLHttpRequest()
 
-/**
- * Cette fonction envoie le message en ajax à un fichier ajoutMessage.php
- */
-function ajoutMessage(){
-    // On récupère le message
-    let message = document.querySelector("#texte").value
     
-    // On vérifie si le message n'est pas vide
-    if(message != ""){
-        // On crée un objet JS
-        let donnees = {}
-        donnees["message"] = message
+    // On gère la réponse
+    xmlhttp.onreadystatechange = function(){
+        if (this.readyState == 4){
+            if(this.status == 200){
+                
+                // On a une réponse
+                // On convertit la réponse en objet JS
+                let message = JSON.parse(this.response)
 
-        
+                // On récupère la div #discussion
+                let discussion = document.querySelector("#frame")
+                   
+                // On ajoute le contenu avant le contenu de la scene
+                discussion.innerHTML += `<p> Scene ${message.number} :<br> ${message.text}</p>` 
 
-        // On convertit les données en JSON
-        let donneesJson = JSON.stringify(donnees)
-
-        // On affiche la requete dans la console
-        console.log(donneesJson)
-
-        // On envoie les données en POST en Ajax
-        // On instancie XMLHttpRequest
-        let xmlhttp = new XMLHttpRequest()
-
-        // On gère la réponse
-        xmlhttp.onreadystatechange = function(){
-            // On vérifie si la requête est terminée
-            if(this.readyState == 4){
-                // On vérifie qu'on reçoit un code 200
-                if(this.status == 200){
-                    // L'enregistrement a fonctionné
-                    // On efface le champ texte
-                    document.querySelector("#texte").value = ""
-                }else{
-                    // L'enregistrement a échoué
-                    //let reponse = JSON.parse(this.response)
-                    alert(reponse.message)
-                }
+            
+                    
+            }else{
+                // On gère les erreurs
+                let erreur = JSON.parse(this.response)
+                alert(erreur.message)
             }
         }
-
-        // On ouvre la requête
-        xmlhttp.open("POST", '/chat/add')
-
-        // On envoie la requête en incluant les données
-        xmlhttp.send(donneesJson)
     }
+
+    // On ouvre la requête avec le lastid en GET
+    xmlhttp.open("GET","/game"+idgame+"/"+idframe);
+
+    // On envoie
+    xmlhttp.send()
 }
+

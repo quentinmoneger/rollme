@@ -4,7 +4,7 @@ body {
 }
 
 body main {
-  height: calc(100vh - 100px - 76px);
+  height: calc(100vh - 66px - 100px);
 }
 
 body .svg {
@@ -19,7 +19,7 @@ body .svg {
           transform: translate(-60%, -45%);
   -webkit-mask-size: contain;
   mask-size: contain;
-  background-color: #151515;
+  background-color: #1515158f !important;
   z-index: -100;
 }
 
@@ -40,7 +40,6 @@ body form {
 
 body .mdpforgot {
   color: #FFFFFF !important;
-  text-decoration: underline;
 }
 
 body .form-control[type=email], body [type=password] {

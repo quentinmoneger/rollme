@@ -73,6 +73,7 @@ header .navbar svg {
   max-width: 300px;
   margin: auto;
   box-shadow: 0 1px 4px black;
+  height: 100%;
 }
 
 .custom-card img {
@@ -94,6 +95,10 @@ header .navbar svg {
 .custom-card .truncate-text {
   height: 100px;
   overflow: hidden;
+}
+
+.text-decoration-hover-none:hover {
+  text-decoration: none;
 }
 
 footer {

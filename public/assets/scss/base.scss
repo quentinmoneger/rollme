@@ -69,6 +69,7 @@ header {
     max-width: 300px;
     margin: auto;
     box-shadow: 0 1px 4px rgb(0,0,0);
+    height: 100%;
 
     img {
         height: 180px;
@@ -90,6 +91,10 @@ header {
         height: 100px;
         overflow: hidden;
     }
+}
+
+.text-decoration-hover-none:hover {
+    text-decoration: none;
 }
 
 footer {

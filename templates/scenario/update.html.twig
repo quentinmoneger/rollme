@@ -4,6 +4,10 @@
 	{{ scenario.getTitle() }}
 {% endblock %}
 
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/update.min.css') }}">
+{% endblock %}
+
 {% block body %}
 	{% for level, messages in app.flashes %}
 		{% for message in messages %}
@@ -14,56 +18,73 @@
 	{% endfor %}
 
 	<a href="{{ path('scenario_view', {id: scenario.getId()}) }}" class="btn btn-secondary m-3">Retour</a>
-	<div  class="container mt-5">
-	<form method="POST" enctype="multipart/form-data">
-		<h1 class="my-3">Modification de "{{ scenario.getTitle() }}"</h1>
+	<div class="container mt-5" style="margin-bottom: 10rem;">
+		<div class="custom-container">
+			<form method="POST" enctype="multipart/form-data">
+				<h1 class="my-3">Modification de "{{ scenario.getTitle() }}"</h1>
 
-		<div class="form-group">
-			<label for="title">Titre du scénario</label>
-			<input type="text" name="title" class="form-control" value="{{ scenario.getTitle() }}" requierd>
-			<small class="font-italic">(Maximum 100 caractères)</small>
-		</div>
+				<div class="form-group mb-5">
+					<label for="title" class="text-white">Titre du scénario</label>
+					<input type="text" name="title" class="form-control" value="{{ scenario.getTitle() }}" requierd>
+					<small class="font-italic text-white">(Maximum 100 caractères)</small>
+				</div>
 
-		<div class="form-group">
-			<div class="form-row">
-				<div class="col-4">
-					<label for="image">Illustration du scénario</label>
-					<img class="card-img-top" src="{{ asset(scenario.getImage()) }}">
+				<div class="form-group mb-5">
+					<label for="image" class="text-white">Illustration du scénario</label>
+					<div class="img-render">
+						<img src="{{ asset(scenario.getImage()) }}">
+					</div>
 					<input type="file" name="image" class="form-control" accept="image/*">
 				</div>
-			</div>
-		</div>
 
-		<div class="form-group">
-			<label for="resume">Résumé du scénario</label>
-			<small class="font-italic">(Maximum 1000 caractères)</small>
-			<textarea type="text" name="resume" class="form-control" rows="8" requierd>{{ scenario.getResume() }}</textarea>
-		</div>
+				<div class="form-group">
+					<label for="resume" class="text-white">Résumé du scénario</label>
+					<small class="font-italic text-white">(Maximum 1000 caractères)</small>
+					<textarea type="text" name="resume" class="form-control" rows="8" requierd>{{ scenario.getResume() }}</textarea>
+				</div>
 
-		<div class="form-group">
-			<button type="submit" class="btn btn-primary">Modifier</button>
-		</div>
-
-	</form>
-	<a class="btn btn-primary" href="{{ path('scenario_frameCreate', {id: scenario.getId()}) }}">Ajouter une nouvelle scène</a>
-	<div class="card-group">
-		{% for frame in frames %}
-			<div class="card col-3 mx-1">
-				<h6 class="card-title">Scène
-					{{ frame.getNumber() }}</h6>
-				<img src="{{ asset(frame.getImage()) }}" alt="" class="card-img-top">
-				<div class="card-body">
-					<p>{{ frame.getText() }}</p>
-					<a class="btn btn-primary" href="{{ path('scenario_frameUpdate', {id: frame.getId()}) }}">Modifier la scène</a>
-					<a href="{{ path('scenario_deleteFrame', {id: frame.getId()}) }}" class="btn btn-danger">Supprimer cette scène</a>
+				<div class="form-group">
+					<button type="submit" class="d-block ml-auto btn btn-primary">Modifier</button>
+				</div>
+			</form>
+		
+			<div class="row">
+				{% for frame in frames %}
+					<div class="col-12 col-md-6 col-lg-4 mb-3">
+						<div class="card custom-card">
+							<div class="position-relative">
+								<img src="{{ asset(frame.getImage()) }}" alt="" class="card-img-top img-fluid border border-dark">
+								<h5 class="card-title font-weight-bold text-white">Scène {{ frame.getNumber() }}</h5>
+							</div>
+							<div class="card-body">
+								<p class="card-text text-white mb-0">{{ frame.getText() }}</p>
+							</div>
+							<div class="card-footer p-0">
+								<a class="rounded-0 w-100 btn btn-primary" href="{{ path('scenario_frameUpdate', {id: frame.getId()}) }}">
+									<i class="fas fa-pencil-alt mr-2"></i>Modifier la scène
+								</a>
+								<a href="{{ path('scenario_deleteFrame', {id: frame.getId()}) }}" class="rounded-bottom w-100 btn btn-danger" style="border-top-left-radius: 0; border-top-right-radius: 0;">
+									<i class="fas fa-trash-alt mr-2"></i>Supprimer cette scène
+								</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+				<div class="col-12 col-md-6 col-lg-4 mb-3">
+					<a href="{{ path('scenario_frameCreate', {id: scenario.getId()}) }}" class="text-decoration-hover-none">
+						<div class="card custom-card add-card">
+							<div class="card-body text-white">
+								<i class="far fa-plus-square"></i>
+								<p>Ajouter une nouvelle scène</p>
+							</div>
+						</div>
+					</a>
 				</div>
 			</div>
-		{% endfor %}
+			
+			<div class="form-group text-center pb-3">
+				<a href="{{ path('scenario_delete', {id: scenario.getId()}) }}" class="btn btn-danger mt-3">Supprimer le scénario</a>
+			</div>
+		</div>
 	</div>
-	<div class="form-group text-center">
-		<a href="{{ path('scenario_delete', {id: scenario.getId()}) }}" class="btn btn-danger mt-3">Supprimer le scénario</a>
-	</div>
-	</div>
-
-
 {% endblock %}

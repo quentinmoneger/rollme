@@ -4,6 +4,10 @@
 	{{ scenario.getTitle() }}
 {% endblock %}
 
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/frameUpdate.min.css') }}">
+{% endblock %}
+
 {% block body %}
 	{% for level, messages in app.flashes %}
 		{% for message in messages %}
@@ -14,7 +18,7 @@
 	{% endfor %}
 	<h6 class="card-title"></h6>
 	<p class="card-text"></p>
-	<div class="container">
+	<div class="custom-container">
 		<h1 class="my-3">Modification des scènes de "{{ scenario.getTitle() }}"</h1>
 		<form method="POST" enctype="multipart/form-data" class="mt-5">
 			<div class="card mx-3">

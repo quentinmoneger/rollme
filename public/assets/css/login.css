@@ -10,14 +10,11 @@ body main {
 body .svg {
   width: 800px;
   height: 800px;
-  -webkit-mask: url("../Logo/MRlogo.svg") no-repeat 50% 50%;
   mask: url("../Logo/MRlogo.svg") no-repeat 50% 50%;
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-60%, -45%);
-          transform: translate(-60%, -45%);
-  -webkit-mask-size: contain;
+  transform: translate(-60%, -45%);
   mask-size: contain;
   background-color: #151515;
   z-index: -100;
@@ -48,6 +45,6 @@ body .form-control[type=email], body [type=password] {
 }
 
 body .form-control:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
+/*# sourceMappingURL=login.css.map */

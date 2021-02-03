@@ -4,6 +4,10 @@
 	{{ scenario.getTitle() }}
 {% endblock %}
 
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/view.min.css') }}">
+{% endblock %}
+
 {% block body %}
 	{% for level, messages in app.flashes %}
 		{% for message in messages %}
@@ -13,28 +17,42 @@
 		{% endfor %}
 	{% endfor %}
 
-	<div class="container mt-5">
-		<h1 class="my-3">{{ scenario.getTitle() }}</h1>
-        <h5><a href="{{ path('scenario_update', {id: scenario.getId()}) }}"><span class="badge badge-secondary">Modifier ce scénario</span></a></h5>
-
-		<img class="card-img-top" src="{{ asset(scenario.getImage()) }}">
-
-		<h3>Résumé:</h3>
-		<p>{{ scenario.getResume() }}</p>
+	<div class="view-header" style="background-image: url('{{ asset(scenario.getImage()) }}');">
+		<div class="shape">
+			<h1>
+				{{ scenario.getTitle() }}
+				<a href="{{ path('scenario_update', {id: scenario.getId()}) }}" class="badge badge-secondary">
+					Modifier ce scénario
+				</a>
+			</h1>
+		</div>
 	</div>
-    {# {% if scenario.getFrames() is not empty %} #}
-    <h3 class="text-center">Listes des scènes</h3>
-	<div class="card-group">
-		{% for frame in frames %}
-			<div class="card col-3">
-				<h6 class="card-title">Scène
-					{{ frame.getNumber() }}</h6>
-				<img src="{{ asset(frame.getImage()) }}" alt="" class="card-img-top">
-				<div class="card-body">
-					<p>{{ frame.getText() }}</p>
-				</div>
+
+	<div class="container">
+		<div class="custom-container">
+			<h3>Résumé</h3>
+			<p class="text-muted m-0 pb-3">{{ scenario.getResume() }}</p>
+		</div>
+
+		<div class="custom-container">
+			<h3>Listes des scènes</h3>
+			{# {% if scenario.getFrames() is not empty %} #}
+			<div class="row">
+				{% for frame in frames %}
+					<div class="col-12 col-md-6 col-lg-4 mb-3">
+						<div class="card custom-card">
+							<div class="position-relative">
+								<img src="{{ asset(frame.getImage()) }}" alt="" class="card-img-top img-fluid border border-dark">
+								<h5 class="card-title font-weight-bold text-white">Scène {{ frame.getNumber() }}</h5>
+							</div>
+							<div class="card-body">
+								<p class="card-text text-white mb-0">{{ frame.getText() }}</p>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
 			</div>
-		{% endfor %}
+			{# {% endif %} #}
+		</div>
 	</div>
-	{# {% endif %} #}
 {% endblock %}

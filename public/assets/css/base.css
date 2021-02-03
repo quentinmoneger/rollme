@@ -1,5 +1,8 @@
 body {
   font-family: "OrkneyRegular" !important;
+  position: relative;
+  padding-bottom: 240px;
+  min-height: 100vh;
 }
 
 header {
@@ -39,7 +42,110 @@ header .navbar svg {
   stroke-width: 5px;
 }
 
-footer {
+.custom-container {
+  background: #0f0f0fe8;
+  border-radius: 12px;
+  padding: 0 16px;
+  margin: 4rem 0;
+}
+
+.custom-container h1, .custom-container h2, .custom-container h3 {
+  color: #ff5100;
+  opacity: 0.7;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.custom-container input, .custom-container textarea {
+  background-color: #151515 !important;
+  border: none;
+}
+
+.custom-container button {
+  background-color: #ff5100 !important;
+  border: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.custom-card {
+  background-color: #0f0f0fe8 !important;
+  border-radius: 5px;
+  max-width: 300px;
+  margin: auto;
+  -webkit-box-shadow: 0 1px 4px black;
+          box-shadow: 0 1px 4px black;
+}
+
+.custom-card img {
+  height: 180px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.custom-card h5 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  background-color: #000000d8;
+  margin: 0;
+  padding: 8px;
+}
+
+.custom-card .truncate-text {
   height: 100px;
+  overflow: hidden;
+}
+
+footer {
   background-color: #0f0f0f;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px 0;
+}
+
+footer h6 {
+  color: #ffffff;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+footer .socials {
+  border-top: 1px solid gray;
+  padding-top: 1rem;
+}
+
+footer .socials a {
+  color: inherit;
+}
+
+footer .socials a i {
+  font-size: 1.4rem;
+  font-size: 1.4rem;
+  margin: 0 5px;
+  background: black;
+  border-radius: 50%;
+  width: 34px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 34px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+footer .socials a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }

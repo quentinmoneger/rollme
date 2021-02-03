@@ -1,0 +1,42 @@
+@import 'variables';
+
+body {
+    background-color: $backgroundColor;
+}
+
+.view-header {
+    height: 420px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+
+    .shape {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, .5);
+        
+        h1 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            color: $orange;
+            padding: 8px 24px;
+            background: rgba(0, 0, 0, .5);
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            a {
+                font-weight: inherit;
+                font-size: 1.2rem;
+                height: fit-content;
+            }
+        }
+    }
+}

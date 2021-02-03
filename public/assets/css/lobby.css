@@ -10,14 +10,11 @@ body main {
 body .svg {
   width: 800px;
   height: 800px;
-  -webkit-mask: url("../Logo/MRlogo.svg") no-repeat 50% 50%;
   mask: url("../Logo/MRlogo.svg") no-repeat 50% 50%;
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-60%, -45%);
-          transform: translate(-60%, -45%);
-  -webkit-mask-size: contain;
+  transform: translate(-60%, -45%);
   mask-size: contain;
   background-color: #1515158f;
   z-index: -100;
@@ -28,8 +25,7 @@ body section {
   background-color: #151515de;
   border: 1px solid #151515de;
   border-radius: 6px;
-  -webkit-box-shadow: 1px 1px 5px #151515;
-          box-shadow: 1px 1px 5px #151515;
+  box-shadow: 1px 1px 5px #151515;
   padding: 20px;
 }
 
@@ -40,7 +36,6 @@ body section p {
 body section p a {
   text-decoration: none;
   color: #ff5100;
-  -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
@@ -55,8 +50,7 @@ body select {
 }
 
 body select:focus {
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 body .btn {
@@ -64,3 +58,4 @@ body .btn {
   background-color: #ff5100 !important;
   border: none !important;
 }
+/*# sourceMappingURL=lobby.css.map */

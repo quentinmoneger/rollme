@@ -1,0 +1,12 @@
+@import 'variables';
+
+body {
+    background-color: $backgroundColor;
+
+    .container {
+
+        h1 {
+            color: $orange;
+        }  
+    }
+}

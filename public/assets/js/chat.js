@@ -54,7 +54,7 @@ function chargeMessages(){
                 for(let message of messages){
                     
                     // On ajoute le contenu avant le contenu actuel de discussion
-                    discussion.innerHTML += `<p>${message.userId.username} :<br> ${message.message}</p>` 
+                    discussion.innerHTML += `<p>${message.user.username} :<br> ${message.message}</p>` 
 
                     //On affiche le dernier Id
                     console.log(message.id)
@@ -166,6 +166,7 @@ function ajoutMessageRolz(){
                 if(this.status == 200){
                     // L'enregistrement a fonctionné
                     // On efface le champ texte
+                    document.querySelector("#input1").value = ""
                     document.querySelector("#input2").value = ""
                     
                     // On scroll automatiquement vers le bs

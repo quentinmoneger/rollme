@@ -53,12 +53,12 @@
             </div>
         </div>
     </main>
-    <div display="hidden" id="id.game">{{ id.game }}</div>
-    <div display="hidden" id="id.frame">{{ id.frame }}</div>
+    <input type="hidden" id="idgame" value="{{ idgame }}">
+    <input type="hidden" id="nbrframe" value="{{ nbrframe }}">
 {% endblock %}
 
 {% block footer %}{% endblock %}
 {% block javascripts %}
-<script type="text/javascript" src="/assets/js/chat.js"></script>
+{# <script type="text/javascript" src="/assets/js/chat.js"></script> #}
 <script type="text/javascript" src="/assets/js/game.js"></script>
 {% endblock %}

@@ -53,11 +53,11 @@ class PlayController extends AbstractController
             }
             $game->setGameMaster($gameMaster);
             $game->setCurrentFrame('1');
-
+    
             $em->persist($game);
             $em->flush();
-            dd($game);
-            return $this->redirectToRoute('play_play', ['id' => $game->getId()]);
+
+            return $this->redirectToRoute('play_play', ['idGame' => $game->getId(), 'nbrFrame' => 0 ]);
         }
 
         return $this->render('play/lobby.html.twig', [
@@ -70,16 +70,18 @@ class PlayController extends AbstractController
     {
         return $this->render('play/join.html.twig');
     }
-    public function recover(int $idFrame): Response
+
+    public function recover(int $idGame, int $nbrFrame ): Response
     {
+    
         // On vérifie la méthode utilisée
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             // On est en GET
             // On vérifie si on a reçu un id    
-            if(isset($idFrame) ){
+            if(isset($nbrFrame) ){
 
                 // On nettoie l'id 
-                $idFrame = (int)strip_tags($idFrame);
+                $nbrFrame = (int)strip_tags($nbrFrame);
 
                 // Creation d'un methode pour transformer l'objet Php en Objet Json
                 $encoder = new JsonEncoder();
@@ -94,7 +96,7 @@ class PlayController extends AbstractController
                 $em = $this->getDoctrine()->getManager();
 
                 //On effectue la requete preparé dans MessagesRepository
-                $game = $em->getRepository(Game::class)->find($idFrame);
+                $game = $em->getRepository(Game::class)->find($idGame);
     
                 // On transforme l'objet Php en objet Json
                 $serializer = new Serializer([$normalizer], [$encoder]);
@@ -109,33 +111,33 @@ class PlayController extends AbstractController
             http_response_code(405);
             echo json_encode(['message' => 'Mauvaise méthode']);
         }
+
     }
 
-    public function sceneModif(int $idGame, int $idFrame )
+    public function sceneModif(int $idGame, int $nbrFrame )
     {
         $em = $this->getDoctrine()->getManager();
 
         //Set the Frame
         $game = $em->getRepository(Game::class)->find($idGame);
-        $game->setCurrentFrame($idFrame);
-
-        
+        $game->setCurrentFrame($nbrFrame);
+          
         // On exécute en vérifiant si ça fonctionne
         if ($em->flush()) {
             http_response_code(200);
             echo json_encode(['message' => 'Enregistrement effectué']);    
         } else {
             http_response_code(400);
-            echo json_encode(['message' => 'Une erreur est survenue']);
+            echo json_encode(['message' => 'Une erreur est survenue sur sceneModif']);
         }
 
     }
 
-    public function play(int $idGame, int $idFrame = 0): Response
+    public function play(int $idGame, int $nbrFrame = 0): Response
     {
         return $this->render('play/play.html.twig', [
-            'id.game' => $idGame,
-            'id.frame'=> $idFrame
+            'idgame' => $idGame,
+            'nbrframe'=> $nbrFrame
         ]);
     }
 }

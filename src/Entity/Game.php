@@ -6,6 +6,7 @@ use App\Repository\GameRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass=GameRepository::class)
@@ -37,19 +38,18 @@ class Game
     private $scenario;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="games")
-     */
-    private $user_id;
-
-    /**
      * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="game")
      */
     private $messages;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="games")
+     */
+    private $users;
+
     public function __construct()
     {
-        $this->user = new ArrayCollection();
-        $this->user_id = new ArrayCollection();
+        $this->users = new ArrayCollection();
         $this->messages = new ArrayCollection();
     }
 
@@ -58,26 +58,14 @@ class Game
         return $this->id;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUser(): Collection
+    public function getCurrentFrame(): ?int
     {
-        return $this->user;
+        return $this->current_frame;
     }
 
-    public function addUser(User $user): self
+    public function setCurrentFrame(int $current_frame): self
     {
-        if (!$this->user->contains($user)) {
-            $this->user[] = $user;
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        $this->user->removeElement($user);
+        $this->current_frame = $current_frame;
 
         return $this;
     }
@@ -94,18 +82,6 @@ class Game
         return $this;
     }
 
-    public function getCurrentFrame(): ?int
-    {
-        return $this->current_frame;
-    }
-
-    public function setCurrentFrame(int $current_frame): self
-    {
-        $this->current_frame = $current_frame;
-
-        return $this;
-    }
-
     public function getScenario(): ?Scenario
     {
         return $this->scenario;
@@ -114,30 +90,6 @@ class Game
     public function setScenario(?Scenario $scenario): self
     {
         $this->scenario = $scenario;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|User[]
-     */
-    public function getUserId(): Collection
-    {
-        return $this->user_id;
-    }
-
-    public function addUserId(User $userId): self
-    {
-        if (!$this->user_id->contains($userId)) {
-            $this->user_id[] = $userId;
-        }
-
-        return $this;
-    }
-
-    public function removeUserId(User $userId): self
-    {
-        $this->user_id->removeElement($userId);
 
         return $this;
     }
@@ -171,4 +123,29 @@ class Game
 
         return $this;
     }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        $this->users->removeElement($user);
+
+        return $this;
+    }
+
 }

@@ -10,14 +10,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Messages;
-use App\Entity\Game;
 
 
 
 class MessagesController extends AbstractController
 {
 
-    public function add(): Response
+    public function add() 
     {
         // On vérifie la méthode
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -41,10 +40,8 @@ class MessagesController extends AbstractController
                     $message = new Messages();
                     $message->setMessage($donnees->message);
                     $message->setCreatedAt(new \DateTime('now'));
-                    $message->setUserId($this->getUser());
+                    $message->setUser($this->getUser());
                     $message->getGame();
-
-                    dd($message);
 
                     // On le stocke
                     $em->persist($message);
@@ -73,9 +70,6 @@ class MessagesController extends AbstractController
             echo json_encode(['message' => 'Mauvaise méthode']);
         }
 
-        return $this->render('play/play.html.twig', [
-            'controller_name' => 'MessagesController',
-        ]);
     }
     public function rolz(): Response
     {
@@ -121,7 +115,7 @@ class MessagesController extends AbstractController
                     $request = new Messages();
                     $request->setMessage($message);
                     $request->setCreatedAt(new \DateTime('now'));
-                    $request->setUserId($this->getUser());
+                    $request->setUser($this->getUser());
                     
                     // On le stocke
                     $em->persist($request);
@@ -179,7 +173,7 @@ class MessagesController extends AbstractController
 
                 //On effectue la requete preparé dans MessagesRepository
                 $messages = $em->getRepository(Messages::class)->findByIdSup($lastid);
-    
+                
                 // On transforme l'objet Php en objet Json
                 $serializer = new Serializer([$normalizer], [$encoder]);
                 $messagesJson = $serializer->serialize($messages, 'json');
@@ -193,6 +187,9 @@ class MessagesController extends AbstractController
             http_response_code(405);
             echo json_encode(['message' => 'Mauvaise méthode']);
         }
+        return $this->render('play/play.html.twig', [
+            'controller_name' => 'MessagesController',
+        ]);
     }
 
     public function index(): Response

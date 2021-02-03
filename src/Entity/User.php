@@ -75,7 +75,7 @@ class User implements UserInterface
     private $history;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Game::class, mappedBy="user_id")
+     * @ORM\ManyToMany(targetEntity=Game::class, mappedBy="users")
      */
     private $games;
 
@@ -241,6 +241,11 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getIsVerified(): ?bool
+    {
+        return $this->isVerified;
+    }
+
     /**
      * @return Collection|Game[]
      */
@@ -253,7 +258,7 @@ class User implements UserInterface
     {
         if (!$this->games->contains($game)) {
             $this->games[] = $game;
-            $game->addUserId($this);
+            $game->addUser($this);
         }
 
         return $this;
@@ -262,7 +267,7 @@ class User implements UserInterface
     public function removeGame(Game $game): self
     {
         if ($this->games->removeElement($game)) {
-            $game->removeUserId($this);
+            $game->removeUser($this);
         }
 
         return $this;

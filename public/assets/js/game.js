@@ -1,9 +1,9 @@
 //On récupère les id
-let idgame = document.querySelector("#id.game").value
-let idframe = document.querySelector("#id.frame").value
+let idgame = document.querySelector("#idgame").value
+let nbrframe = document.querySelector("#nbrframe").value
 
 console.log(idgame)
-console.log(idframe)
+console.log(nbrframe)
 
 // On attend le chargement du document
 window.onload = () => {
@@ -47,7 +47,7 @@ function sceneInf(){
         }
     
         // On ouvre la requête avec le lastid en GET
-        xmlhttp.open("GET","/jouer/partie"+id);
+        xmlhttp.open("GET","/game"+$idGame+"/"+nbrFrame);
     
         // On envoie
         xmlhttp.send()
@@ -83,7 +83,7 @@ function sceneSup(){
     }
 
     // On ouvre la requête avec le lastid en GET
-    xmlhttp.open("GET","/jouer/partie"+$idGame+"/"+idFrame);
+    xmlhttp.open("GET","/game"+$idGame+"/"+nbrFrame);
 
     // On envoie
     xmlhttp.send()
@@ -104,11 +104,12 @@ function chargeScene(){
                 // On convertit la réponse en objet JS
                 let message = JSON.parse(this.response)
 
+                console.log(message)
                 // On récupère la div #discussion
-                let discussion = document.querySelector("#frame")
+                //let discussion = document.querySelector("#frame")
                    
                 // On ajoute le contenu avant le contenu de la scene
-                discussion.innerHTML += `<p> Scene ${message.number} :<br> ${message.text}</p>` 
+                //discussion.innerHTML += `<p> Scene ${message.number} :<br> ${message.text}</p>` 
 
             
                     
@@ -121,7 +122,7 @@ function chargeScene(){
     }
 
     // On ouvre la requête avec le lastid en GET
-    xmlhttp.open("GET","/game"+idgame+"/"+idframe);
+    xmlhttp.open("GET","/jouer/partie"+idgame+"/"+nbrframe);
 
     // On envoie
     xmlhttp.send()

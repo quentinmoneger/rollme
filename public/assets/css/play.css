@@ -72,6 +72,10 @@ body .info #button-right-down {
   padding-top: 50px !important;
 }
 
+body .info #frame {
+  border-left: 2px solid #0f0f0fe8;
+}
+
 body .discussion {
   height: 550px;
   overflow-y: scroll;

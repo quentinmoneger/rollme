@@ -32,8 +32,10 @@ body button {
 body input, body textarea {
   background-color: #151515de !important;
   border: none !important;
+  color: #FFFFFF !important;
 }
 
-body .form-control[type=email], body [type=password], body [type=text], body [type=integer] {
-  color: #FFFFFF !important;
+body .form-control[type=number] {
+  -webkit-appearance: textfield;
+  text-align: center;
 }

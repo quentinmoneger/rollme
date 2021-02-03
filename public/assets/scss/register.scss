@@ -30,10 +30,12 @@ body {
 
     input,textarea{
         background-color: #151515de !important;
-        border: none !important;      
+        border: none !important;    
+        color: $white !important;  
     }
 
-    .form-control[type=email],[type=password],[type=text],[type=integer] {
-        color: $white !important;
-    }
+    .form-control[type=number]{
+        -webkit-appearance: textfield;
+        text-align: center;
+      }
 }

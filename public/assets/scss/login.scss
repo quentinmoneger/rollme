@@ -4,7 +4,7 @@ body {
     color: $white; 
 
     main{
-        height: calc(100vh - 100px - 76px);
+        height: calc(100vh - #{$navbarHeight} - #{$footerHeight});
     }
 
     .svg {
@@ -18,7 +18,7 @@ body {
         transform: translate(-60%, -45%);
         -webkit-mask-size: contain;
         mask-size: contain;
-        background-color: #151515;
+        background-color: #1515158f !important;
         z-index: -100;
     }
     input{
@@ -36,7 +36,6 @@ body {
     }
     .mdpforgot{
         color:  $white !important;
-        text-decoration: underline;
     }
     .form-control[type=email],[type=password] {
         color: $white !important;

@@ -56,16 +56,19 @@
             <label class="col-4 text-center">Puissance</label>
             <label class="col-4 text-center">Charisme</label>
         </div>
-        <div class="row mb-3">
+        <div class="row">
             <div class="col-4 text-center">{{ form_row(registrationForm.intelligency, {'attr': {'class': 'form-control'}} ) }}</div>
             <div class="col-4 text-center">{{ form_row(registrationForm.power, {'attr': {'class': 'form-control'}} ) }}</div>
             <div class="col-4 text-center">{{ form_row(registrationForm.social, {'attr': {'class': 'form-control'}} ) }}</div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row mb-3">
+            <small class="text-center col-12">La somme des caractéristiques doit etre de 100.</small>
+        </div>
+        <div class="row justify-content-center mt-4">
             <button type="submit" class="btn ">Inscription</button>
         </div>
     </div>
     {{ form_end(registrationForm) }}
     </section>
 </main>
-{% endblock %}   
+{% endblock %} 

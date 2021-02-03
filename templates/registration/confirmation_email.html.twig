@@ -1,13 +1,39 @@
-{% extends 'base.html.twig' %}
+<style type="text/css" >
+    body {
+    font-family: "OrkneyRegular" !important;
+    text-align: center;
+    background-color: #1e1e1e;
+    color: #FFFFFF; 
+    text-decoration: none;
+    }
+    body a{
+        text-decoration: none;
+        color: #ff5100;
+    }
+    .svg {
+        width: 400px;
+        height: 400px;
+        -webkit-mask: url("../Logo/MRlogo.svg") no-repeat 50% 50%;
+        mask: url("../Logo/MRlogo.svg") no-repeat 50% 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-60%, -45%);
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        background-color: #1515158f !important;
+        z-index: -100;
+    }
+</style>
+    <div class="svg"></div>
+    <h1 >Bonjour! Veuillez confirmer votre email!</h1>
 
-<h1>Bonjour! Veuillez confirmer votre email!</h1>
+    <p>
+        Veuillez confirmer votre email en cliquant sur le lien: <br><br>
+        <a href="{{ signedUrl|raw }}">Confirmer mon email </a>. 
+         Ce lien expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.  
+    </p>
 
-<p>
-    Veuillez confirmer votre email en cliquant sur le lien: <br><br>
-    <a href="{{ signedUrl|raw }}">Confirmer mon email</a>.
-    Ce lien expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
-</p>
-
-<p>
-    A bientot !
-</p>
+    <p>
+        A bientot !
+    </p>

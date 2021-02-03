@@ -54,3 +54,17 @@ body {
     }
 
 }
+.select2-selection--multiple {
+    background-color: $input !important;
+    border: none !important;
+}
+.select2-selection__choice {
+    color: $black;
+}
+.select2-dropdown--below {
+    border: none !important;
+}
+.select2-results__option--selectable {
+    background-color: $input !important;
+    border-top: 1px solid #46464625;
+}

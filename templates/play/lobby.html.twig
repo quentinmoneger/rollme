@@ -24,7 +24,7 @@
 				</section>
 				<section class="param col-5">
 					<label for="user" class="h5">Inviter d'autres utilisateurs</label>
-					<select type="text" name="user" class="form-control user-select" id="user">
+					<select type="text" name="user[]" class="form-control user-select" id="user" multiple="multiple">
 						{% for user in users %}
 							<option value="{{ user.getUsername() }}">{{ user.getUsername() }}</option>
 						{% endfor %}

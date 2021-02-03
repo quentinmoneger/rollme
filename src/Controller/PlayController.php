@@ -13,7 +13,13 @@ class PlayController extends AbstractController
     // Home page to select the scenario and parameters
     public function lobby(): Response
     {
-        $gameMaster = $this->getUser();
+        // verify if the user is loged
+        if(!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        } else {
+            $gameMaster = $this->getUser();
+        }
+
         $em = $this->getDoctrine()->getManager();
         $scenarios = $em->getRepository(Scenario::class)->findAll();
         $users = $em->getRepository(User::class)->findAll();
@@ -21,21 +27,32 @@ class PlayController extends AbstractController
         
         if(!empty($_POST)) {
 
-            $safe = array_map('trim', array_map('strip_tags', $_POST));
+            // Safe scenario entery
+            $safe['scenario'] = strip_tags($_POST['scenario']);
+            $safe['scenario'] = trim($safe['scenario']);
 
             $scenario = $em->getRepository(Scenario::class)->findOneBy(['title' => $safe['scenario']]);
-            $user = $em->getRepository(User::class)->findOneBy(['username' => $safe['user']]);
+
+            $addUsers = $_POST['user'];
+            $users = [];
+            foreach ($addUsers as $user) {
+                $user = $em->getRepository(User::class)->findOneBy(['username' => $user]);
+                $users[] = $user;
+            }
+            
             
             $game = new Game();
             $game->setScenario($scenario);
-            $game->addUser($user);
+            foreach ($users as $user) {
+                $game->addUser($user);
+            }
             $game->setGameMaster($gameMaster);
             $game->setCurrentFrame('1');
 
             $em->persist($game);
             $em->flush();
-
-            return $this->redirectToRoute('play_play', ['id' => $scenario->getId()]);
+            dd($game);
+            return $this->redirectToRoute('play_play', ['id' => $game->getId()]);
         }
 
         return $this->render('play/lobby.html.twig', [

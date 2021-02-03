@@ -207,8 +207,8 @@ class ScenarioController extends AbstractController
 
                 // Building the image dir
                 $rootPublic = $_SERVER['DOCUMENT_ROOT'];
-                $publicOutput = 'assets/scenario/' . $title . '/';
-                $dirOutput = $rootPublic . $publicOutput;
+                $dirTarget = 'assets/scenario/' . $title . '/';
+                $dirOutput = $rootPublic . $dirTarget;
 
                 // Set the actual dir (convert ' ' to '_' to reach the actual dir)
                 $dirOld = $rootPublic . 'assets/scenario/' . str_replace(' ', '_', $scenario->getTitle()) . '/';
@@ -246,10 +246,11 @@ class ScenarioController extends AbstractController
 
                     $filename = 'illusration.' . $extension;
 
-                    if (!move_uploaded_file($_FILES['image']['tmp_name'], $dirOutput . $filename)) {
+                    $linkImage = $dirTarget . $filename;
+
+                    if (!move_uploaded_file($_FILES['image']['tmp_name'], $linkImage)) {
                         die('Erreur d\'upload fichier images');
                     }
-                    $linkImage = $dirOutput . $filename;
 
                     $scenario->setImage($linkImage);
                 }
@@ -324,7 +325,7 @@ class ScenarioController extends AbstractController
                 $rootPublic = $_SERVER['DOCUMENT_ROOT'];
                 $dirTarget = 'assets/scenario/' . str_replace(' ', '_', $scenario->getTitle()) . '/';
                 $dirOutput = $rootPublic . $dirTarget;
-                
+
                 // Creat the folder (should exist)
                 if (!is_dir($dirOutput)) {
                     mkdir($dirOutput, 0777);
@@ -369,7 +370,6 @@ class ScenarioController extends AbstractController
                 $this->addFlash('success', 'Votre scène a été créé avec succès');
 
                 return $this->redirectToRoute('scenario_update', ['id' => $scenario->getId()]);
-
             } else {
 
                 $this->addFlash('danger', implode('<br>', $errors));

@@ -1,0 +1,18 @@
+@import 'variables';
+
+body {
+    background-color: $backgroundColor;
+}
+
+form {
+
+    
+    h3 {
+        color: $orange;
+    }
+
+    img {
+        height: 800px;
+        width: auto;
+    }
+}

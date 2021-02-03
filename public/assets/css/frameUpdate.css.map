@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,IAAI,CAAC;EACD,gBAAgB,ECCF,OAAO;CDAxB;;AAED,AAGI,IAHA,CAGA,EAAE,CAAC;EACC,KAAK,ECLJ,OAAO;CDMX;;AALL,AAOI,IAPA,CAOA,GAAG,CAAC;EACA,MAAM,EAAE,KAAK;EACb,KAAK,EAAE,IAAI;CACd",
+    "sources": [
+        "../scss/frameUpdate.scss",
+        "../scss/_variables.scss"
+    ],
+    "names": [],
+    "file": "frameUpdate.css"
+}

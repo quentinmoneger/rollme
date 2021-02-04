@@ -50,17 +50,17 @@ play_join:
   path: /jouer/rejoindre
   controller: App\Controller\PlayController::join
 
-play_recover:
-  path: /jouer/partie{idGame}/{nbrFrame}
-  controller: App\Controller\PlayController::recover
+play_charge:
+  path: /jouer/partie/{idGame}
+  controller: App\Controller\PlayController::chargeFrame
 
 play_play:
   path: /jouer/partie{idGame}
   controller: App\Controller\PlayController::play 
 
 play_game:
-  path: /game{idGame}/{nbrFrame}
-  controller: App\Controller\PlayController::sceneModif
+  path: /partie/{idGame}/{frameId}
+  controller: App\Controller\PlayController::changeFrame
 
 scenario_create:
   path: /scenario/creation

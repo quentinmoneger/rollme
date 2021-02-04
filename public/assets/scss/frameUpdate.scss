@@ -11,8 +11,14 @@ form {
         color: $orange;
     }
 
-    img {
-        height: 800px;
-        width: auto;
+    .img-render {
+        background: $input;
+        
+        img {
+            margin: auto;
+            display: block;
+            object-fit: contain;
+            height: 250px;
+        }
     }
 }

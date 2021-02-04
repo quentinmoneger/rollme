@@ -127,6 +127,18 @@ footer {
         font-weight: 600;
     }
 
+    ul {
+        li {
+            color: #212529 !important;
+
+            a {
+                &:hover {
+                    color: #212529 !important;
+                }
+            }
+        }
+    }
+
     .socials {
         border-top: 1px solid gray;
         padding-top: 1rem;

@@ -17,7 +17,6 @@ header .navbar .user {
   border: 1px solid #FFFFFF;
   border-radius: 6px;
   padding: 5px 10px;
-  -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
@@ -81,9 +80,7 @@ header .navbar svg {
 .custom-container button {
   background-color: #ff5100 !important;
   border: none;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 .custom-card {
@@ -91,15 +88,13 @@ header .navbar svg {
   border-radius: 5px;
   max-width: 300px;
   margin: auto;
-  -webkit-box-shadow: 0 1px 4px black;
-          box-shadow: 0 1px 4px black;
+  box-shadow: 0 1px 4px black;
   height: 100%;
 }
 
 .custom-card img {
   height: 180px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .custom-card h5 {
@@ -138,6 +133,14 @@ footer h6 {
   font-weight: 600;
 }
 
+footer ul li {
+  color: #212529 !important;
+}
+
+footer ul li a:hover {
+  color: #212529 !important;
+}
+
 footer .socials {
   border-top: 1px solid gray;
   padding-top: 1rem;
@@ -154,16 +157,10 @@ footer .socials a i {
   background: black;
   border-radius: 50%;
   width: 34px;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   height: 34px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 footer .socials a:hover {
@@ -171,3 +168,4 @@ footer .socials a:hover {
   text-decoration: none;
   color: inherit;
 }
+/*# sourceMappingURL=base.css.map */

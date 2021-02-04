@@ -10,13 +10,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Messages;
+use App\Entity\Game;
+use App\Entity\Frame;
+
 
 
 
 class MessagesController extends AbstractController
 {
 
-    public function add() 
+    public function add(int $idGame, int $frameId )
     {
         // On vérifie la méthode
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -42,6 +45,13 @@ class MessagesController extends AbstractController
                     $message->setCreatedAt(new \DateTime('now'));
                     $message->setUser($this->getUser());
                     $message->getGame();
+
+                    $game = $em->getRepository(Game::class)->find($idGame);
+                    $game->setCurrentFrame($frameId);
+                    $scenario = $game->getScenario();
+                    $frames = $em->getRepository(Frame::class)->findByScenarioId($scenario->getId());
+                    $users = $game->getUsers();
+                    $gameMaster = $game->getGameMaster();
 
                     // On le stocke
                     $em->persist($message);
@@ -69,9 +79,16 @@ class MessagesController extends AbstractController
             http_response_code(405);
             echo json_encode(['message' => 'Mauvaise méthode']);
         }
+        return $this->render('play/play.html.twig', [
+            'scenario' => $scenario,
+            'frames'=> $frames,
+            'users'=> $users,
+            'gameMaster'=> $gameMaster,
+            'idgame' => $game->getId(), 
+        ]);
 
     }
-    public function rolz(): Response
+    public function rolz(int $idGame, int $frameId ): Response
     {
         // On vérifie la méthode
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -116,7 +133,14 @@ class MessagesController extends AbstractController
                     $request->setMessage($message);
                     $request->setCreatedAt(new \DateTime('now'));
                     $request->setUser($this->getUser());
-                    
+
+                    $game = $em->getRepository(Game::class)->find($idGame);
+                    $game->setCurrentFrame($frameId);
+                    $scenario = $game->getScenario();
+                    $frames = $em->getRepository(Frame::class)->findByScenarioId($scenario->getId());
+                    $users = $game->getUsers();
+                    $gameMaster = $game->getGameMaster();
+                                      
                     // On le stocke
                     $em->persist($request);
 
@@ -145,7 +169,11 @@ class MessagesController extends AbstractController
         }
 
         return $this->render('play/play.html.twig', [
-            'controller_name' => 'MessagesController',
+            'scenario' => $scenario,
+            'frames'=> $frames,
+            'users'=> $users,
+            'gameMaster'=> $gameMaster,
+            'idgame' => $game->getId(), 
         ]);
     }
     public function recover(int $lastid): Response

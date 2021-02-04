@@ -35,11 +35,11 @@ message_recover:
   controller: App\Controller\MessagesController::recover
 
 message_add:
-  path: /chat/add
+  path: /chat/add{idGame}/{frameId}
   controller: App\Controller\MessagesController::add
 
 message_rolz:
-  path: /chat/rolz
+  path: /chat/rolz{idGame}/{frameId}
   controller: App\Controller\MessagesController::rolz
 
 play_lobby:

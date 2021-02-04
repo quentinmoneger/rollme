@@ -114,16 +114,28 @@ class PlayController extends AbstractController
         //Set the Frame
         $game = $em->getRepository(Game::class)->find($idGame);
         $game->setCurrentFrame($frameId);
+        $scenario = $game->getScenario();
+        $frames = $em->getRepository(Frame::class)->findByScenarioId($scenario->getId());
+        $users = $game->getUsers();
+        $gameMaster = $game->getGameMaster();
     
-        $em->flush();
+        
         //On exécute en vérifiant si ça fonctionne
-        // if () {
-        //     http_response_code(200);
-        //     echo json_encode(['message' => 'Enregistrement effectué']);    
-        // } else {
-        //     http_response_code(400);
-        //     echo json_encode(['message' => 'Une erreur est survenue sur sceneModif']);
-        // }
+        if ($em->flush()) {
+            http_response_code(200);
+            echo json_encode(['message' => 'Enregistrement effectué']);    
+        } else {
+            http_response_code(400);
+            echo json_encode(['message' => 'Une erreur est survenue sur sceneModif']);
+        }
+
+        return $this->render('play/play.html.twig', [
+            'scenario' => $scenario,
+            'frames'=> $frames,
+            'users'=> $users,
+            'gameMaster'=> $gameMaster,
+            'idgame' => $game->getId(), 
+        ]);
     }
 
     public function play(int $idGame): Response

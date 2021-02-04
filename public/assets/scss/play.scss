@@ -3,9 +3,8 @@
 body {
     background-color: $backgroundColor;
     color: $white;
+    height: 100vh;
     main {
-        height: calc(100vh - #{$navbarHeight} - #{$footerHeight});
-
         section {
             background-color: #151515de;
             box-shadow: 1px 1px 5px #151515;
@@ -32,57 +31,66 @@ body {
 
         .dashboard {
             height: 450px;
+            .frameImage {
+                object-fit: cover;
+                border-radius: 2px;
+                width: 100%;
+                height: 450px;
+                padding-top: 1px;
+            }
         }
         .info {
             margin-left: 0px !important;
             margin-right: 0px !important;
             height: 250px;
 
-            #button-left-up {
-                height: 125px;
-                border-top-left-radius: 6px;
-                margin: 0px !important;
-                padding-left: 22px !important;
-                padding-top: 50px !important;
-            }
-            #button-left-down {
-                height: 125px;
-                border-bottom-right-radius: 6px;
-                margin: 0px !important;
-                padding-left: 22px !important;
-                padding-top: 50px !important;
-            }
-            #button-right-up {
-                height: 125px;
-                border-top-right-radius: 6px;
-                margin: 0px !important;
-                padding-left: 22px !important;
-                padding-top: 50px !important;
-            }
+            #button-left-up,
+            #button-left-down,
+            #button-right-up,
             #button-right-down {
                 height: 125px;
-                border-bottom-left-radius: 6px;
                 margin: 0px !important;
                 padding-left: 22px !important;
                 padding-top: 50px !important;
+            }
+            #button-left-up {
+                border-top-left-radius: 6px;
+            }
+            #button-left-down {
+                border-bottom-right-radius: 6px;
+            }
+            #button-right-up {
+                border-top-right-radius: 6px;
+            }
+            #button-right-down {
+                border-bottom-left-radius: 6px;
             }
             .avatar {
                 object-fit: cover;
                 border-radius: 2px;
                 width: 100%;
                 height: 200px;
-                padding-block: 2px;
+                padding-top: 1px;
             }
             .usercard {
                 padding: 0 !important;
                 margin: 0 !important;
             }
             .stats {
+                color: $black !important;
                 border: 1px solid $white;
+                background-color: #FFFFFF !important;
+                i {
+                    color: $black !important;
+                }
             }
             .text {
                 box-sizing: border-box;
                 width: 100%;
+                background-color: #00000000;
+                color: $white;
+                border: none;
+                resize: none;
             }
         }
         .discussion {

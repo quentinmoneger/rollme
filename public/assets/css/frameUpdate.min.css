@@ -1,1 +1,2 @@
-body{background-color:#1e1e1e}form h3{color:#ff5100}form img{height:800px;width:auto}
+body{background-color:#1e1e1e}form h3{color:#ff5100}form .img-render{background:#0f0f0fe8}form .img-render img{margin:auto;display:block;object-fit:contain;height:250px}
+/*# sourceMappingURL=frameUpdate.min.css.map */

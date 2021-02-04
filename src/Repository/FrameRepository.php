@@ -37,6 +37,18 @@ class FrameRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function findImage($number, $scenario)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.number = :number')
+            ->andWhere('f.scenario = :scenario')
+            ->setParameter('number', $number)
+            ->setParameter('scenario', $scenario)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
     
     public function findByScenarioId($scenario)
     {

@@ -9,13 +9,13 @@
             <div class="row justify-content-around ">
 
                 <div class="col-8 ">
-                    <section class="dashboard mt-4">
-                        {# <img src="{% set = imgFrame %}"> #}
+                    <section class="dashboard mt-4" id="dashboard" >
+                        <img class="d-block avatar" id="imgsrc"src="" >
                     </section>
                     <section class="info mt-4 row">
 
                         <div id="carouselAvatar" class="carousel vert slide col-4 p-0" data-ride="carousel" data-interval="false">
-                            <div class="carousel-inner row">
+                            <div class="carousel-inner row m-0">
                                 <div class="button col-3 p-0">
                                     <a class="row" id="button-left-up" href="#carouselAvatar" role="button" data-slide="prev">
                                         <span><i class="las la-angle-up"></i></span>
@@ -39,24 +39,27 @@
                         </div>
 
                         <div id="carouselFrame" class="carousel vert slide col-8 p-0" data-ride="carousel" data-interval="false">
-                            <div class="carousel-inner row m-0">
-                                <div class="col-10 p-0"  id="frame">
+                            <div class="carousel-inner row">
+                                <div class="col-10 p-2"  id="frame">
+                                {% if app.user.id == gameMaster.getId() %}
                                     {% set i = 0 %}
                                     {% for frame in frames %}
-                                    <div {% if i < 1 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>
+                                    <div class="carousel-item {{ (i < 1) ?  'active' : '' }}" data-frame-id="{{ frame.getId()}}">
                                         {# <img class="d-block avatar frameImage" src="{{ asset(frame.getImage()) }}" alt="First slide"> #}
                                         {# {% set imgFrame = frame.getImage() %} #}
-                                        <h4 id="frameNumber" value="{{ frame.getNumber() }}">Scène {{ frame.getNumber() }}</h4>
+                                        <h4 >Scène {{ frame.getNumber() }}</h4>
                                         <p class="text">{{ frame.getText() }}</p>
                                     </div>
                                     {% set i = i + 1 %}
                                     {% endfor %}
+                                {% endif %}
+                                
                                 </div>
                                 <div class="button col-2 p-0">
-                                    <a class="row" id="button-right-up" href="#carouselFrame" role="button" data-slide="prev">
+                                    <a class="row " id="button-right-up" href="#carouselFrame" role="button" data-slide="prev">
                                         <span><i class="las la-angle-up"></i></span>
                                     </a>
-                                    <a class="row" id="button-right-down" href="#carouselFrame" role="button" data-slide="next">
+                                    <a class="row " id="button-right-down" href="#carouselFrame" role="button" data-slide="next">
                                         <span><i class="las la-angle-down"></i></span>
                                     </a>
                                 </div>
@@ -88,8 +91,7 @@
             </div>
         </div>
     </main>
-    {# <input type="hidden" id="idgame" value="{{ idgame }}">
-    <input type="hidden" id="nbrframe" value="{{ nbrframe }}"> #}
+    <input type="hidden" id="idgame" value={{ idgame }}> 
 {% endblock %}
 
 {% block footer %}{% endblock %}

@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,7 +44,6 @@ class PlayController extends AbstractController
                 $users[] = $user;
             }
             
-            
             $game = new Game();
             $game->setScenario($scenario);
             foreach ($users as $user) {
@@ -53,6 +54,20 @@ class PlayController extends AbstractController
     
             $em->persist($game);
             $em->flush();
+
+            // $mailer = new MailerInterface();
+            
+
+            // foreach( $users as $user ){
+            //     $email = (new Email())
+            //     ->from('hello@example.com')
+            //     ->to($user->getEmail())
+            //     ->subject('Lien partie RollMe')
+            //     ->html('<a href="http://localhost:8000/jouer/partie'.$game->getId().'">Voici ton lien !!!</a>');
+    
+            //     $mailer->send($email);    
+            // }
+
 
             return $this->redirectToRoute('play_play', ['idGame' => $game->getId()]);
         }
@@ -65,6 +80,19 @@ class PlayController extends AbstractController
 
     public function join(): Response
     {
+        if(!empty($_POST)){
+            $_POST['joinLink'] = preg_replace(
+                '#((https?|ftp)://(\S*?\.\S*?))([\s)\[\]{},;"\':<]|\.\s|$)#i',
+                "'<a href=\"$1\" target=\"_blank\">$3</a>$4'",
+                $_POST['joinLink']
+              ); 
+            $url = $_POST['joinLink']; 
+
+            return $this->redirect($url);  
+        }
+
+        
+
         return $this->render('play/join.html.twig');
     }
 
@@ -141,15 +169,22 @@ class PlayController extends AbstractController
     public function play(int $idGame): Response
     {
 
-                // On se connecte
-                $em = $this->getDoctrine()->getManager();
+        // verify if the user is loged
+        if(!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        } else {
+            $gameMaster = $this->getUser();
+        }
 
-                //On effectue la requete preparé dans MessagesRepository
-                $game = $em->getRepository(Game::class)->find($idGame);
-                $scenario = $game->getScenario();
-                $frames = $em->getRepository(Frame::class)->findByScenarioId($scenario->getId());
-                $users = $game->getUsers();
-                $gameMaster = $game->getGameMaster();
+        // On se connecte
+        $em = $this->getDoctrine()->getManager();
+
+        //On effectue la requete preparé dans MessagesRepository
+        $game = $em->getRepository(Game::class)->find($idGame);
+        $scenario = $game->getScenario();
+        $frames = $em->getRepository(Frame::class)->findByScenarioId($scenario->getId());
+        $users = $game->getUsers();
+        $gameMaster = $game->getGameMaster();
                 
 
         return $this->render('play/play.html.twig', [

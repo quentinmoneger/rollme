@@ -31,7 +31,7 @@ message:
   controller: App\Controller\MessagesController::index
 
 message_recover:
-  path: /chat/recover{lastid}
+  path: /chat/recover{lastid}/{idGame}
   controller: App\Controller\MessagesController::recover
 
 message_add:

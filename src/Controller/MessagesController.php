@@ -38,13 +38,6 @@ class MessagesController extends AbstractController
 
                     // On se connecte
                     $em = $this->getDoctrine()->getManager();
-                    
-                    //On effectue la requete
-                    $message = new Messages();
-                    $message->setMessage($donnees->message);
-                    $message->setCreatedAt(new \DateTime('now'));
-                    $message->setUser($this->getUser());
-                    $message->getGame();
 
                     $game = $em->getRepository(Game::class)->find($idGame);
                     $game->setCurrentFrame($frameId);
@@ -53,6 +46,14 @@ class MessagesController extends AbstractController
                     $users = $game->getUsers();
                     $gameMaster = $game->getGameMaster();
 
+                    
+                    //On effectue la requete
+                    $message = new Messages();
+                    $message->setMessage($donnees->message);
+                    $message->setCreatedAt(new \DateTime('now'));
+                    $message->setUser($this->getUser());
+                    $message->setGame( $game);
+                    
                     // On le stocke
                     $em->persist($message);
 
@@ -127,12 +128,6 @@ class MessagesController extends AbstractController
 
                     // On se connecte
                     $em = $this->getDoctrine()->getManager();
-                    
-                    //On effectue la requete
-                    $request = new Messages();
-                    $request->setMessage($message);
-                    $request->setCreatedAt(new \DateTime('now'));
-                    $request->setUser($this->getUser());
 
                     $game = $em->getRepository(Game::class)->find($idGame);
                     $game->setCurrentFrame($frameId);
@@ -140,7 +135,15 @@ class MessagesController extends AbstractController
                     $frames = $em->getRepository(Frame::class)->findByScenarioId($scenario->getId());
                     $users = $game->getUsers();
                     $gameMaster = $game->getGameMaster();
-                                      
+                    
+                    //On effectue la requete
+                    $request = new Messages();
+                    $request->setMessage($message);
+                    $request->setCreatedAt(new \DateTime('now'));
+                    $request->setUser($this->getUser());
+                    $request->setGame($game);
+
+                                     
                     // On le stocke
                     $em->persist($request);
 
@@ -176,7 +179,7 @@ class MessagesController extends AbstractController
             'idgame' => $game->getId(), 
         ]);
     }
-    public function recover(int $lastid): Response
+    public function recover(int $lastid, int $idGame): Response
     {
         // On vérifie la méthode utilisée
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -200,7 +203,12 @@ class MessagesController extends AbstractController
                 $em = $this->getDoctrine()->getManager();
 
                 //On effectue la requete preparé dans MessagesRepository
-                $messages = $em->getRepository(Messages::class)->findByIdSup($lastid);
+     
+                $messages = $em->getRepository(Messages::class)->findByIdSupAndGame($lastid, $idGame);
+
+
+                
+                
                 
                 // On transforme l'objet Php en objet Json
                 $serializer = new Serializer([$normalizer], [$encoder]);

@@ -24,16 +24,19 @@ class MessagesRepository extends ServiceEntityRepository
     //  */
   
     // On prepare une requete pour récuperer tous les anciens messages supérieur au dernier Id affiché
-    public function findByIdSup($lastid)
+    public function findByIdSupAndGame($lastid, $idGame)
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.id > :id')
             ->setParameter('id' , $lastid)
+            ->andWhere('m.game = :game')
+            ->setParameter('game', $idGame)
             ->orderBy('m.id', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
+
    
         
 }

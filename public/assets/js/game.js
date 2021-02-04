@@ -30,7 +30,7 @@ window.onload = () => {
     validRolz.addEventListener("click", ajoutMessageRolz)
     
     // On charge les nouveaux messages
-    setTimeout(setInterval(chargeMessages, 2000), 5000)
+    setTimeout(setInterval(chargeMessages, 5000), 5000)
     
 }
 
@@ -152,7 +152,7 @@ function chargeMessages(){
     }
 
     // On ouvre la requête avec le lastid en GET
-    xmlhttp.open("GET","/chat/recover"+lastid);
+    xmlhttp.open("GET","/chat/recover"+lastid+"/"+idGame);
 
     // On envoie
     xmlhttp.send()

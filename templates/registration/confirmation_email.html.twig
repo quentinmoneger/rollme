@@ -1,39 +1,51 @@
+<head>
+    <link rel="stylesheet" media="screen" href="http://fontlibrary.org/face/orkney" type="text/css"/>
+</head>
 <style type="text/css" >
-    body {
-    font-family: "OrkneyRegular" !important;
-    text-align: center;
-    background-color: #1e1e1e;
-    color: #FFFFFF; 
-    text-decoration: none;
+
+    html{
+        height: 400px;
+    }
+    body {       
+        font-family: "OrkneyRegular" !important;
+        text-align: center;
+        background-color: #1e1e1e;
+        color: #FFFFFF; 
+        text-decoration: none;
+    }
+    body main{
+        margin-top: 100px;
     }
     body a{
         text-decoration: none;
         color: #ff5100;
     }
     .svg {
-        width: 400px;
-        height: 400px;
-        -webkit-mask: url("../Logo/MRlogo.svg") no-repeat 50% 50%;
-        mask: url("../Logo/MRlogo.svg") no-repeat 50% 50%;
+        width: 100px;
+        height: 100px;
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-60%, -45%);
-        -webkit-mask-size: contain;
-        mask-size: contain;
-        background-color: #1515158f !important;
+        top: 1rem;
+        left: 0;
         z-index: -100;
     }
 </style>
-    <div class="svg"></div>
-    <h1 >Bonjour! Veuillez confirmer votre email!</h1>
+    <svg class ="svg" id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.54 597.54">
+        <defs>
+        <style>.cls-1{fill:#FFFFFF;}</style>
+        </defs>
+        <circle class="cls-1" cx="351.69" cy="336.6" r="13.32"/>
+        <path class="cls-1" d="M446.21,478.48c26.1,1.44,69.07-.55,96.81-23.86,17.33-14.59,26.12-35.12,26.12-61,0-2.24-.54-4-.64-6.18H569l-5-333-121,186.89L329.5,51.23l1.78,361.17c-18-15.15-40.47-46.7-6.32-96.32,0,0-130.68-13-197.23,82.22,0,0,60.74-65.65,171.79-72,0,0-44,22.14-77.28,75,0,0,36.33-37.76,74.5-53.14,0,0-12.45,46.68,20.08,84.55a231.67,231.67,0,0,1,14.5,20v6.85c-20-2.6-47.72-16-46.26-75.13,0,0-116.55,60.53-120.27,176.62,0,0,15-88.17,104.56-154.14,0,0-24.8,42.62-23.74,105.07,0,0,9.8-51.48,33.37-85.21,0,0,12.8,39,52.34,56V648.53h18.4V322.59H458.09c15.94,0,40,0,59.49,9.15,22.31,10.49,33.16,30.74,33.16,61.86,0,20.48-6.39,35.81-19.53,46.91C496.6,469.66,427.71,458.16,427,458l-23.76-4.12L557.85,648.77l14.42-11.45Zm79.2-163.39c-23.17-10.9-49.74-10.9-67.41-10.9H349.26l-.91-185.27L442.44,276.4l104-160.66,3.27,218.58C543.1,326.59,535.43,319.8,525.41,315.09Z" transform="translate(-127.73 -51.23)"/>
+    </svg>
+    <main>
+        <h1 >Bonjour! Veuillez confirmer votre email!</h1>
 
-    <p>
-        Veuillez confirmer votre email en cliquant sur le lien: <br><br>
-        <a href="{{ signedUrl|raw }}">Confirmer mon email </a>. 
-         Ce lien expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.  
-    </p>
+        <p>
+            Veuillez confirmer votre email en cliquant sur le lien: <br><br>
+            <a href="{{ signedUrl|raw }}">Confirmer mon email </a>. 
+            Ce lien expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.  
+        </p>
 
-    <p>
-        A bientot !
-    </p>
+        <p>
+            A bientot !
+        </p>
+    </main>

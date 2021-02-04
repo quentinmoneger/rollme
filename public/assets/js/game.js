@@ -17,7 +17,7 @@ window.onload = () => {
     buttonRightDown.addEventListener("click", sceneInf)
 
     // On charge les nouveaux messages
-    setTimeout(setInterval(chargeScene, 2000), 5000)
+    //setTimeout(setInterval(chargeScene, 2000), 5000)
     
 }
 
@@ -32,11 +32,16 @@ function sceneInf(){
             if (this.readyState == 4){
                 if(this.status == 200){
                     
-                    // On a une réponse
-                    // On convertit la réponse en objet JS
-                    let message = JSON.parse(this.response)
-                
-                    $id =  ( message.id-1 )             
+                    if(nbrframe >= 1){
+                        // On a une réponse
+                        // On convertit la réponse en objet JS
+                        let message = JSON.parse(this.response)
+    
+                        console.log("Voici la current frame => "+message.currentFrame)
+                        nbrframe = ( message.currentFrame - 1)
+                    }else{
+                        nbrframe = 0
+                    }             
                     
                 }else{
                     // On gère les erreurs
@@ -47,7 +52,7 @@ function sceneInf(){
         }
     
         // On ouvre la requête avec le lastid en GET
-        xmlhttp.open("GET","/game"+$idGame+"/"+nbrFrame);
+        xmlhttp.open("GET","/game"+idgame+"/"+nbrframe);
     
         // On envoie
         xmlhttp.send()
@@ -59,19 +64,24 @@ function sceneSup(){
     // On instancie XMLHttpRequest
     let xmlhttp = new XMLHttpRequest()
 
-    
+
     // On gère la réponse
     xmlhttp.onreadystatechange = function(){
         if (this.readyState == 4){
             if(this.status == 200){
                 
-                // On a une réponse
-                // On convertit la réponse en objet JS
-                let message = JSON.parse(this.response)
-            
-                $idGame =  ( message.idGame + 1 )  
 
-                $idFrame = ( message.idFrame + 1)
+                if(nbrframe = 1){
+                    // On a une réponse
+                    // On convertit la réponse en objet JS
+                    let message = JSON.parse(this.response)
+
+                    console.log( "Voici la current frame => "+message.currentFrame)
+                    nbrframe = ( message.currentFrame + 1)
+                }else{
+                    nbrframe = 1
+                }
+
 
                 
             }else{
@@ -83,7 +93,7 @@ function sceneSup(){
     }
 
     // On ouvre la requête avec le lastid en GET
-    xmlhttp.open("GET","/game"+$idGame+"/"+nbrFrame);
+    xmlhttp.open("GET","/game"+idgame+"/"+nbrframe);
 
     // On envoie
     xmlhttp.send()
@@ -104,12 +114,18 @@ function chargeScene(){
                 // On convertit la réponse en objet JS
                 let message = JSON.parse(this.response)
 
+                console.log(message.currentFrame)
+
+                // for (const [key, value] of Object.entries(message.scenario.frames)) {
+                //     console.log(`${key}: ${value}`);
+                //   }
+
                 console.log(message)
                 // On récupère la div #discussion
                 //let discussion = document.querySelector("#frame")
                    
                 // On ajoute le contenu avant le contenu de la scene
-                //discussion.innerHTML += `<p> Scene ${message.number} :<br> ${message.text}</p>` 
+                //discussion.innerHTML += `<p> Scene ${message.currentFrame} :<br> ${message.scenario.frames.}</p>` 
 
             
                     
@@ -127,4 +143,3 @@ function chargeScene(){
     // On envoie
     xmlhttp.send()
 }
-

@@ -13,11 +13,33 @@
                         <img src="">
                     </section>
                     <section class="info mt-4 row">
-                        <div class="col-1 container p-0 ">
-                            <button class="row" id="button-left-up">↑</button>
-                            <button class="row" id="button-left-down">↓</button>
-                        </div>
-                        <div class="col-3 container p-0" id="card">
+                        <div id="carouselExample" class="carousel vert slide" data-ride="carousel" data-interval="false">
+                            <div class="carousel-inner row">
+                                <div class="button col-1 p-0">
+                                    <a class="haut row" id="button-left-up" href="#carouselExample" role="button" data-slide="prev">
+                                        <span><i class="las la-angle-up"></i></span>
+                                    </a>
+                                    <a class="bas row" id="button-left-down" href="#carouselExample" role="button" data-slide="next">
+                                        <span><i class="las la-angle-down"></i></span>
+                                    </a>
+                                </div>
+                                <div class="col-3 p-0">
+                                    {% set i = 0 %}
+                                    {% for user in users %}
+                                    <div 
+                                     {% if i < 1 %}
+                                      class="carousel-item text-center active" 
+                                     {% else %} 
+                                     class="carousel-item text-center" 
+                                     {% endif %} >
+                                        <img class="d-block avatar" src="{{ asset(user.getAvatar())}}" alt="First slide">
+                                        <p class="usercard">{{ user.username}}</p>
+                                        <p class="usercard"><i class="las la-khanda"></i> 46  <i class="las la-sms"></i> 68  <i class="las la-lightbulb"></i></i>81</p>
+                                    </div>
+                                    {% set i = i + 1 %}
+                                    {% endfor %}
+                                </div>
+                            </div>
                         </div>
                         <div class="col-7 container p-0" id="frame">    
                         </div>
@@ -27,8 +49,6 @@
                         </div>
                     </section>
                 </div>
-
-
 
                 <div class="col-4 container">
                     <section class="chat mt-4" >
@@ -53,8 +73,8 @@
             </div>
         </div>
     </main>
-    <input type="hidden" id="idgame" value="{{ idgame }}">
-    <input type="hidden" id="nbrframe" value="{{ nbrframe }}">
+    {# <input type="hidden" id="idgame" value="{{ idgame }}">
+    <input type="hidden" id="nbrframe" value="{{ nbrframe }}"> #}
 {% endblock %}
 
 {% block footer %}{% endblock %}

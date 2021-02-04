@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Scenario;
 use App\Entity\Game;
 use App\Entity\User;
+use App\Entity\Frame;
 
 class PlayController extends AbstractController
 {
@@ -113,31 +114,68 @@ class PlayController extends AbstractController
 
     }
 
-    public function sceneModif(int $idGame, int $nbrFrame )
+    public function sceneModif(int $idGame, int $nbrFrame ) : Response
     {
+    
         $em = $this->getDoctrine()->getManager();
 
+        //dd($nbrFrame);
         //Set the Frame
         $game = $em->getRepository(Game::class)->find($idGame);
         $game->setCurrentFrame($nbrFrame);
-          
+    
+        $em->flush();
         // On exécute en vérifiant si ça fonctionne
-        if ($em->flush()) {
-            http_response_code(200);
-            echo json_encode(['message' => 'Enregistrement effectué']);    
-        } else {
-            http_response_code(400);
-            echo json_encode(['message' => 'Une erreur est survenue sur sceneModif']);
-        }
+        // if () {
+        //     http_response_code(200);
+        //     echo json_encode(['message' => 'Enregistrement effectué']);    
+        // } else {
+        //     http_response_code(400);
+        //     echo json_encode(['message' => 'Une erreur est survenue sur sceneModif']);
+        // }
+
+        // On nettoie l'id 
+        $nbrFrame = (int)strip_tags($nbrFrame);
+
+        // Creation d'un methode pour transformer l'objet Php en Objet Json
+        $encoder = new JsonEncoder();
+
+        $defaultContext = [ AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => function ($object, $format, $context) {
+                return $object->getId();
+        },];
+
+        $normalizer = new ObjectNormalizer(null, null, null, null, null, null, $defaultContext);
+
+        //On effectue la requete preparé dans MessagesRepository
+        $game = $em->getRepository(Game::class)->find($idGame);
+
+        // On transforme l'objet Php en objet Json
+        $serializer = new Serializer([$normalizer], [$encoder]);
+        $messagesJson = $serializer->serialize($game, 'json');
+
+        // On retourne la requete en Json 
+        return  JsonResponse::fromJsonString($messagesJson);
 
     }
 
-    public function play(int $idGame, int $nbrFrame = 0): Response
+    public function play(int $idGame): Response
     {
+
+                // On se connecte
+                $em = $this->getDoctrine()->getManager();
+
+                //On effectue la requete preparé dans MessagesRepository
+                $game = $em->getRepository(Game::class)->find($idGame);
+                $scenario = $game->getScenario();
+                $frames = $em->getRepository(Frame::class)->findByScenarioId($scenario->getId());
+                $users = $game->getUsers();
+                $gameMaster = $game->getGameMaster();
+
         return $this->render('play/play.html.twig', [
-            'idgame' => $idGame,
-            'nbrframe'=> $nbrFrame
+            'scenario' => $scenario,
+            'frames'=> $frames,
+            'users'=> $users,
+            'gameMaster'=> $gameMaster,
         ]);
     }
 }
-

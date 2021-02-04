@@ -86,6 +86,7 @@ class ScenarioController extends AbstractController
 
                 // Convert spcae to underscore for the dir name
                 $title = str_replace(' ', '_', $safe['title']);
+                $title = str_replace("'", '', $title);
 
                 // Building the image dir
                 $rootPublic = $_SERVER['DOCUMENT_ROOT'];
@@ -204,6 +205,7 @@ class ScenarioController extends AbstractController
 
                 // Convert spcae to underscore for the dir name
                 $title = str_replace(' ', '_', $safe['title']);
+                $title = str_replace("'", '', $title);
 
                 // Building the image dir
                 $rootPublic = $_SERVER['DOCUMENT_ROOT'];
@@ -211,7 +213,7 @@ class ScenarioController extends AbstractController
                 $dirOutput = $rootPublic . $dirTarget;
 
                 // Set the actual dir (convert ' ' to '_' to reach the actual dir)
-                $dirOld = $rootPublic . 'assets/scenario/' . str_replace(' ', '_', $scenario->getTitle()) . '/';
+                $dirOld = $rootPublic . 'assets/scenario/' . str_replace("'", '', str_replace(' ', '_', $scenario->getTitle())) . '/';
 
                 // Creat the folder if doesn't exist (shouldn't)
                 if (!is_dir($dirOutput)) {
@@ -323,7 +325,7 @@ class ScenarioController extends AbstractController
 
                 // Building the image dir
                 $rootPublic = $_SERVER['DOCUMENT_ROOT'];
-                $dirTarget = 'assets/scenario/' . str_replace(' ', '_', $scenario->getTitle()) . '/';
+                $dirTarget = 'assets/scenario/' . str_replace("'", '', str_replace(' ', '_', $scenario->getTitle())) . '/';
                 $dirOutput = $rootPublic . $dirTarget;
 
                 // Creat the folder (should exist)
@@ -431,7 +433,7 @@ class ScenarioController extends AbstractController
 
                 // Building the image dir
                 $rootPublic = $_SERVER['DOCUMENT_ROOT'];
-                $dirTarget = 'assets/scenario/' . $frame->getScenario()->getTitle() . '/';
+                $dirTarget = 'assets/scenario/' . str_replace("'", '', str_replace(' ', '_', $frame->getScenario()->getTitle())) . '/';
                 $dirOutput = $rootPublic . $dirTarget;
 
                 // Creat the folder (should exist)

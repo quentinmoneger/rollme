@@ -54,7 +54,7 @@ class PlayController extends AbstractController
             $em->persist($game);
             $em->flush();
 
-            return $this->redirectToRoute('play_play', ['idGame' => $game->getId(), 'nbrFrame' => 0 ]);
+            return $this->redirectToRoute('play_play', ['idGame' => $game->getId()]);
         }
 
         return $this->render('play/lobby.html.twig', [

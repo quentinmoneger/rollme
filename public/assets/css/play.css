@@ -7,7 +7,7 @@ body main {
   height: calc(100vh - 66px - 100px);
 }
 
-body section {
+body main section {
   background-color: #151515de;
   -webkit-box-shadow: 1px 1px 5px #151515;
           box-shadow: 1px 1px 5px #151515;
@@ -16,7 +16,9 @@ body section {
   margin: none;
 }
 
-body input, body button {
+body main input,
+body main a,
+body main button {
   height: 50px;
   width: 100%;
   padding: 8px;
@@ -25,22 +27,28 @@ body input, body button {
   border: none;
 }
 
-body input:focus, body button:focus {
+body main input:focus,
+body main a:focus,
+body main button:focus {
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
 }
 
-body .dashboard {
+body main i {
+  color: #FFFFFF !important;
+}
+
+body main .dashboard {
   height: 450px;
 }
 
-body .info {
+body main .info {
   margin-left: 0px !important;
   margin-right: 0px !important;
   height: 250px;
 }
 
-body .info #button-left-up {
+body main .info #button-left-up {
   height: 125px;
   border-top-left-radius: 6px;
   margin: 0px !important;
@@ -48,7 +56,7 @@ body .info #button-left-up {
   padding-top: 50px !important;
 }
 
-body .info #button-left-down {
+body main .info #button-left-down {
   height: 125px;
   border-bottom-right-radius: 6px;
   margin: 0px !important;
@@ -56,7 +64,7 @@ body .info #button-left-down {
   padding-top: 50px !important;
 }
 
-body .info #button-right-up {
+body main .info #button-right-up {
   height: 125px;
   border-top-right-radius: 6px;
   margin: 0px !important;
@@ -64,7 +72,7 @@ body .info #button-right-up {
   padding-top: 50px !important;
 }
 
-body .info #button-right-down {
+body main .info #button-right-down {
   height: 125px;
   border-bottom-left-radius: 6px;
   margin: 0px !important;
@@ -72,52 +80,72 @@ body .info #button-right-down {
   padding-top: 50px !important;
 }
 
-body .info #frame {
-  border-left: 2px solid #0f0f0fe8;
+body main .info .avatar {
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 2px;
+  width: 100%;
+  height: 200px;
+  padding-block: 2px;
 }
 
-body .discussion {
+body main .info .usercard {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body main .info .stats {
+  border: 1px solid #FFFFFF;
+}
+
+body main .info .text {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+}
+
+body main .discussion {
   height: 550px;
   overflow-y: scroll;
   padding-top: 15px;
   padding-left: 15px;
 }
 
-body .input {
+body main .input {
   margin: 0px !important;
 }
 
-body .input input {
+body main .input input {
   border-bottom-left-radius: 6px;
 }
 
-body .input button {
+body main .input button {
   border-bottom-right-radius: 6px;
   background-color: #151515de;
 }
 
-body .roll {
+body main .roll {
   height: 100px;
   padding: 0px !important;
 }
 
-body .roll #roll1 {
+body main .roll #roll1 {
   margin: 0px !important;
 }
 
-body .roll #roll2 {
+body main .roll #roll2 {
   margin: 0px !important;
 }
 
-body .roll #input1 {
+body main .roll #input1 {
   border-top-left-radius: 6px;
 }
 
-body .roll #input2 {
+body main .roll #input2 {
   border-top-right-radius: 6px;
 }
 
-body .roll button {
+body main .roll button {
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
   background-color: #151515de;
@@ -139,22 +167,4 @@ body .roll button {
 .vert .active.carousel-item-left {
   -webkit-transform: translate3d(0, -100%, 0);
   transform: translate3d(0, -100%, 0);
-}
-
-.avatar {
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 2px;
-  width: 100%;
-  height: 200px;
-  padding-block: 2px;
-}
-
-.usercard {
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-i {
-  color: white !important;
 }

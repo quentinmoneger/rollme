@@ -1,146 +1,146 @@
-@import 'variables';
+@import "variables";
 
 body {
-    main{
-        height: calc(100vh - #{$navbarHeight} - #{$footerHeight});
-    }
     background-color: $backgroundColor;
     color: $white;
-    section{
-        background-color: #151515de;
-        box-shadow: 1px 1px 5px #151515;
-        border-radius: 6px;
-        padding: none;
-        margin: none;
-    }
-    input,button{
-        height: 50px;
-        width: 100%;
-        padding: 8px;
-        background-color: $input;
-        color: $white;
-        border: none;
-        &:focus{
-            box-shadow: none !important;
-        }
-    }
+    main {
+        height: calc(100vh - #{$navbarHeight} - #{$footerHeight});
 
-    .dashboard{
-        height: 450px;
-        
-        
-    }
-    .info{
-        margin-left: 0px !important;
-        margin-right: 0px !important;
-        height: 250px;
-
-        #button-left-up{
-            height: 125px;
-            border-top-left-radius: 6px;
-            margin: 0px !important;
-            padding-left: 22px !important;
-            padding-top: 50px !important;
-        }
-        #button-left-down{
-            height: 125px;
-            border-bottom-right-radius: 6px;
-            margin: 0px !important;
-            padding-left: 22px !important;
-            padding-top: 50px !important;
-        }
-        #button-right-up{
-            height: 125px;
-            border-top-right-radius: 6px;
-            margin: 0px !important;
-            padding-left: 22px !important;
-            padding-top: 50px !important;
-
-        }
-        #button-right-down{
-            height: 125px;
-            border-bottom-left-radius: 6px;
-            margin: 0px !important;
-            padding-left: 22px !important;
-            padding-top: 50px !important;
-        }
-        #frame{     
-            border-left: 2px solid $input ;
-        }
-               
-    }
-    .discussion{
-        height: 550px;
-        overflow-y: scroll;
-        padding-top: 15px;
-        padding-left: 15px;
-    }
-    .input{
-        margin: 0px !important;
-        input{
-            border-bottom-left-radius: 6px;
-        }
-        button{
-            border-bottom-right-radius: 6px;
+        section {
             background-color: #151515de;
+            box-shadow: 1px 1px 5px #151515;
+            border-radius: 6px;
+            padding: none;
+            margin: none;
+        }
+        input,
+        a,
+        button {
+            height: 50px;
+            width: 100%;
+            padding: 8px;
+            background-color: $input;
+            color: $white;
+            border: none;
+            &:focus {
+                box-shadow: none !important;
+            }
+        }
+        i {
+            color: $white !important;
+        }
+
+        .dashboard {
+            height: 450px;
+        }
+        .info {
+            margin-left: 0px !important;
+            margin-right: 0px !important;
+            height: 250px;
+
+            #button-left-up {
+                height: 125px;
+                border-top-left-radius: 6px;
+                margin: 0px !important;
+                padding-left: 22px !important;
+                padding-top: 50px !important;
+            }
+            #button-left-down {
+                height: 125px;
+                border-bottom-right-radius: 6px;
+                margin: 0px !important;
+                padding-left: 22px !important;
+                padding-top: 50px !important;
+            }
+            #button-right-up {
+                height: 125px;
+                border-top-right-radius: 6px;
+                margin: 0px !important;
+                padding-left: 22px !important;
+                padding-top: 50px !important;
+            }
+            #button-right-down {
+                height: 125px;
+                border-bottom-left-radius: 6px;
+                margin: 0px !important;
+                padding-left: 22px !important;
+                padding-top: 50px !important;
+            }
+            .avatar {
+                object-fit: cover;
+                border-radius: 2px;
+                width: 100%;
+                height: 200px;
+                padding-block: 2px;
+            }
+            .usercard {
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .stats {
+                border: 1px solid $white;
+            }
+            .text {
+                box-sizing: border-box;
+                width: 100%;
+            }
+        }
+        .discussion {
+            height: 550px;
+            overflow-y: scroll;
+            padding-top: 15px;
+            padding-left: 15px;
+        }
+        .input {
+            margin: 0px !important;
+            input {
+                border-bottom-left-radius: 6px;
+            }
+            button {
+                border-bottom-right-radius: 6px;
+                background-color: #151515de;
+            }
+        }
+        .roll {
+            height: 100px;
+            padding: 0px !important;
+
+            #roll1 {
+                margin: 0px !important;
+            }
+            #roll2 {
+                margin: 0px !important;
+            }
+            #input1 {
+                border-top-left-radius: 6px;
+            }
+            #input2 {
+                border-top-right-radius: 6px;
+            }
+            button {
+                border-bottom-left-radius: 6px;
+                border-bottom-right-radius: 6px;
+                background-color: #151515de;
+            }
         }
     }
-    .roll{
-        height: 100px;
-        padding: 0px!important;
-
-        #roll1{
-            margin: 0px !important;
-        }
-        #roll2{
-            margin: 0px !important;
-        }
-        #input1{
-            border-top-left-radius: 6px;
-        }
-        #input2{
-            border-top-right-radius: 6px;
-        }
-        button{
-            border-bottom-left-radius:  6px;
-            border-bottom-right-radius:  6px;
-            background-color: #151515de;
-        }
-        
-        
-    }
-
 }
 
+// Vertical carousel
 .vert .carousel-item-next.carousel-item-left,
 .vert .carousel-item-prev.carousel-item-right {
     -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
 .vert .carousel-item-next,
 .vert .active.carousel-item-right {
     -webkit-transform: translate3d(0, 100%, 0);
-            transform: translate3d(0, 100% 0);
+    transform: translate3d(0, 100% 0);
 }
 
 .vert .carousel-item-prev,
 .vert .active.carousel-item-left {
--webkit-transform: translate3d(0,-100%, 0);
-        transform: translate3d(0,-100%, 0);
-}
-
-.avatar {
-    object-fit: cover;
-    border-radius: 2px;
-    width: 100%;
-    height: 200px;
-    padding-block: 2px;
-}
-.usercard {
-    padding: 0 !important;
-    margin: 0 !important;
-}
-i {
-    color: white !important;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
 }

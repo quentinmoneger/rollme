@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{# {% block title %}{{ scenario.getTitle() }}{% endblock %} #}
+{% block title %}{{ scenario.getTitle() }}{% endblock %}
 {% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/play.min.css') }}">{% endblock %}
 
 {% block body %}
@@ -10,42 +10,57 @@
 
                 <div class="col-8 ">
                     <section class="dashboard mt-4">
-                        <img src="">
+                        {# <img src="{% set = imgFrame %}"> #}
                     </section>
                     <section class="info mt-4 row">
-                        <div id="carouselExample" class="carousel vert slide" data-ride="carousel" data-interval="false">
+
+                        <div id="carouselAvatar" class="carousel vert slide col-4 p-0" data-ride="carousel" data-interval="false">
                             <div class="carousel-inner row">
-                                <div class="button col-1 p-0">
-                                    <a class="haut row" id="button-left-up" href="#carouselExample" role="button" data-slide="prev">
+                                <div class="button col-3 p-0">
+                                    <a class="row" id="button-left-up" href="#carouselAvatar" role="button" data-slide="prev">
                                         <span><i class="las la-angle-up"></i></span>
                                     </a>
-                                    <a class="bas row" id="button-left-down" href="#carouselExample" role="button" data-slide="next">
+                                    <a class="row" id="button-left-down" href="#carouselAvatar" role="button" data-slide="next">
                                         <span><i class="las la-angle-down"></i></span>
                                     </a>
                                 </div>
-                                <div class="col-3 p-0">
+                                <div class="col-9 p-0" id="avatar">
                                     {% set i = 0 %}
                                     {% for user in users %}
-                                    <div 
-                                     {% if i < 1 %}
-                                      class="carousel-item text-center active" 
-                                     {% else %} 
-                                     class="carousel-item text-center" 
-                                     {% endif %} >
-                                        <img class="d-block avatar" src="{{ asset(user.getAvatar())}}" alt="First slide">
+                                    <div {% if i < 1 %} class="carousel-item text-center active" {% else %} class="carousel-item text-center" {% endif %}>
+                                        <img class="d-block avatar" src="{{ asset(user.getAvatar()) }}" alt="First slide">
                                         <p class="usercard">{{ user.username}}</p>
-                                        <p class="usercard"><i class="las la-khanda"></i> 46  <i class="las la-sms"></i> 68  <i class="las la-lightbulb"></i></i>81</p>
+                                        <p class="usercard"><i class="las la-khanda"></i> {{ user.power}}  <i class="las la-sms"></i> {{ user.social}}  <i class="las la-lightbulb"></i>{{ user.intelligency}}</p>
                                     </div>
                                     {% set i = i + 1 %}
                                     {% endfor %}
                                 </div>
                             </div>
                         </div>
-                        <div class="col-7 container p-0" id="frame">    
-                        </div>
-                        <div class="col-1 container p-0">
-                            <button class="row" id="button-right-up">↑</button>
-                            <button class="row" id="button-right-down">↓</button>
+
+                        <div id="carouselFrame" class="carousel vert slide col-8 p-0" data-ride="carousel" data-interval="false">
+                            <div class="carousel-inner row m-0">
+                                <div class="col-10 p-0"  id="frame">
+                                    {% set i = 0 %}
+                                    {% for frame in frames %}
+                                    <div {% if i < 1 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>
+                                        {# <img class="d-block avatar frameImage" src="{{ asset(frame.getImage()) }}" alt="First slide"> #}
+                                        {# {% set imgFrame = frame.getImage() %} #}
+                                        <h4 id="frameNumber" value="{{ frame.getNumber() }}">Scène {{ frame.getNumber() }}</h4>
+                                        <p class="text">{{ frame.getText() }}</p>
+                                    </div>
+                                    {% set i = i + 1 %}
+                                    {% endfor %}
+                                </div>
+                                <div class="button col-2 p-0">
+                                    <a class="row" id="button-right-up" href="#carouselFrame" role="button" data-slide="prev">
+                                        <span><i class="las la-angle-up"></i></span>
+                                    </a>
+                                    <a class="row" id="button-right-down" href="#carouselFrame" role="button" data-slide="next">
+                                        <span><i class="las la-angle-down"></i></span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -56,7 +71,7 @@
                         </div>
                         <div class="input row">
                             <input id="text"class="col-10"type="text" name="message">
-                            <button class="col-2" id="valid">↑</button>
+                            <button class="col-2" id="valid"><i class="las la-angle-up"></i></button>
                         </div>
                     </section>
                 <section  class="roll mt-4">

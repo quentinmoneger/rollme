@@ -1,4 +1,4 @@
-@import "_variables";
+@import "variables";
 
 body {
     font-family: "OrkneyRegular" !important;
@@ -164,6 +164,41 @@ footer {
                 text-decoration: none;
                 color: inherit;
             }
+        }
+    }
+}
+
+
+#query-mobile {
+    display: hidden !important;
+}
+
+@media screen and (max-width: 576px) {
+
+    // body {
+    //     height: 100vh;
+    // }
+    header, main, footer, .svg {
+        display: none;
+    }
+
+    #query-mobile {
+        display: block;
+        position: absolute;
+        top: 0;
+        height: 100vh;
+        width: 100vw;
+        background-color: $backgroundColor !important;
+        z-index: 1000;
+        color: $white;
+        &:after {
+            content:"Le site n'est pas disponible sur mobile, rejoignez-nous directement depuis votre ordinateur! Team RollMe";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 26px;
+            text-align: center;
         }
     }
 }

@@ -37,15 +37,16 @@ body main i {
 
 body main .dashboard {
   height: 450px;
+  background-color: #101010 !important;
 }
 
 body main .dashboard .frameImage {
   -o-object-fit: cover;
      object-fit: cover;
-  border-radius: 2px;
+  border-radius: 6px;
   width: 100%;
   height: 450px;
-  padding-top: 1px;
+  padding: 2rem;
 }
 
 body main .info {

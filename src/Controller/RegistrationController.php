@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
 class RegistrationController extends AbstractController
@@ -24,7 +27,7 @@ class RegistrationController extends AbstractController
     }
 
 
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, SluggerInterface $slugger): Response
     {
 
         $user = new User();
@@ -42,6 +45,35 @@ class RegistrationController extends AbstractController
                 )
             );
             $user->setRoles($json);
+
+            $avatar = $form->get('avatar')->getData();
+            
+            if ($avatar) {
+
+                // Building the user dir link
+                $rootPublic = $_SERVER['DOCUMENT_ROOT'];
+                $dirTarget = 'assets/users/' . $form->get('username')->getData() . '/';
+                $dirOutput = $rootPublic . $dirTarget;
+
+                $originalFilename = pathinfo($avatar->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$avatar->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $avatar->move(
+                        $this->getParameter('users_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // set the path of avatar image
+                $user->setAvatar('assets/users/'.$newFilename);
+            }
+
 
 
             $entityManager = $this->getDoctrine()->getManager();

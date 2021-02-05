@@ -1,9 +1,6 @@
 @import 'variables';
 
 body {
-    main{
-        height: calc(100vh - #{$navbarHeight} - #{$footerHeight});
-    }
     background-color: $backgroundColor;
     color: $white;
     .svg {

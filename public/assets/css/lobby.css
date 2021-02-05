@@ -3,10 +3,6 @@ body {
   color: #FFFFFF;
 }
 
-body main {
-  height: calc(100vh - 66px - 100px);
-}
-
 body .svg {
   width: 800px;
   height: 800px;

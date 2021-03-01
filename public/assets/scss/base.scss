@@ -11,6 +11,9 @@ header {
     height: $navbarHeight;
     .navbar {
         background-color: #151515de !important;
+        .cls-1 {
+            fill: #FFFFFF;
+        }
         .user {
             border: 1px solid $white;
             border-radius: 6px;

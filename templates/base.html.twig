@@ -1,155 +1,143 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="{{ asset('assets/Logo/MRLogo_White.png') }}" type="image/png">
-  <link rel="stylesheet" media="screen" href="http://fontlibrary.org/face/orkney" type="text/css"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <link rel="stylesheet" href="{{ asset('assets/css/base.min.css') }}">
-  <title>{% block title %}Welcome!{% endblock %}</title>
-  {% block stylesheets %}{% endblock %}
-  <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" href="{{ asset('assets/Logo/MRLogo_White.png') }}" type="image/png">
+		<link rel="stylesheet" media="screen" href="http://fontlibrary.org/face/orkney" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+		<link rel="stylesheet" href="{{ asset('assets/css/base.min.css') }}">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{% block stylesheets %}{% endblock %}
+		<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	</head>
 
-  {# <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBJHDKRS9H"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+	<body>
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
+				<a class="navbar-brand" href="{{ path('home_index') }}">
+					<svg id="Calque_1" height="50" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 444.54 597.54">
+						<circle class="cls-1" cx="351.69" cy="336.6" r="13.32"/>
+						<path class="cls-1" d="M446.21,478.48c26.1,1.44,69.07-.55,96.81-23.86,17.33-14.59,26.12-35.12,26.12-61,0-2.24-.54-4-.64-6.18H569l-5-333-121,186.89L329.5,51.23l1.78,361.17c-18-15.15-40.47-46.7-6.32-96.32,0,0-130.68-13-197.23,82.22,0,0,60.74-65.65,171.79-72,0,0-44,22.14-77.28,75,0,0,36.33-37.76,74.5-53.14,0,0-12.45,46.68,20.08,84.55a231.67,231.67,0,0,1,14.5,20v6.85c-20-2.6-47.72-16-46.26-75.13,0,0-116.55,60.53-120.27,176.62,0,0,15-88.17,104.56-154.14,0,0-24.8,42.62-23.74,105.07,0,0,9.8-51.48,33.37-85.21,0,0,12.8,39,52.34,56V648.53h18.4V322.59H458.09c15.94,0,40,0,59.49,9.15,22.31,10.49,33.16,30.74,33.16,61.86,0,20.48-6.39,35.81-19.53,46.91C496.6,469.66,427.71,458.16,427,458l-23.76-4.12L557.85,648.77l14.42-11.45Zm79.2-163.39c-23.17-10.9-49.74-10.9-67.41-10.9H349.26l-.91-185.27L442.44,276.4l104-160.66,3.27,218.58C543.1,326.59,535.43,319.8,525.41,315.09Z" transform="translate(-127.73 -51.23)"/>
+					</svg>
+				</a>
 
-    gtag('config', 'G-ZBJHDKRS9H');
-  </script> #}
-</head>
+				{% if app.user %}
+					<ul class="navbar-nav">
+						<li class="nav-item active mx-3">
+							<a class="nav-link user" href="#">{{ app.user.username }}</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link log-out" href="{{ path('app_logout') }}">Deconnexion</a>
+						</li>
+					</ul>
+				{% else %}
+					<ul class="navbar-nav">
+						<li class="nav-item active">
+							<a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+						</li>
+					</ul>
+				{% endif %}
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-<body>
-<header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
-     <a class="navbar-brand" href="{{ path('home_index') }}">
-      <svg id="Calque_1" height="50" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.54 597.54">
-        <defs>
-          <style>.cls-1{fill:#FFFFFF;}</style>
-        </defs>
-        <circle class="cls-1" cx="351.69" cy="336.6" r="13.32"/>
-        <path class="cls-1" d="M446.21,478.48c26.1,1.44,69.07-.55,96.81-23.86,17.33-14.59,26.12-35.12,26.12-61,0-2.24-.54-4-.64-6.18H569l-5-333-121,186.89L329.5,51.23l1.78,361.17c-18-15.15-40.47-46.7-6.32-96.32,0,0-130.68-13-197.23,82.22,0,0,60.74-65.65,171.79-72,0,0-44,22.14-77.28,75,0,0,36.33-37.76,74.5-53.14,0,0-12.45,46.68,20.08,84.55a231.67,231.67,0,0,1,14.5,20v6.85c-20-2.6-47.72-16-46.26-75.13,0,0-116.55,60.53-120.27,176.62,0,0,15-88.17,104.56-154.14,0,0-24.8,42.62-23.74,105.07,0,0,9.8-51.48,33.37-85.21,0,0,12.8,39,52.34,56V648.53h18.4V322.59H458.09c15.94,0,40,0,59.49,9.15,22.31,10.49,33.16,30.74,33.16,61.86,0,20.48-6.39,35.81-19.53,46.91C496.6,469.66,427.71,458.16,427,458l-23.76-4.12L557.85,648.77l14.42-11.45Zm79.2-163.39c-23.17-10.9-49.74-10.9-67.41-10.9H349.26l-.91-185.27L442.44,276.4l104-160.66,3.27,218.58C543.1,326.59,535.43,319.8,525.41,315.09Z" transform="translate(-127.73 -51.23)"/>
-      </svg>
-    </a>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ml-auto">
 
-    {% if app.user %}
-        <ul class="navbar-nav">
-          <li class="nav-item active mx-3">
-            <a class="nav-link user" href="#">{{ app.user.username }}</a> 
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link log-out" href="{{ path('app_logout') }}">Deconnexion</a>
-          </li>
-        </ul>
-    {% else %}       
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
-          </li>
-        </ul>
-    {% endif %}    
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+						<li class="nav-item active">
+							<a class="nav-link" href="{{ path('home_index') }}">Accueil</a>
+						</li>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
+						<li class="nav-item dropdown active">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jouer</a>
 
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ path('home_index') }}">Accueil</a>
-        </li>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="{{ path('play_lobby') }}">Créer une partie</a>
+								<a class="dropdown-item" href="{{ path('play_join') }}">Rejoindre une partie</a>
+							</div>
+						</li>
 
-         <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">Jouer</a>
+						<li class="nav-item dropdown active">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Scenario</a>
 
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ path('play_lobby') }}">Créer une partie</a>
-                <a class="dropdown-item" href="{{ path('play_join') }}">Rejoindre une partie</a>
-          </div>
-        </li>
-       
-        <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">Scenario</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="{{ path('scenario_create') }}">Création de scénarios</a>
+								<a class="dropdown-item" href="{{ path('scenario_index') }}">Scénarios enregistrés</a>
+							</div>
+						</li>
 
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ path('scenario_create') }}">Création de scénarios</a>
-            <a class="dropdown-item" href="{{ path('scenario_index') }}">Scénarios enregistrés</a>
-          </div>
-        </li>
+						<li class="nav-item">
+							<a class="nav-link disabled" href="#">Communauté</a>
+						</li>
 
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Communauté</a>
-        </li>
-
-      </ul>
-    </div>
-  </nav>
-</header>
-<div id="query-mobile">
-</div>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<div id="query-mobile"></div>
 
 
-  {% block body %}{% endblock %}
+		{% block body %}{% endblock %}
 
-  {% block footer %}
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-6">
-          <h6>Développeurs</h6>
-          <ul class="p-0">
-            <li><a href="https://www.linkedin.com/in/moneger-quentin-4004691a1/" class="text-muted">MONEGER Quentin</a></li>
-            <li><a href="https://www.linkedin.com/in/sylvain-bapst/" class="text-muted">BAPST Sylvain</a></li>
-            <li><a href="https://www.linkedin.com/in/aur%C3%A9lien-stefanescu-aab12b1b6/" class="text-muted">STEFANESCU Aurélien</a></li>
-          </ul>
-        </div>
-        <div class="col-12 col-md-6">
-          <h6>Graphistes/Designers</h6>
-          <ul>
-            <li>Mentions légales</li>
-            <li>Conditions d'utilisation</li>
-          </ul>
-        </div>
-      </div>
-      <div class="row socials">
-        <div class="col-12 col-md-6 pl-0 text-muted">
-          RollMe &copy; 2021 - Tous droits réservés.
-          </div>
-          <div class="col-12 col-md-6 text-right pr-0">
-            <a href="https://www.facebook.com/" target="_blank">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com/?hl=fr" target="_blank">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="http://twitter.com/" target="_blank">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="https://www.pinterest.fr/" target="_blank">
-              <i class="fab fa-pinterest-p"></i>
-            </a>
-          </div>
-      </div>
-    </div>
-  </footer>
-  {% endblock %}
+		{% block footer %}
+			<footer>
+				<div class="container">
+					<div class="row">
+						<div class="col-12 col-md-6">
+							<h6>Développeurs</h6>
+							<ul class="p-0">
+								<li>
+									<a href="https://www.linkedin.com/in/moneger-quentin-4004691a1/" class="text-muted">MONEGER Quentin</a>
+								</li>
+								<li>
+									<a href="https://www.linkedin.com/in/sylvain-bapst/" class="text-muted">BAPST Sylvain</a>
+								</li>
+								<li>
+									<a href="https://www.linkedin.com/in/jonathan-cohen-b105112b/" class="text-muted">COHEN Jonathan</a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-12 col-md-6">
+							<h6>Graphistes/Designers</h6>
+							<ul>
+								<li><a href="https://www.instagram.com/adrien_genilier/" class="text-muted" target="_blank">Adrien Genilier</a></li>
+								<li><a href="https://www.instagram.com/paulinacholeva/" class="text-muted" target="_blank">Marion Blanc</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="row socials">
+						<div class="col-12 col-md-6 pl-0 text-muted">
+							RollMe &copy; 2021 - Tous droits réservés.
+						</div>
+						<div class="col-12 col-md-6 text-right pr-0">
+							<a href="https://www.facebook.com/" target="_blank">
+								<i class="lab la-facebook-f"></i>
+							</a>
+							<a href="https://www.instagram.com/?hl=fr" target="_blank">
+								<i class="lab la-instagram"></i>
+							</a>
+							<a href="http://twitter.com/" target="_blank">
+								<i class="lab la-twitter"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		{% endblock %}
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-  {% block javascripts %}{% endblock %}
-</body>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+		{% block javascripts %}{% endblock %}
+	</body>
 
 </html>

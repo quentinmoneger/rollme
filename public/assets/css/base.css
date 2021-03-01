@@ -13,6 +13,10 @@ header .navbar {
   background-color: #151515de !important;
 }
 
+header .navbar .cls-1 {
+  fill: #FFFFFF;
+}
+
 header .navbar .user {
   border: 1px solid #FFFFFF;
   border-radius: 6px;

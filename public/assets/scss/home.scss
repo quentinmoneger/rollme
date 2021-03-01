@@ -2,7 +2,7 @@
 body {
     background-color: $backgroundColor;
     color: $white;
-    
+
     .svg {
         width: 800px;
         height: 800px;
@@ -50,73 +50,51 @@ body {
         }
     }
 }
+.news,
+.scenarios {
+    min-height: 500px;
+}
 
-.news {
-    height: 500px;
-    .custom-fig {
-        position: relative;
-        width: 300px;
-        height: 300px;
+.fig__title--article {
+    position: absolute;
+    height: 30%;
+    padding-block: 25px;
+}
 
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.fig {
+    position: relative;
+    width: 300px;
+    height: auto;
+    margin-inline: auto;
+}
 
-        figcaption {
-            position: absolute;
-            background-color: #000000d8;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            color: $white;
-            text-align: center;
-            height: 30%;
-            padding-block: 25px;
-        }
-
-        a {
-            margin: 0;
-            display: block;
-        }
+.fig__img {
+    height: 300px;
+    .card-img-top {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 }
 
-.games-container {
-    height: 600px;
-    .custom-fig {
-        position: relative;
-        width: 300px;
-        height: 300px;
+.fig__title {
+    background-color: #000000d8;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: $white;
+    text-align: center;
+    padding: 8px;
+}
 
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        figcaption {
-            background-color: #000000d8;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            color: $white;
-            text-align: center;
-            padding: 8px;
-        }
-
-        a {
-            margin: 0;
-            display: block;
-            border-top-right-radius: 0;
-            border-top-left-radius: 0;
-            background-color: $orange;
-            border: none;
-            transition: 0.5s;
-            &:hover{
-                background-color: #ffa77e !important;
-            }
-        }
+.fig__btn {
+    display: block;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    background-color: $orange;
+    border: none;
+    transition: 0.5s;
+    &:hover {
+        background-color: #ffa77e !important;
     }
 }

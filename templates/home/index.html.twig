@@ -8,8 +8,8 @@
 
 {% block body %}
 	<div class="svg"></div>
-	<main>
-		<section class="container presentation">
+	<main class="container">
+		<section class="presentation">
 			<div class="title">
 				<h1>Bienvenue sur RollMe.</h1>
 				<p>Moins de blabla, plus d'aventure!</p>
@@ -17,57 +17,61 @@
 			<div class="intro text-right">
 				<h2 class="mb-4">Qu'est-ce que c'est RollMe?</h2>
 				<p>RollMe a pour but de rendre le jeu de rôle plus accessible en proposant des scénarios jouables à plusieurs, sans s'encombrer de livrets de règles de 200 pages ou des heures de préparations...
-				Nous nous basons sur un principe simple: le plus important, c'est l'expérience du joueur. Nous n'avons pas pour but de proposer des fonctionnalités plus riches ou nombreuses que d'autres sites 
-				de jeux de rôle (qui le font déjà très bien!). Nous avons pour but de promouvoir le jeu de rôle auprès des joueurs moins expérimentés qui pourraient avoir peur de se lancer dans une campagne 
-				de Donjons et Dragons qui va durée 5 ans... Pour découvrir pas à pas les fonctionnalités du site, <a href="#">clique ici.</a>
+									Nous nous basons sur un principe simple: le plus important, c'est l'expérience du joueur. Nous n'avons pas pour but de proposer des fonctionnalités plus riches ou nombreuses que d'autres sites 
+									de jeux de rôle (qui le font déjà très bien!). Nous avons pour but de promouvoir le jeu de rôle auprès des joueurs moins expérimentés qui pourraient avoir peur de se lancer dans une campagne 
+									de Donjons et Dragons qui va durée 5 ans... Pour découvrir pas à pas les fonctionnalités du site,
+					<a href="#">clique ici.</a>
 				</p>
 			</div>
 		</section>
 
-		<section class="container news">
-			<h2 class="text-center">Actualités</h2>
-			<div class="d-flex justify-content-center flex-wrap">
-				<div class="m-3">
-					<figure class="custom-fig">
+		<section class="news">
+			<h2 class="text-center mb-5 fs-1">Actualités</h2>
+			<div class="row d-flex justify-content-center flex-wrap">
+				<div class="col-4 my-2">
+					<figure class="fig">
+						<div class="fig__img">
 						<img class="card-img-top" src="{{ asset('assets/images/maison.jpg') }}" alt="Croquis de maison">
-						<a href="#">
-							<figcaption>Les coulisses de la création du site</figcaption>
+						<a href="#" class="fig__btn">
+							<figcaption class="fig__title fig__title--article">Les coulisses de la création du site</figcaption>
 						</a>
 					</figure>
 				</div>
-				<div class="m-3">
-					<figure class="custom-fig">
+				<div class="col-4 my-2">
+					<figure class="fig">
+						<div class="fig__img">
 						<img class="card-img-top" src="{{ asset('assets/images/nain.jpg') }}" alt="Croquis de maison">
-						<a href="#">
-							<figcaption>Le Nain : venez découvrire la nouvelle classe disponible</figcaption>
+						<a href="#" class="fig__btn">
+							<figcaption class="fig__title fig__title--article">Le Nain : venez découvrire la nouvelle classe disponible</figcaption>
 						</a>
 					</figure>
 				</div>
-				<div class="m-3">
-					<figure class="custom-fig">
+				<div class="col-4 my-2">
+					<figure class="fig">
+						<div class="fig__img">
 						<img class="card-img-top" src="{{ asset('assets/images/commu.jpg') }}" alt="Croquis de maison">
-						<a href="#">
-							<figcaption>La fonctionnalité communauté est bientôt disponible!!!</figcaption>
+						<a href="#" class="fig__btn">
+							<figcaption class="fig__title fig__title--article">La fonctionnalité communauté est bientôt disponible!!!</figcaption>
 						</a>
 					</figure>
 				</div>
 			</div>
 		</section>
 
-		<section class="games-container">
-			<div class="container">
-				<h2 class="text-center mb-4">Scénario à la une</h2>
-				<div class="d-flex justify-content-center flex-wrap">
-					{% for scenario in scenarios %}
-						<div class="m-3">
-							<figure class="custom-fig">
+		<section class="scenarios">
+			<h2 class="text-center mb-5 fs-1">Scénario à la une</h2>
+			<div class="row d-flex justify-content-around flex-wrap">
+				{% for scenario in scenarios %}
+					<div class="col-4 my-2">
+						<figure class="fig">
+							<div class="fig__img">
 								<img src="{{ asset(scenario.getImage()) }}" alt="" class="card-img-top">
-								<figcaption>{{ scenario.getTitle() }}</figcaption>
-								<a class="btn btn-success text-white" href="#" role="button">Jouer</a>
-							</figure>
-						</div>
-					{% endfor %}
-				</div>
+							</div>
+							<figcaption class="fig__title">{{ scenario.getTitle() }}</figcaption>
+							<a class="btn btn-success text-white m-0 fig__btn" href="#" role="button">Jouer</a>
+						</figure>
+					</div>
+				{% endfor %}
 			</div>
 		</section>
 	</main>

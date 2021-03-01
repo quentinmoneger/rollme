@@ -20,11 +20,10 @@ class FrameRepository extends ServiceEntityRepository
         parent::__construct($registry, Frame::class);
     }
 
-    // /**
-    //  * @return Frame[] Returns an array of Frame objects
-    //  */
-    
-    public function findByNumberAndScenarioId($number, $scenario)
+    /**
+     * @return Frame Returns a instance of Frame from the number of the frame and the scenarioId
+     */
+    public function findByNumberAndScenarioId($number, $scenario) :object
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.number = :number')
@@ -32,25 +31,15 @@ class FrameRepository extends ServiceEntityRepository
             ->setParameter('number', $number)
             ->setParameter('scenario', $scenario)
             ->orderBy('f.number', 'DESC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-    public function findImage($number, $scenario)
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.number = :number')
-            ->andWhere('f.scenario = :scenario')
-            ->setParameter('number', $number)
-            ->setParameter('scenario', $scenario)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
     
-    public function findByScenarioId($scenario)
+    /**
+     * @return Frame[] Returns an array of Frame 
+     */
+    public function findByScenarioId($scenario) :array
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.scenario = :scenario')
@@ -61,17 +50,5 @@ class FrameRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    
 
-    /*
-    public function findOneBySomeField($value): ?Frame
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

@@ -116,7 +116,7 @@ class PlayController extends AbstractController
 
                 $scenario = $game->getScenario();
                 
-                $frame = $em->getRepository(Frame::class)->findImage($currentFrame, $scenario->getId());
+                $frame = $em->getRepository(Frame::class)->findByNumberAndScenarioId($currentFrame, $scenario->getId());
          
                 $image = $frame->getImage();
                 //dd($image);

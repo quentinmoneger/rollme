@@ -60,25 +60,7 @@ class ScenarioController extends AbstractController
                 $errors[] = 'Le résumé doit comporter entre 30 et 1000 caractères maximum.';
             }
 
-            if (isset($_FILES['image']) && $_FILES['image']['error'] != UPLOAD_ERR_NO_FILE) {
-
-                // Server issue
-                if ($_FILES['image']['error'] != UPLOAD_ERR_OK) {
-                    $errors[] = 'Une erreur est survenue lors du transfert de l\'image';
-                } else {
-
-                    // Size-Type issue
-                    $maxSize = 6 * 1000 * 1000;
-                    if ($_FILES['image']['size'] > $maxSize) {
-                        $errors[] = 'L\'image est trop volumineuse...';
-                    } else {
-                        $allowMimesTypes = ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/webp'];
-                        if (!in_array($_FILES['image']['type'], $allowMimesTypes)) {
-                            $errors[] = 'Le type de fichier est invalide';
-                        }
-                    }
-                }
-            }
+            $errors = array_merge($errors, verificationPostImage($_FILES));
 
 
             // Upload on server
@@ -101,22 +83,7 @@ class ScenarioController extends AbstractController
                 // If there is an image
                 if (!empty($_FILES['image']['tmp_name'])) {
 
-                    // Standardisation of the extension
-                    switch ($_FILES['image']['type']) {
-                        case 'image/jpg':
-                        case 'image/jpeg':
-                        case 'image/pjpeg':
-                            $extension = 'jpg';
-                            break;
-
-                        case 'image/png':
-                            $extension = 'png';
-                            break;
-
-                        case 'image/webp':
-                            $extension = 'webp';
-                            break;
-                    }
+                    $extension = $this->standardizationImageFormat($_FILES);
 
                     $filename = 'illusration.' . $extension;
 
@@ -180,25 +147,7 @@ class ScenarioController extends AbstractController
                 $errors[] = 'Le résumé doit comporter entre 30 et 1000 caractères maximum.';
             }
 
-            if (isset($_FILES['image']) && $_FILES['image']['error'] != UPLOAD_ERR_NO_FILE) {
-
-                // Server issue
-                if ($_FILES['image']['error'] != UPLOAD_ERR_OK) {
-                    $errors[] = 'Une erreur est survenue lors du transfert de l\'image';
-                } else {
-
-                    // Size-Type issue
-                    $maxSize = 6 * 1000 * 1000;
-                    if ($_FILES['image']['size'] > $maxSize) {
-                        $errors[] = 'L\'image est trop volumineuse...';
-                    } else {
-                        $allowMimesTypes = ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/webp'];
-                        if (!in_array($_FILES['image']['type'], $allowMimesTypes)) {
-                            $errors[] = 'Le type de fichier est invalide';
-                        }
-                    }
-                }
-            }
+            $errors = array_merge($errors, verificationPostImage($_FILES));
 
             // Upload on server
             if (count($errors) === 0) {
@@ -229,22 +178,7 @@ class ScenarioController extends AbstractController
                 // If there is an image upload and there is no image already (shouldn't)
                 if (!empty($_FILES['image']['tmp_name'])) {
 
-                    // Standardisation of the extension
-                    switch ($_FILES['image']['type']) {
-                        case 'image/jpg':
-                        case 'image/jpeg':
-                        case 'image/pjpeg':
-                            $extension = 'jpg';
-                            break;
-
-                        case 'image/png':
-                            $extension = 'png';
-                            break;
-
-                        case 'image/webp':
-                            $extension = 'webp';
-                            break;
-                    }
+                    $extension = $this->standardizationImageFormat($_FILES);
 
                     $filename = 'illusration.' . $extension;
 
@@ -298,27 +232,12 @@ class ScenarioController extends AbstractController
                 $errors[] = 'La narrration doit comporter entre 20 et 1000 caractères maximum.';
             }
 
-            if (isset($_FILES['image']) && $_FILES['image']['error'] != UPLOAD_ERR_NO_FILE) {
-
-                // Server issue
-                if ($_FILES['image']['error'] != UPLOAD_ERR_OK) {
-                    $errors[] = 'Une erreur est survenue lors du transfert de l\'image';
-                } else {
-
-                    // Size-Type issue
-                    $maxSize = 6 * 1000 * 1000;
-                    if ($_FILES['image']['size'] > $maxSize) {
-                        $errors[] = 'L\'image est trop volumineuse...';
-                    } else {
-                        $allowMimesTypes = ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/webp'];
-                        if (!in_array($_FILES['image']['type'], $allowMimesTypes)) {
-                            $errors[] = 'Le type de fichier est invalide';
-                        }
-                    }
-                }
-            } else {
+            $errors = array_merge($errors, verificationPostImage($_FILES));
+            
+            if (!isset($_FILES['image'])) {
                 $errors[] = 'Vous devez ajouter une image à la scène.';
             }
+            
 
             // Upload on server
             if (count($errors) === 0) {
@@ -337,23 +256,7 @@ class ScenarioController extends AbstractController
                 $frame->setNumber($safe['number']);
                 $frame->setText($safe['text']);
 
-
-                // Standardisation of the extension
-                switch ($_FILES['image']['type']) {
-                    case 'image/jpg':
-                    case 'image/jpeg':
-                    case 'image/pjpeg':
-                        $extension = 'jpg';
-                        break;
-
-                    case 'image/png':
-                        $extension = 'png';
-                        break;
-
-                    case 'image/webp':
-                        $extension = 'webp';
-                        break;
-                }
+                $extension = $this->standardizationImageFormat($_FILES);
 
                 $filename =  uniqid() . '.' . $extension;
 
@@ -407,25 +310,7 @@ class ScenarioController extends AbstractController
                 $errors[] = 'La narrration doit comporter entre 20 et 1000 caractères maximum.';
             }
 
-            if (isset($_FILES['image']) && $_FILES['image']['error'] != UPLOAD_ERR_NO_FILE) {
-
-                // Server issue
-                if ($_FILES['image']['error'] != UPLOAD_ERR_OK) {
-                    $errors[] = 'Une erreur est survenue lors du transfert de l\'image';
-                } else {
-
-                    // Size-Type issue
-                    $maxSize = 6 * 1000 * 1000;
-                    if ($_FILES['image']['size'] > $maxSize) {
-                        $errors[] = 'L\'image est trop volumineuse...';
-                    } else {
-                        $allowMimesTypes = ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/webp'];
-                        if (!in_array($_FILES['image']['type'], $allowMimesTypes)) {
-                            $errors[] = 'Le type de fichier est invalide';
-                        }
-                    }
-                }
-            }
+            $errors = array_merge($errors, verificationPostImage($_FILES));
 
 
             // Upload on server
@@ -448,22 +333,7 @@ class ScenarioController extends AbstractController
                 // If there is an image
                 if (!empty($_FILES['image']['tmp_name'])) {
 
-                    // Standardisation of the extension
-                    switch ($_FILES['image']['type']) {
-                        case 'image/jpg':
-                        case 'image/jpeg':
-                        case 'image/pjpeg':
-                            $extension = 'jpg';
-                            break;
-
-                        case 'image/png':
-                            $extension = 'png';
-                            break;
-
-                        case 'image/webp':
-                            $extension = 'webp';
-                            break;
-                    }
+                    $extension = $this->standardizationImageFormat($_FILES);
 
                     $filename =  uniqid() . '.' . $extension;
 
@@ -544,5 +414,61 @@ class ScenarioController extends AbstractController
 
 
         return $this->redirectToRoute('scenario_index');
+    }
+
+    /** 
+     *  validate the format for an upload of image (jpg/png/webp)
+     * 
+     *  @param $files
+     *  @return string
+     */
+    public function standardizationImageFormat($files) :string
+    {
+        switch ($files['image']['type']) {
+            case 'image/jpg':
+            case 'image/jpeg':
+            case 'image/pjpeg':
+                $extension = 'jpg';
+                break;
+
+            case 'image/png':
+                $extension = 'png';
+                break;
+
+            case 'image/webp':
+                $extension = 'webp';
+                break;
+        }
+        return $extension;
+    }
+
+    /** 
+     *  validation of the image format/ server issues
+     * 
+     *  @param $files
+     *  @return array
+     */
+    public function verificationPostImage($files) :array
+    {
+        if (isset($files['image']) && $files['image']['error'] != UPLOAD_ERR_NO_FILE) {
+
+            // Server issue
+            if ($files['image']['error'] != UPLOAD_ERR_OK) {
+                $errors[] = 'Une erreur est survenue lors du transfert de l\'image';
+            } else {
+
+                // Size-Type issue
+                $maxSize = 6 * 1000 * 1000;
+                if ($files['image']['size'] > $maxSize) {
+                    $errors[] = 'L\'image est trop volumineuse...';
+                } else {
+                    $allowMimesTypes = ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/webp'];
+                    if (!in_array($files['image']['type'], $allowMimesTypes)) {
+                        $errors[] = 'Le type de fichier est invalide';
+                    }
+                }
+            }
+        }
+        return $errors;
     }
 }
